@@ -1,0 +1,28 @@
+model Page {
+  id          String @id @default(uuid())
+  name        String
+  username    String @unique
+  description String?
+
+  ownerId     String
+  owner       User @relation("PageOwner", fields: [ownerId], references: [id])
+
+  admins      PageAdmin[]
+
+  createdAt   DateTime @default(now())
+
+  @@map("pages")
+}
+
+model PageAdmin {
+  id     String @id @default(uuid())
+
+  pageId String
+  userId String
+
+  page   Page @relation(fields: [pageId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
+
+  @@unique([pageId, userId])
+  @@map("page_admins")
+}

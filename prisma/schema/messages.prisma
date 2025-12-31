@@ -1,0 +1,14 @@
+model Message {
+  id        String @id @default(uuid())
+  content   String
+
+  senderId  String
+  receiverId String
+
+  sender    User @relation("sentMessages", fields: [senderId], references: [id])
+  receiver  User @relation("receivedMessages", fields: [receiverId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@map("messages")
+}

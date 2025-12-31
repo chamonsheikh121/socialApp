@@ -1,0 +1,61 @@
+model User {
+  id            String   @id @default(uuid())
+  username      String   @unique
+  email         String   @unique
+  phone         String?  @unique
+  password      String
+
+  fullName      String
+  bio           String?
+  avatar        String?
+  coverPhoto    String?
+
+  isVerified    Boolean  @default(false)
+  otpExpiresAt  DateTime?
+  role          UserRole @default(USER)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  /* ---------------- RELATIONS ---------------- */
+
+  // Posts
+  posts         Post[]
+
+  // Likes
+  likes         Like[]
+
+  // Comments
+  comments      Comment[]
+
+  // Followers system
+  followers     Follow[] @relation("followers")
+  following     Follow[] @relation("following")
+
+  // Messages
+  sentMessages     Message[] @relation("sentMessages")
+  receivedMessages Message[] @relation("receivedMessages")
+
+  // Notifications
+  notifications Notification[]
+
+  // Pages / Channels
+  ownedPages     Page[]  @relation("PageOwner")
+  managedPages   PageAdmin[]
+
+  // Sponsoring
+  // sponsorProfile Sponsor?
+  // creatorProfile Creator?
+
+  // Settings
+  settings       UserSettings?
+
+  @@map("users")
+}
+
+
+enum UserRole {
+  USER
+  ADMIN
+  MODERATOR
+}

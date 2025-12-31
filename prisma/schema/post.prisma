@@ -1,0 +1,23 @@
+model Post {
+  id        String   @id @default(uuid())
+  content   String?
+  mediaUrl  String?
+  mediaType MediaType?
+
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+
+  likes     Like[]
+  comments  Comment[]
+
+  createdAt DateTime @default(now())
+
+  @@map("posts")
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  AUDIO
+  GIF
+}
