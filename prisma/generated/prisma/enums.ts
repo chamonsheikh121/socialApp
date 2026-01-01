@@ -13,8 +13,9 @@ export const NotificationType = {
   LIKE: 'LIKE',
   COMMENT: 'COMMENT',
   FOLLOW: 'FOLLOW',
+  MENTION: 'MENTION',
   MESSAGE: 'MESSAGE',
-  SPONSORED: 'SPONSORED'
+  PAGE_INVITE: 'PAGE_INVITE'
 } as const
 
 export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
@@ -30,10 +31,13 @@ export const MediaType = {
 export type MediaType = (typeof MediaType)[keyof typeof MediaType]
 
 
-export const UserRole = {
-  USER: 'USER',
-  ADMIN: 'ADMIN',
-  MODERATOR: 'MODERATOR'
+export const PostType = {
+  USER_POST: 'USER_POST',
+  PAGE_POST: 'PAGE_POST',
+  USER_REEL: 'USER_REEL',
+  PAGE_REEL: 'PAGE_REEL',
+  USER_VIDEO: 'USER_VIDEO',
+  PAGE_VIDEO: 'PAGE_VIDEO'
 } as const
 
-export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+export type PostType = (typeof PostType)[keyof typeof PostType]

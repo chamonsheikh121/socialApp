@@ -1,14 +1,20 @@
+
+// Messages
 model Message {
-  id        String @id @default(uuid())
-  content   String
+  id               String    @id @default(uuid())
+  content          String?
+  senderId         String
+  receiverId       String
+  replyToMessageId String?
+  isRead           Boolean   @default(false)
+  createdAt        DateTime  @default(now())
 
-  senderId  String
-  receiverId String
+  sender           User      @relation("SenderMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver         User      @relation("ReceiverMessages", fields: [receiverId], references: [id], onDelete: Cascade)
+  replyToMessage   Message?  @relation("ReplyMessages", fields: [replyToMessageId], references: [id])
+  replies          Message[] @relation("ReplyMessages")
+  media            Media[]
 
-  sender    User @relation("sentMessages", fields: [senderId], references: [id])
-  receiver  User @relation("receivedMessages", fields: [receiverId], references: [id])
-
-  createdAt DateTime @default(now())
-
-  @@map("messages")
+  @@index([senderId, receiverId, createdAt])
+  @@index([receiverId, createdAt])
 }

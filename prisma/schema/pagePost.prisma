@@ -1,0 +1,14 @@
+model PagePost {
+  id        String   @id @default(uuid())
+  content   String?
+  pageId    String
+  postedBy  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  poster    User     @relation(fields: [postedBy], references: [id], onDelete: Cascade)
+  media     Media[]
+
+  @@index([pageId, createdAt])
+}

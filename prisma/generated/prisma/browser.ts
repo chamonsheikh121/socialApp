@@ -18,6 +18,16 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
+ * Model Bookmark
+ * 
+ */
+export type Bookmark = Prisma.BookmarkModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
+/**
  * Model Comment
  * 
  */
@@ -28,10 +38,20 @@ export type Comment = Prisma.CommentModel
  */
 export type Follow = Prisma.FollowModel
 /**
+ * Model Hashtag
+ * 
+ */
+export type Hashtag = Prisma.HashtagModel
+/**
  * Model Like
  * 
  */
 export type Like = Prisma.LikeModel
+/**
+ * Model Media
+ * 
+ */
+export type Media = Prisma.MediaModel
 /**
  * Model Message
  * 
@@ -53,10 +73,35 @@ export type Page = Prisma.PageModel
  */
 export type PageAdmin = Prisma.PageAdminModel
 /**
+ * Model PagePost
+ * 
+ */
+export type PagePost = Prisma.PagePostModel
+/**
  * Model Post
  * 
  */
 export type Post = Prisma.PostModel
+/**
+ * Model PostCategory
+ * 
+ */
+export type PostCategory = Prisma.PostCategoryModel
+/**
+ * Model PostHashtag
+ * 
+ */
+export type PostHashtag = Prisma.PostHashtagModel
+/**
+ * Model RefreshToken
+ * 
+ */
+export type RefreshToken = Prisma.RefreshTokenModel
+/**
+ * Model UserSocialLink
+ * 
+ */
+export type UserSocialLink = Prisma.UserSocialLinkModel
 /**
  * Model User
  * 

@@ -1,28 +1,19 @@
+// Pages
 model Page {
-  id          String @id @default(uuid())
-  name        String
-  username    String @unique
-  description String?
+  id            String    @id @default(uuid())
+  name          String
+  username      String    @unique
+  description   String?
+  avatarUrl     String?
+  coverPhotoUrl String?
+  ownerId       String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
-  ownerId     String
-  owner       User @relation("PageOwner", fields: [ownerId], references: [id])
+  owner        User       @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  pageAdmins   PageAdmin[]
+  pagePosts    PagePost[]
 
-  admins      PageAdmin[]
-
-  createdAt   DateTime @default(now())
-
-  @@map("pages")
+  @@index([ownerId])
 }
 
-model PageAdmin {
-  id     String @id @default(uuid())
-
-  pageId String
-  userId String
-
-  page   Page @relation(fields: [pageId], references: [id])
-  user   User @relation(fields: [userId], references: [id])
-
-  @@unique([pageId, userId])
-  @@map("page_admins")
-}

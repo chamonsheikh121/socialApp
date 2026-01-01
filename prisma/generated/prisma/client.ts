@@ -27,8 +27,8 @@ export * from "./enums"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Comments
- * const comments = await prisma.comment.findMany()
+ * // Fetch zero or more Bookmarks
+ * const bookmarks = await prisma.bookmark.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -37,6 +37,16 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
+/**
+ * Model Bookmark
+ * 
+ */
+export type Bookmark = Prisma.BookmarkModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
 /**
  * Model Comment
  * 
@@ -48,10 +58,20 @@ export type Comment = Prisma.CommentModel
  */
 export type Follow = Prisma.FollowModel
 /**
+ * Model Hashtag
+ * 
+ */
+export type Hashtag = Prisma.HashtagModel
+/**
  * Model Like
  * 
  */
 export type Like = Prisma.LikeModel
+/**
+ * Model Media
+ * 
+ */
+export type Media = Prisma.MediaModel
 /**
  * Model Message
  * 
@@ -73,10 +93,35 @@ export type Page = Prisma.PageModel
  */
 export type PageAdmin = Prisma.PageAdminModel
 /**
+ * Model PagePost
+ * 
+ */
+export type PagePost = Prisma.PagePostModel
+/**
  * Model Post
  * 
  */
 export type Post = Prisma.PostModel
+/**
+ * Model PostCategory
+ * 
+ */
+export type PostCategory = Prisma.PostCategoryModel
+/**
+ * Model PostHashtag
+ * 
+ */
+export type PostHashtag = Prisma.PostHashtagModel
+/**
+ * Model RefreshToken
+ * 
+ */
+export type RefreshToken = Prisma.RefreshTokenModel
+/**
+ * Model UserSocialLink
+ * 
+ */
+export type UserSocialLink = Prisma.UserSocialLinkModel
 /**
  * Model User
  * 

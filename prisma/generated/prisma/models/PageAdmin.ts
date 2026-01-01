@@ -28,18 +28,21 @@ export type PageAdminMinAggregateOutputType = {
   id: string | null
   pageId: string | null
   userId: string | null
+  createdAt: Date | null
 }
 
 export type PageAdminMaxAggregateOutputType = {
   id: string | null
   pageId: string | null
   userId: string | null
+  createdAt: Date | null
 }
 
 export type PageAdminCountAggregateOutputType = {
   id: number
   pageId: number
   userId: number
+  createdAt: number
   _all: number
 }
 
@@ -48,18 +51,21 @@ export type PageAdminMinAggregateInputType = {
   id?: true
   pageId?: true
   userId?: true
+  createdAt?: true
 }
 
 export type PageAdminMaxAggregateInputType = {
   id?: true
   pageId?: true
   userId?: true
+  createdAt?: true
 }
 
 export type PageAdminCountAggregateInputType = {
   id?: true
   pageId?: true
   userId?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -139,6 +145,7 @@ export type PageAdminGroupByOutputType = {
   id: string
   pageId: string
   userId: string
+  createdAt: Date
   _count: PageAdminCountAggregateOutputType | null
   _min: PageAdminMinAggregateOutputType | null
   _max: PageAdminMaxAggregateOutputType | null
@@ -166,6 +173,7 @@ export type PageAdminWhereInput = {
   id?: Prisma.StringFilter<"PageAdmin"> | string
   pageId?: Prisma.StringFilter<"PageAdmin"> | string
   userId?: Prisma.StringFilter<"PageAdmin"> | string
+  createdAt?: Prisma.DateTimeFilter<"PageAdmin"> | Date | string
   page?: Prisma.XOR<Prisma.PageScalarRelationFilter, Prisma.PageWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
@@ -174,6 +182,7 @@ export type PageAdminOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   pageId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   page?: Prisma.PageOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
 }
@@ -186,6 +195,7 @@ export type PageAdminWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PageAdminWhereInput | Prisma.PageAdminWhereInput[]
   pageId?: Prisma.StringFilter<"PageAdmin"> | string
   userId?: Prisma.StringFilter<"PageAdmin"> | string
+  createdAt?: Prisma.DateTimeFilter<"PageAdmin"> | Date | string
   page?: Prisma.XOR<Prisma.PageScalarRelationFilter, Prisma.PageWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "pageId_userId">
@@ -194,6 +204,7 @@ export type PageAdminOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   pageId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.PageAdminCountOrderByAggregateInput
   _max?: Prisma.PageAdminMaxOrderByAggregateInput
   _min?: Prisma.PageAdminMinOrderByAggregateInput
@@ -206,46 +217,54 @@ export type PageAdminScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"PageAdmin"> | string
   pageId?: Prisma.StringWithAggregatesFilter<"PageAdmin"> | string
   userId?: Prisma.StringWithAggregatesFilter<"PageAdmin"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"PageAdmin"> | Date | string
 }
 
 export type PageAdminCreateInput = {
   id?: string
-  page: Prisma.PageCreateNestedOneWithoutAdminsInput
-  user: Prisma.UserCreateNestedOneWithoutManagedPagesInput
+  createdAt?: Date | string
+  page: Prisma.PageCreateNestedOneWithoutPageAdminsInput
+  user: Prisma.UserCreateNestedOneWithoutPageAdminsInput
 }
 
 export type PageAdminUncheckedCreateInput = {
   id?: string
   pageId: string
   userId: string
+  createdAt?: Date | string
 }
 
 export type PageAdminUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  page?: Prisma.PageUpdateOneRequiredWithoutAdminsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutManagedPagesNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  page?: Prisma.PageUpdateOneRequiredWithoutPageAdminsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPageAdminsNestedInput
 }
 
 export type PageAdminUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pageId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PageAdminCreateManyInput = {
   id?: string
   pageId: string
   userId: string
+  createdAt?: Date | string
 }
 
 export type PageAdminUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PageAdminUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pageId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PageAdminListRelationFilter = {
@@ -267,18 +286,21 @@ export type PageAdminCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   pageId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type PageAdminMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   pageId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type PageAdminMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   pageId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type PageAdminCreateNestedManyWithoutPageInput = {
@@ -367,12 +389,14 @@ export type PageAdminUncheckedUpdateManyWithoutUserNestedInput = {
 
 export type PageAdminCreateWithoutPageInput = {
   id?: string
-  user: Prisma.UserCreateNestedOneWithoutManagedPagesInput
+  createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutPageAdminsInput
 }
 
 export type PageAdminUncheckedCreateWithoutPageInput = {
   id?: string
   userId: string
+  createdAt?: Date | string
 }
 
 export type PageAdminCreateOrConnectWithoutPageInput = {
@@ -408,16 +432,19 @@ export type PageAdminScalarWhereInput = {
   id?: Prisma.StringFilter<"PageAdmin"> | string
   pageId?: Prisma.StringFilter<"PageAdmin"> | string
   userId?: Prisma.StringFilter<"PageAdmin"> | string
+  createdAt?: Prisma.DateTimeFilter<"PageAdmin"> | Date | string
 }
 
 export type PageAdminCreateWithoutUserInput = {
   id?: string
-  page: Prisma.PageCreateNestedOneWithoutAdminsInput
+  createdAt?: Date | string
+  page: Prisma.PageCreateNestedOneWithoutPageAdminsInput
 }
 
 export type PageAdminUncheckedCreateWithoutUserInput = {
   id?: string
   pageId: string
+  createdAt?: Date | string
 }
 
 export type PageAdminCreateOrConnectWithoutUserInput = {
@@ -449,41 +476,49 @@ export type PageAdminUpdateManyWithWhereWithoutUserInput = {
 export type PageAdminCreateManyPageInput = {
   id?: string
   userId: string
+  createdAt?: Date | string
 }
 
 export type PageAdminUpdateWithoutPageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutManagedPagesNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutPageAdminsNestedInput
 }
 
 export type PageAdminUncheckedUpdateWithoutPageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PageAdminUncheckedUpdateManyWithoutPageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PageAdminCreateManyUserInput = {
   id?: string
   pageId: string
+  createdAt?: Date | string
 }
 
 export type PageAdminUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  page?: Prisma.PageUpdateOneRequiredWithoutAdminsNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  page?: Prisma.PageUpdateOneRequiredWithoutPageAdminsNestedInput
 }
 
 export type PageAdminUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pageId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PageAdminUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   pageId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -492,6 +527,7 @@ export type PageAdminSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   id?: boolean
   pageId?: boolean
   userId?: boolean
+  createdAt?: boolean
   page?: boolean | Prisma.PageDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pageAdmin"]>
@@ -500,6 +536,7 @@ export type PageAdminSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   id?: boolean
   pageId?: boolean
   userId?: boolean
+  createdAt?: boolean
   page?: boolean | Prisma.PageDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pageAdmin"]>
@@ -508,6 +545,7 @@ export type PageAdminSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   id?: boolean
   pageId?: boolean
   userId?: boolean
+  createdAt?: boolean
   page?: boolean | Prisma.PageDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pageAdmin"]>
@@ -516,9 +554,10 @@ export type PageAdminSelectScalar = {
   id?: boolean
   pageId?: boolean
   userId?: boolean
+  createdAt?: boolean
 }
 
-export type PageAdminOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pageId" | "userId", ExtArgs["result"]["pageAdmin"]>
+export type PageAdminOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pageId" | "userId" | "createdAt", ExtArgs["result"]["pageAdmin"]>
 export type PageAdminInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   page?: boolean | Prisma.PageDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -542,6 +581,7 @@ export type $PageAdminPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     id: string
     pageId: string
     userId: string
+    createdAt: Date
   }, ExtArgs["result"]["pageAdmin"]>
   composites: {}
 }
@@ -970,6 +1010,7 @@ export interface PageAdminFieldRefs {
   readonly id: Prisma.FieldRef<"PageAdmin", 'String'>
   readonly pageId: Prisma.FieldRef<"PageAdmin", 'String'>
   readonly userId: Prisma.FieldRef<"PageAdmin", 'String'>
+  readonly createdAt: Prisma.FieldRef<"PageAdmin", 'DateTime'>
 }
     
 

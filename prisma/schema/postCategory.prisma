@@ -1,0 +1,13 @@
+// Post ↔ Category (Many-to-Many)
+model PostCategory {
+  id         String   @id @default(uuid())
+  postId     String
+  categoryId String
+  createdAt  DateTime @default(now())
+
+  post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, categoryId])
+  @@index([categoryId])
+}

@@ -220,7 +220,7 @@ export type UserSettingsCreateInput = {
   id?: string
   privateAccount?: boolean
   pushNotification?: boolean
-  user: Prisma.UserCreateNestedOneWithoutSettingsInput
+  user: Prisma.UserCreateNestedOneWithoutUserSettingsInput
 }
 
 export type UserSettingsUncheckedCreateInput = {
@@ -234,7 +234,7 @@ export type UserSettingsUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   privateAccount?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pushNotification?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  user?: Prisma.UserUpdateOneRequiredWithoutSettingsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutUserSettingsNestedInput
 }
 
 export type UserSettingsUncheckedUpdateInput = {

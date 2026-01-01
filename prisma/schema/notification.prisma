@@ -1,15 +1,19 @@
+// Notifications
 model Notification {
-  id       String @id @default(uuid())
-  type     NotificationType
-  message  String
-  isRead   Boolean @default(false)
+  id        String           @id @default(uuid())
+  type      NotificationType
+  message   String
+  data      Json?
+  userId    String
+  actorId   String?
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
 
-  userId   String
-  user     User @relation(fields: [userId], references: [id])
+  user      User             @relation("UserNotifications", fields: [userId], references: [id], onDelete: Cascade)
+  actor     User?            @relation(fields: [actorId], references: [id])
 
-  createdAt DateTime @default(now())
-
-  @@map("notifications")
+  @@index([userId, createdAt])
+  @@index([userId, isRead])
 }
 
 
@@ -17,6 +21,7 @@ enum NotificationType {
   LIKE
   COMMENT
   FOLLOW
+  MENTION
   MESSAGE
-  SPONSORED
+  PAGE_INVITE
 }

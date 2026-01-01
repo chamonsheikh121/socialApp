@@ -4,10 +4,20 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { PrismaModule } from './common/prisma/prisma.module';
-import { ConfigService } from '@nestjs/config';
+import { BullMQModule } from './lib/bullmq/bullmq.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [AuthModule, UserModule, PrismaModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    AuthModule,
+    UserModule,
+    PrismaModule,
+    BullMQModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

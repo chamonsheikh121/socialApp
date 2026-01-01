@@ -1,0 +1,20 @@
+model Media {
+  id        String    @id @default(uuid())
+  url       String
+  type      MediaType
+  width     Int?
+  height    Int?
+  duration  Int?
+  size      BigInt?
+  postId    String?
+  messageId String?
+  pagePostId String?
+  createdAt DateTime  @default(now())
+
+  post       Post?     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  message    Message?  @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  pagePost   PagePost? @relation(fields: [pagePostId], references: [id], onDelete: Cascade)
+
+  /// Only one of postId, messageId, pagePostId should be non-null
+}
+

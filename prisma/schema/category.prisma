@@ -1,0 +1,19 @@
+// Categories
+model Category {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String?
+  icon        String?
+  color       String?
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  postCategories PostCategory[]
+
+  @@index([slug])
+  @@index([isActive])
+  @@index([sortOrder])
+}

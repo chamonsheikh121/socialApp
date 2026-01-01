@@ -29,8 +29,11 @@ export type PageMinAggregateOutputType = {
   name: string | null
   username: string | null
   description: string | null
+  avatarUrl: string | null
+  coverPhotoUrl: string | null
   ownerId: string | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type PageMaxAggregateOutputType = {
@@ -38,8 +41,11 @@ export type PageMaxAggregateOutputType = {
   name: string | null
   username: string | null
   description: string | null
+  avatarUrl: string | null
+  coverPhotoUrl: string | null
   ownerId: string | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type PageCountAggregateOutputType = {
@@ -47,8 +53,11 @@ export type PageCountAggregateOutputType = {
   name: number
   username: number
   description: number
+  avatarUrl: number
+  coverPhotoUrl: number
   ownerId: number
   createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -58,8 +67,11 @@ export type PageMinAggregateInputType = {
   name?: true
   username?: true
   description?: true
+  avatarUrl?: true
+  coverPhotoUrl?: true
   ownerId?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type PageMaxAggregateInputType = {
@@ -67,8 +79,11 @@ export type PageMaxAggregateInputType = {
   name?: true
   username?: true
   description?: true
+  avatarUrl?: true
+  coverPhotoUrl?: true
   ownerId?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type PageCountAggregateInputType = {
@@ -76,8 +91,11 @@ export type PageCountAggregateInputType = {
   name?: true
   username?: true
   description?: true
+  avatarUrl?: true
+  coverPhotoUrl?: true
   ownerId?: true
   createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -158,8 +176,11 @@ export type PageGroupByOutputType = {
   name: string
   username: string
   description: string | null
+  avatarUrl: string | null
+  coverPhotoUrl: string | null
   ownerId: string
   createdAt: Date
+  updatedAt: Date
   _count: PageCountAggregateOutputType | null
   _min: PageMinAggregateOutputType | null
   _max: PageMaxAggregateOutputType | null
@@ -188,10 +209,14 @@ export type PageWhereInput = {
   name?: Prisma.StringFilter<"Page"> | string
   username?: Prisma.StringFilter<"Page"> | string
   description?: Prisma.StringNullableFilter<"Page"> | string | null
+  avatarUrl?: Prisma.StringNullableFilter<"Page"> | string | null
+  coverPhotoUrl?: Prisma.StringNullableFilter<"Page"> | string | null
   ownerId?: Prisma.StringFilter<"Page"> | string
   createdAt?: Prisma.DateTimeFilter<"Page"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Page"> | Date | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  admins?: Prisma.PageAdminListRelationFilter
+  pageAdmins?: Prisma.PageAdminListRelationFilter
+  pagePosts?: Prisma.PagePostListRelationFilter
 }
 
 export type PageOrderByWithRelationInput = {
@@ -199,10 +224,14 @@ export type PageOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   username?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  coverPhotoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   owner?: Prisma.UserOrderByWithRelationInput
-  admins?: Prisma.PageAdminOrderByRelationAggregateInput
+  pageAdmins?: Prisma.PageAdminOrderByRelationAggregateInput
+  pagePosts?: Prisma.PagePostOrderByRelationAggregateInput
 }
 
 export type PageWhereUniqueInput = Prisma.AtLeast<{
@@ -213,10 +242,14 @@ export type PageWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PageWhereInput | Prisma.PageWhereInput[]
   name?: Prisma.StringFilter<"Page"> | string
   description?: Prisma.StringNullableFilter<"Page"> | string | null
+  avatarUrl?: Prisma.StringNullableFilter<"Page"> | string | null
+  coverPhotoUrl?: Prisma.StringNullableFilter<"Page"> | string | null
   ownerId?: Prisma.StringFilter<"Page"> | string
   createdAt?: Prisma.DateTimeFilter<"Page"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Page"> | Date | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  admins?: Prisma.PageAdminListRelationFilter
+  pageAdmins?: Prisma.PageAdminListRelationFilter
+  pagePosts?: Prisma.PagePostListRelationFilter
 }, "id" | "username">
 
 export type PageOrderByWithAggregationInput = {
@@ -224,8 +257,11 @@ export type PageOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   username?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  coverPhotoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.PageCountOrderByAggregateInput
   _max?: Prisma.PageMaxOrderByAggregateInput
   _min?: Prisma.PageMinOrderByAggregateInput
@@ -239,8 +275,11 @@ export type PageScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Page"> | string
   username?: Prisma.StringWithAggregatesFilter<"Page"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Page"> | string | null
+  avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"Page"> | string | null
+  coverPhotoUrl?: Prisma.StringNullableWithAggregatesFilter<"Page"> | string | null
   ownerId?: Prisma.StringWithAggregatesFilter<"Page"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Page"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Page"> | Date | string
 }
 
 export type PageCreateInput = {
@@ -248,9 +287,13 @@ export type PageCreateInput = {
   name: string
   username: string
   description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
   createdAt?: Date | string
-  owner: Prisma.UserCreateNestedOneWithoutOwnedPagesInput
-  admins?: Prisma.PageAdminCreateNestedManyWithoutPageInput
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutPagesOwnedInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutPageInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPageInput
 }
 
 export type PageUncheckedCreateInput = {
@@ -258,9 +301,13 @@ export type PageUncheckedCreateInput = {
   name: string
   username: string
   description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
   ownerId: string
   createdAt?: Date | string
-  admins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutPageInput
+  updatedAt?: Date | string
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutPageInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPageInput
 }
 
 export type PageUpdateInput = {
@@ -268,9 +315,13 @@ export type PageUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  owner?: Prisma.UserUpdateOneRequiredWithoutOwnedPagesNestedInput
-  admins?: Prisma.PageAdminUpdateManyWithoutPageNestedInput
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutPagesOwnedNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutPageNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPageNestedInput
 }
 
 export type PageUncheckedUpdateInput = {
@@ -278,9 +329,13 @@ export type PageUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admins?: Prisma.PageAdminUncheckedUpdateManyWithoutPageNestedInput
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutPageNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPageNestedInput
 }
 
 export type PageCreateManyInput = {
@@ -288,8 +343,11 @@ export type PageCreateManyInput = {
   name: string
   username: string
   description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
   ownerId: string
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type PageUpdateManyMutationInput = {
@@ -297,7 +355,10 @@ export type PageUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PageUncheckedUpdateManyInput = {
@@ -305,8 +366,11 @@ export type PageUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PageCountOrderByAggregateInput = {
@@ -314,8 +378,11 @@ export type PageCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   username?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  avatarUrl?: Prisma.SortOrder
+  coverPhotoUrl?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PageMaxOrderByAggregateInput = {
@@ -323,8 +390,11 @@ export type PageMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   username?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  avatarUrl?: Prisma.SortOrder
+  coverPhotoUrl?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PageMinOrderByAggregateInput = {
@@ -332,8 +402,11 @@ export type PageMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   username?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  avatarUrl?: Prisma.SortOrder
+  coverPhotoUrl?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PageScalarRelationFilter = {
@@ -351,22 +424,32 @@ export type PageOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
-export type PageCreateNestedOneWithoutAdminsInput = {
-  create?: Prisma.XOR<Prisma.PageCreateWithoutAdminsInput, Prisma.PageUncheckedCreateWithoutAdminsInput>
-  connectOrCreate?: Prisma.PageCreateOrConnectWithoutAdminsInput
+export type PageCreateNestedOneWithoutPageAdminsInput = {
+  create?: Prisma.XOR<Prisma.PageCreateWithoutPageAdminsInput, Prisma.PageUncheckedCreateWithoutPageAdminsInput>
+  connectOrCreate?: Prisma.PageCreateOrConnectWithoutPageAdminsInput
   connect?: Prisma.PageWhereUniqueInput
 }
 
-export type PageUpdateOneRequiredWithoutAdminsNestedInput = {
-  create?: Prisma.XOR<Prisma.PageCreateWithoutAdminsInput, Prisma.PageUncheckedCreateWithoutAdminsInput>
-  connectOrCreate?: Prisma.PageCreateOrConnectWithoutAdminsInput
-  upsert?: Prisma.PageUpsertWithoutAdminsInput
+export type PageUpdateOneRequiredWithoutPageAdminsNestedInput = {
+  create?: Prisma.XOR<Prisma.PageCreateWithoutPageAdminsInput, Prisma.PageUncheckedCreateWithoutPageAdminsInput>
+  connectOrCreate?: Prisma.PageCreateOrConnectWithoutPageAdminsInput
+  upsert?: Prisma.PageUpsertWithoutPageAdminsInput
   connect?: Prisma.PageWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PageUpdateToOneWithWhereWithoutAdminsInput, Prisma.PageUpdateWithoutAdminsInput>, Prisma.PageUncheckedUpdateWithoutAdminsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PageUpdateToOneWithWhereWithoutPageAdminsInput, Prisma.PageUpdateWithoutPageAdminsInput>, Prisma.PageUncheckedUpdateWithoutPageAdminsInput>
+}
+
+export type PageCreateNestedOneWithoutPagePostsInput = {
+  create?: Prisma.XOR<Prisma.PageCreateWithoutPagePostsInput, Prisma.PageUncheckedCreateWithoutPagePostsInput>
+  connectOrCreate?: Prisma.PageCreateOrConnectWithoutPagePostsInput
+  connect?: Prisma.PageWhereUniqueInput
+}
+
+export type PageUpdateOneRequiredWithoutPagePostsNestedInput = {
+  create?: Prisma.XOR<Prisma.PageCreateWithoutPagePostsInput, Prisma.PageUncheckedCreateWithoutPagePostsInput>
+  connectOrCreate?: Prisma.PageCreateOrConnectWithoutPagePostsInput
+  upsert?: Prisma.PageUpsertWithoutPagePostsInput
+  connect?: Prisma.PageWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PageUpdateToOneWithWhereWithoutPagePostsInput, Prisma.PageUpdateWithoutPagePostsInput>, Prisma.PageUncheckedUpdateWithoutPagePostsInput>
 }
 
 export type PageCreateNestedManyWithoutOwnerInput = {
@@ -411,56 +494,140 @@ export type PageUncheckedUpdateManyWithoutOwnerNestedInput = {
   deleteMany?: Prisma.PageScalarWhereInput | Prisma.PageScalarWhereInput[]
 }
 
-export type PageCreateWithoutAdminsInput = {
+export type PageCreateWithoutPageAdminsInput = {
   id?: string
   name: string
   username: string
   description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
   createdAt?: Date | string
-  owner: Prisma.UserCreateNestedOneWithoutOwnedPagesInput
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutPagesOwnedInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPageInput
 }
 
-export type PageUncheckedCreateWithoutAdminsInput = {
+export type PageUncheckedCreateWithoutPageAdminsInput = {
   id?: string
   name: string
   username: string
   description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
   ownerId: string
   createdAt?: Date | string
+  updatedAt?: Date | string
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPageInput
 }
 
-export type PageCreateOrConnectWithoutAdminsInput = {
+export type PageCreateOrConnectWithoutPageAdminsInput = {
   where: Prisma.PageWhereUniqueInput
-  create: Prisma.XOR<Prisma.PageCreateWithoutAdminsInput, Prisma.PageUncheckedCreateWithoutAdminsInput>
+  create: Prisma.XOR<Prisma.PageCreateWithoutPageAdminsInput, Prisma.PageUncheckedCreateWithoutPageAdminsInput>
 }
 
-export type PageUpsertWithoutAdminsInput = {
-  update: Prisma.XOR<Prisma.PageUpdateWithoutAdminsInput, Prisma.PageUncheckedUpdateWithoutAdminsInput>
-  create: Prisma.XOR<Prisma.PageCreateWithoutAdminsInput, Prisma.PageUncheckedCreateWithoutAdminsInput>
+export type PageUpsertWithoutPageAdminsInput = {
+  update: Prisma.XOR<Prisma.PageUpdateWithoutPageAdminsInput, Prisma.PageUncheckedUpdateWithoutPageAdminsInput>
+  create: Prisma.XOR<Prisma.PageCreateWithoutPageAdminsInput, Prisma.PageUncheckedCreateWithoutPageAdminsInput>
   where?: Prisma.PageWhereInput
 }
 
-export type PageUpdateToOneWithWhereWithoutAdminsInput = {
+export type PageUpdateToOneWithWhereWithoutPageAdminsInput = {
   where?: Prisma.PageWhereInput
-  data: Prisma.XOR<Prisma.PageUpdateWithoutAdminsInput, Prisma.PageUncheckedUpdateWithoutAdminsInput>
+  data: Prisma.XOR<Prisma.PageUpdateWithoutPageAdminsInput, Prisma.PageUncheckedUpdateWithoutPageAdminsInput>
 }
 
-export type PageUpdateWithoutAdminsInput = {
+export type PageUpdateWithoutPageAdminsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  owner?: Prisma.UserUpdateOneRequiredWithoutOwnedPagesNestedInput
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutPagesOwnedNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPageNestedInput
 }
 
-export type PageUncheckedUpdateWithoutAdminsInput = {
+export type PageUncheckedUpdateWithoutPageAdminsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPageNestedInput
+}
+
+export type PageCreateWithoutPagePostsInput = {
+  id?: string
+  name: string
+  username: string
+  description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutPagesOwnedInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutPageInput
+}
+
+export type PageUncheckedCreateWithoutPagePostsInput = {
+  id?: string
+  name: string
+  username: string
+  description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  ownerId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutPageInput
+}
+
+export type PageCreateOrConnectWithoutPagePostsInput = {
+  where: Prisma.PageWhereUniqueInput
+  create: Prisma.XOR<Prisma.PageCreateWithoutPagePostsInput, Prisma.PageUncheckedCreateWithoutPagePostsInput>
+}
+
+export type PageUpsertWithoutPagePostsInput = {
+  update: Prisma.XOR<Prisma.PageUpdateWithoutPagePostsInput, Prisma.PageUncheckedUpdateWithoutPagePostsInput>
+  create: Prisma.XOR<Prisma.PageCreateWithoutPagePostsInput, Prisma.PageUncheckedCreateWithoutPagePostsInput>
+  where?: Prisma.PageWhereInput
+}
+
+export type PageUpdateToOneWithWhereWithoutPagePostsInput = {
+  where?: Prisma.PageWhereInput
+  data: Prisma.XOR<Prisma.PageUpdateWithoutPagePostsInput, Prisma.PageUncheckedUpdateWithoutPagePostsInput>
+}
+
+export type PageUpdateWithoutPagePostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutPagesOwnedNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutPageNestedInput
+}
+
+export type PageUncheckedUpdateWithoutPagePostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutPageNestedInput
 }
 
 export type PageCreateWithoutOwnerInput = {
@@ -468,8 +635,12 @@ export type PageCreateWithoutOwnerInput = {
   name: string
   username: string
   description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
   createdAt?: Date | string
-  admins?: Prisma.PageAdminCreateNestedManyWithoutPageInput
+  updatedAt?: Date | string
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutPageInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPageInput
 }
 
 export type PageUncheckedCreateWithoutOwnerInput = {
@@ -477,8 +648,12 @@ export type PageUncheckedCreateWithoutOwnerInput = {
   name: string
   username: string
   description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
   createdAt?: Date | string
-  admins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutPageInput
+  updatedAt?: Date | string
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutPageInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPageInput
 }
 
 export type PageCreateOrConnectWithoutOwnerInput = {
@@ -515,8 +690,11 @@ export type PageScalarWhereInput = {
   name?: Prisma.StringFilter<"Page"> | string
   username?: Prisma.StringFilter<"Page"> | string
   description?: Prisma.StringNullableFilter<"Page"> | string | null
+  avatarUrl?: Prisma.StringNullableFilter<"Page"> | string | null
+  coverPhotoUrl?: Prisma.StringNullableFilter<"Page"> | string | null
   ownerId?: Prisma.StringFilter<"Page"> | string
   createdAt?: Prisma.DateTimeFilter<"Page"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Page"> | Date | string
 }
 
 export type PageCreateManyOwnerInput = {
@@ -524,7 +702,10 @@ export type PageCreateManyOwnerInput = {
   name: string
   username: string
   description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type PageUpdateWithoutOwnerInput = {
@@ -532,8 +713,12 @@ export type PageUpdateWithoutOwnerInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admins?: Prisma.PageAdminUpdateManyWithoutPageNestedInput
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutPageNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPageNestedInput
 }
 
 export type PageUncheckedUpdateWithoutOwnerInput = {
@@ -541,8 +726,12 @@ export type PageUncheckedUpdateWithoutOwnerInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admins?: Prisma.PageAdminUncheckedUpdateManyWithoutPageNestedInput
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutPageNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPageNestedInput
 }
 
 export type PageUncheckedUpdateManyWithoutOwnerInput = {
@@ -550,7 +739,10 @@ export type PageUncheckedUpdateManyWithoutOwnerInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -559,11 +751,13 @@ export type PageUncheckedUpdateManyWithoutOwnerInput = {
  */
 
 export type PageCountOutputType = {
-  admins: number
+  pageAdmins: number
+  pagePosts: number
 }
 
 export type PageCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  admins?: boolean | PageCountOutputTypeCountAdminsArgs
+  pageAdmins?: boolean | PageCountOutputTypeCountPageAdminsArgs
+  pagePosts?: boolean | PageCountOutputTypeCountPagePostsArgs
 }
 
 /**
@@ -579,8 +773,15 @@ export type PageCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * PageCountOutputType without action
  */
-export type PageCountOutputTypeCountAdminsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type PageCountOutputTypeCountPageAdminsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PageAdminWhereInput
+}
+
+/**
+ * PageCountOutputType without action
+ */
+export type PageCountOutputTypeCountPagePostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PagePostWhereInput
 }
 
 
@@ -589,10 +790,14 @@ export type PageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   username?: boolean
   description?: boolean
+  avatarUrl?: boolean
+  coverPhotoUrl?: boolean
   ownerId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  admins?: boolean | Prisma.Page$adminsArgs<ExtArgs>
+  pageAdmins?: boolean | Prisma.Page$pageAdminsArgs<ExtArgs>
+  pagePosts?: boolean | Prisma.Page$pagePostsArgs<ExtArgs>
   _count?: boolean | Prisma.PageCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["page"]>
 
@@ -601,8 +806,11 @@ export type PageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   username?: boolean
   description?: boolean
+  avatarUrl?: boolean
+  coverPhotoUrl?: boolean
   ownerId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["page"]>
 
@@ -611,8 +819,11 @@ export type PageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   username?: boolean
   description?: boolean
+  avatarUrl?: boolean
+  coverPhotoUrl?: boolean
   ownerId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["page"]>
 
@@ -621,14 +832,18 @@ export type PageSelectScalar = {
   name?: boolean
   username?: boolean
   description?: boolean
+  avatarUrl?: boolean
+  coverPhotoUrl?: boolean
   ownerId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type PageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "description" | "ownerId" | "createdAt", ExtArgs["result"]["page"]>
+export type PageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "description" | "avatarUrl" | "coverPhotoUrl" | "ownerId" | "createdAt" | "updatedAt", ExtArgs["result"]["page"]>
 export type PageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  admins?: boolean | Prisma.Page$adminsArgs<ExtArgs>
+  pageAdmins?: boolean | Prisma.Page$pageAdminsArgs<ExtArgs>
+  pagePosts?: boolean | Prisma.Page$pagePostsArgs<ExtArgs>
   _count?: boolean | Prisma.PageCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -642,15 +857,19 @@ export type $PagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "Page"
   objects: {
     owner: Prisma.$UserPayload<ExtArgs>
-    admins: Prisma.$PageAdminPayload<ExtArgs>[]
+    pageAdmins: Prisma.$PageAdminPayload<ExtArgs>[]
+    pagePosts: Prisma.$PagePostPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
     username: string
     description: string | null
+    avatarUrl: string | null
+    coverPhotoUrl: string | null
     ownerId: string
     createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["page"]>
   composites: {}
 }
@@ -1046,7 +1265,8 @@ readonly fields: PageFieldRefs;
 export interface Prisma__PageClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   owner<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  admins<T extends Prisma.Page$adminsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Page$adminsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PageAdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pageAdmins<T extends Prisma.Page$pageAdminsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Page$pageAdminsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PageAdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pagePosts<T extends Prisma.Page$pagePostsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Page$pagePostsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagePostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1080,8 +1300,11 @@ export interface PageFieldRefs {
   readonly name: Prisma.FieldRef<"Page", 'String'>
   readonly username: Prisma.FieldRef<"Page", 'String'>
   readonly description: Prisma.FieldRef<"Page", 'String'>
+  readonly avatarUrl: Prisma.FieldRef<"Page", 'String'>
+  readonly coverPhotoUrl: Prisma.FieldRef<"Page", 'String'>
   readonly ownerId: Prisma.FieldRef<"Page", 'String'>
   readonly createdAt: Prisma.FieldRef<"Page", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Page", 'DateTime'>
 }
     
 
@@ -1478,9 +1701,9 @@ export type PageDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Page.admins
+ * Page.pageAdmins
  */
-export type Page$adminsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Page$pageAdminsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PageAdmin
    */
@@ -1499,6 +1722,30 @@ export type Page$adminsArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.PageAdminScalarFieldEnum | Prisma.PageAdminScalarFieldEnum[]
+}
+
+/**
+ * Page.pagePosts
+ */
+export type Page$pagePostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PagePost
+   */
+  select?: Prisma.PagePostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PagePost
+   */
+  omit?: Prisma.PagePostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PagePostInclude<ExtArgs> | null
+  where?: Prisma.PagePostWhereInput
+  orderBy?: Prisma.PagePostOrderByWithRelationInput | Prisma.PagePostOrderByWithRelationInput[]
+  cursor?: Prisma.PagePostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PagePostScalarFieldEnum | Prisma.PagePostScalarFieldEnum[]
 }
 
 /**

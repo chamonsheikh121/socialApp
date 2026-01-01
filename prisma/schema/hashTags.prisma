@@ -1,0 +1,9 @@
+// Hashtags
+model Hashtag {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  trendCount Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  postHashtags PostHashtag[]
+}

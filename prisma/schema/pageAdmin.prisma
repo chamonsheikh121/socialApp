@@ -1,0 +1,12 @@
+// Page Admins
+model PageAdmin {
+  id       String  @id @default(uuid())
+  pageId   String
+  userId   String
+  createdAt DateTime @default(now())
+
+  page     Page    @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([pageId, userId])
+}

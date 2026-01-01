@@ -51,14 +51,23 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Bookmark: 'Bookmark',
+  Category: 'Category',
   Comment: 'Comment',
   Follow: 'Follow',
+  Hashtag: 'Hashtag',
   Like: 'Like',
+  Media: 'Media',
   Message: 'Message',
   Notification: 'Notification',
   Page: 'Page',
   PageAdmin: 'PageAdmin',
+  PagePost: 'PagePost',
   Post: 'Post',
+  PostCategory: 'PostCategory',
+  PostHashtag: 'PostHashtag',
+  RefreshToken: 'RefreshToken',
+  UserSocialLink: 'UserSocialLink',
   User: 'User',
   UserSettings: 'UserSettings'
 } as const
@@ -79,12 +88,43 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const BookmarkScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  PostType: 'PostType',
+  contentId: 'contentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]
+
+
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  icon: 'icon',
+  color: 'color',
+  isActive: 'isActive',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
 export const CommentScalarFieldEnum = {
   id: 'id',
-  content: 'content',
+  commentText: 'commentText',
   userId: 'userId',
-  postId: 'postId',
-  createdAt: 'createdAt'
+  PostType: 'PostType',
+  contentId: 'contentId',
+  parentCommentId: 'parentCommentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
@@ -100,13 +140,41 @@ export const FollowScalarFieldEnum = {
 export type FollowScalarFieldEnum = (typeof FollowScalarFieldEnum)[keyof typeof FollowScalarFieldEnum]
 
 
+export const HashtagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  trendCount: 'trendCount',
+  createdAt: 'createdAt'
+} as const
+
+export type HashtagScalarFieldEnum = (typeof HashtagScalarFieldEnum)[keyof typeof HashtagScalarFieldEnum]
+
+
 export const LikeScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  postId: 'postId'
+  postId: 'postId',
+  createdAt: 'createdAt'
 } as const
 
 export type LikeScalarFieldEnum = (typeof LikeScalarFieldEnum)[keyof typeof LikeScalarFieldEnum]
+
+
+export const MediaScalarFieldEnum = {
+  id: 'id',
+  url: 'url',
+  type: 'type',
+  width: 'width',
+  height: 'height',
+  duration: 'duration',
+  size: 'size',
+  postId: 'postId',
+  messageId: 'messageId',
+  pagePostId: 'pagePostId',
+  createdAt: 'createdAt'
+} as const
+
+export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof MediaScalarFieldEnum]
 
 
 export const MessageScalarFieldEnum = {
@@ -114,6 +182,8 @@ export const MessageScalarFieldEnum = {
   content: 'content',
   senderId: 'senderId',
   receiverId: 'receiverId',
+  replyToMessageId: 'replyToMessageId',
+  isRead: 'isRead',
   createdAt: 'createdAt'
 } as const
 
@@ -124,8 +194,10 @@ export const NotificationScalarFieldEnum = {
   id: 'id',
   type: 'type',
   message: 'message',
-  isRead: 'isRead',
+  data: 'data',
   userId: 'userId',
+  actorId: 'actorId',
+  isRead: 'isRead',
   createdAt: 'createdAt'
 } as const
 
@@ -137,8 +209,11 @@ export const PageScalarFieldEnum = {
   name: 'name',
   username: 'username',
   description: 'description',
+  avatarUrl: 'avatarUrl',
+  coverPhotoUrl: 'coverPhotoUrl',
   ownerId: 'ownerId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type PageScalarFieldEnum = (typeof PageScalarFieldEnum)[keyof typeof PageScalarFieldEnum]
@@ -147,22 +222,82 @@ export type PageScalarFieldEnum = (typeof PageScalarFieldEnum)[keyof typeof Page
 export const PageAdminScalarFieldEnum = {
   id: 'id',
   pageId: 'pageId',
-  userId: 'userId'
+  userId: 'userId',
+  createdAt: 'createdAt'
 } as const
 
 export type PageAdminScalarFieldEnum = (typeof PageAdminScalarFieldEnum)[keyof typeof PageAdminScalarFieldEnum]
 
 
-export const PostScalarFieldEnum = {
+export const PagePostScalarFieldEnum = {
   id: 'id',
   content: 'content',
-  mediaUrl: 'mediaUrl',
-  mediaType: 'mediaType',
-  authorId: 'authorId',
-  createdAt: 'createdAt'
+  pageId: 'pageId',
+  postedBy: 'postedBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PagePostScalarFieldEnum = (typeof PagePostScalarFieldEnum)[keyof typeof PagePostScalarFieldEnum]
+
+
+export const PostScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  postType: 'postType',
+  isPublic: 'isPublic',
+  allowComments: 'allowComments',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+
+
+export const PostCategoryScalarFieldEnum = {
+  id: 'id',
+  postId: 'postId',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt'
+} as const
+
+export type PostCategoryScalarFieldEnum = (typeof PostCategoryScalarFieldEnum)[keyof typeof PostCategoryScalarFieldEnum]
+
+
+export const PostHashtagScalarFieldEnum = {
+  id: 'id',
+  postId: 'postId',
+  hashtagId: 'hashtagId',
+  createdAt: 'createdAt'
+} as const
+
+export type PostHashtagScalarFieldEnum = (typeof PostHashtagScalarFieldEnum)[keyof typeof PostHashtagScalarFieldEnum]
+
+
+export const RefreshTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  token: 'token',
+  revoked: 'revoked',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+
+
+export const UserSocialLinkScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  platform: 'platform',
+  url: 'url',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserSocialLinkScalarFieldEnum = (typeof UserSocialLinkScalarFieldEnum)[keyof typeof UserSocialLinkScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -170,14 +305,14 @@ export const UserScalarFieldEnum = {
   username: 'username',
   email: 'email',
   phone: 'phone',
-  password: 'password',
+  passwordHash: 'passwordHash',
   fullName: 'fullName',
   bio: 'bio',
-  avatar: 'avatar',
-  coverPhoto: 'coverPhoto',
-  isVerified: 'isVerified',
-  otpExpiresAt: 'otpExpiresAt',
+  avatarUrl: 'avatarUrl',
+  coverPhotoUrl: 'coverPhotoUrl',
+  location: 'location',
   role: 'role',
+  isVerified: 'isVerified',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -203,6 +338,14 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const NullableJsonNullValueInput = {
+  DbNull: 'DbNull',
+  JsonNull: 'JsonNull'
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -217,4 +360,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: 'DbNull',
+  JsonNull: 'JsonNull',
+  AnyNull: 'AnyNull'
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

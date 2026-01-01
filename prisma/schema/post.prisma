@@ -1,18 +1,25 @@
+// Posts
 model Post {
-  id        String   @id @default(uuid())
-  content   String?
-  mediaUrl  String?
-  mediaType MediaType?
+  id            String   @id @default(uuid())
+  userId        String
+  content       String?
+  postType   PostType @default(USER_POST)
+  isPublic      Boolean     @default(true)
+  allowComments Boolean     @default(true)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 
-  authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
+  user          User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postCategories PostCategory[]
+  postHashtags   PostHashtag[]
+  comments       Comment[] @relation("PostComments")
+  likes          Like[]
+  bookmarks      Bookmark[] @relation("PostBookmarks")
+  media          Media[]
 
-  likes     Like[]
-  comments  Comment[]
-
-  createdAt DateTime @default(now())
-
-  @@map("posts")
+  @@index([userId, createdAt])
+  @@index([postType])
+  @@index([createdAt])
 }
 
 enum MediaType {
@@ -20,4 +27,14 @@ enum MediaType {
   VIDEO
   AUDIO
   GIF
+}
+
+// Enums
+enum PostType {
+  USER_POST
+  PAGE_POST
+  USER_REEL
+  PAGE_REEL
+  USER_VIDEO
+  PAGE_VIDEO
 }
