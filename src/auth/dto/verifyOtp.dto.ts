@@ -1,10 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsString, IsOptional } from 'class-validator';
-
-enum RoleEnum {
-  ADMIN,
-  USER,
-}
+import { IsEmail, IsString } from 'class-validator';
 
 export class verifyOtpDto {
   @ApiProperty({ example: 'johnDoe@gmail.com' })

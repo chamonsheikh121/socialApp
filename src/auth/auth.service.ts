@@ -1,30 +1,73 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Inject, Injectable } from '@nestjs/common';
 import { PrismaService } from '../common/prisma/prisma.service';
 import { RedisService } from '../common/redis/redis.service';
-import { MailService } from '../lib/mail/mail.service';
 import { CreateUserDtos } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import bcrypt from 'bcryptjs';
-import { ConfigService } from '@nestjs/config';
 import { emailQueue } from '@/lib/bullmq/email.queue';
 import { JwtService } from '@nestjs/jwt';
 import { jwtPayloadDto } from './dto/jwtPayload.dto';
+import { PinoLogger, InjectPinoLogger } from 'nestjs-pino';
+import { Counter } from 'prom-client';
+import { register } from 'prom-client';
+import {
+  BadRequestError,
+  UnauthorizedError,
+  NotFoundError,
+} from '../common/error';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
   private salultRounds: number;
+  private readonly userRegistrations: Counter<string>;
+  private readonly userLogins: Counter<string>;
+  private readonly otpVerifications: Counter<string>;
   constructor(
     private readonly prisma: PrismaService,
     private readonly redis: RedisService,
-    private readonly mailService: MailService,
     private readonly configService: ConfigService,
     @Inject('ACCESS_JWT') private readonly accessTokenService: JwtService,
     @Inject('REFRESH_JWT') private readonly refreshTokenService: JwtService,
+    @Inject('RESET_PASS_JWT')
+    private readonly resetPassTokenService: JwtService,
+    @InjectPinoLogger(AuthService.name) private readonly logger: PinoLogger,
   ) {
-    this.salultRounds = configService.get<number>('SALT_ROUNDS') || 10;
+    this.salultRounds = Number(configService.get<number>('SALT_ROUNDS')) || 10;
+
+    // Custom metrics
+    this.userRegistrations = new Counter({
+      name: 'social_app_user_registrations_total',
+      help: 'Total number of user registrations',
+      labelNames: ['status'],
+    });
+
+    this.userLogins = new Counter({
+      name: 'social_app_user_logins_total',
+      help: 'Total number of user logins',
+      labelNames: ['status'],
+    });
+
+    this.otpVerifications = new Counter({
+      name: 'social_app_otp_verifications_total',
+      help: 'Total number of OTP verifications',
+      labelNames: ['status'],
+    });
+
+    // Register metrics
+    register.registerMetric(this.userRegistrations);
+    register.registerMetric(this.userLogins);
+    register.registerMetric(this.otpVerifications);
   }
 
   async register(userData: CreateUserDtos) {
+    this.logger.info(
+      { email: userData.email, username: userData.username },
+      'Attempting user registration',
+    );
+
     // Check if user exists
     const existingUser = await this.prisma.client.user.findFirst({
       where: {
@@ -32,10 +75,13 @@ export class AuthService {
       },
     });
 
-    console.log(existingUser);
-
     if (existingUser) {
-      throw new Error('User already exists');
+      this.logger.warn(
+        { email: userData.email, username: userData.username },
+        'User already exists',
+      );
+      this.userRegistrations.inc({ status: 'failed' });
+      throw new BadRequestError('User already exists');
     }
 
     // Hash password
@@ -44,7 +90,7 @@ export class AuthService {
       this.salultRounds,
     );
 
-    console.log('Salt rounds:', this.salultRounds);
+    this.logger.debug('Password hashed successfully');
 
     // Create user
     const user = await this.prisma.client.user.create({
@@ -52,11 +98,13 @@ export class AuthService {
         username: userData.username,
         email: userData.email,
         passwordHash: hashedPassword,
-        fullName: userData.fullName,
-        bio: userData.bio,
-        role: userData.role === 0 ? 'ADMIN' : 'USER',
       },
     });
+
+    this.logger.info(
+      { userId: user.id, email: user.email },
+      'User created successfully',
+    );
 
     // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
@@ -64,14 +112,17 @@ export class AuthService {
     // Store OTP in Redis with 10 minutes TTL
     await this.redis.set(`otp:${user.email}`, otp, 600);
 
+    this.logger.debug({ email: user.email }, 'OTP stored in Redis');
+
     await emailQueue.add('send-otp-email', {
       type: 'otp',
       to: user.email,
       otp,
     });
 
-    // Send OTP email
-    // await this.sendOtpEmail(user.email, otp);
+    this.logger.info({ email: user.email }, 'OTP email queued for sending');
+
+    this.userRegistrations.inc({ status: 'success' });
 
     return {
       message:
@@ -80,15 +131,15 @@ export class AuthService {
   }
 
   async verifyOtp(email: string, otp: string) {
-    console.log(`Verifying OTP for email: ${email}`);
+    this.logger.info({ email }, 'Verifying OTP');
 
     const storedOtp = await this.redis.get(`otp:${email}`);
     if (!storedOtp || storedOtp !== otp) {
-      console.log(`OTP verification failed for ${email}: stored=${storedOtp}, provided=${otp}`);
-      throw new Error('Invalid or expired OTP');
+      this.logger.warn({ email, providedOtp: otp }, 'OTP verification failed');
+      throw new BadRequestError('Invalid or expired OTP');
     }
 
-    console.log(`OTP verified successfully for ${email}`);
+    this.logger.info({ email }, 'OTP verified successfully');
 
     // Get user information for welcome email
     const user = await this.prisma.client.user.findUnique({
@@ -96,11 +147,9 @@ export class AuthService {
     });
 
     if (!user) {
-      console.log(`User not found for email: ${email}`);
-      throw new Error('User not found');
+      this.logger.error({ email }, 'User not found after OTP verification');
+      throw new NotFoundError('User not found');
     }
-
-    console.log(`Found user: ${user.id}, marking as verified`);
 
     // Mark user as verified
     await this.prisma.client.user.update({
@@ -108,20 +157,22 @@ export class AuthService {
       data: { isVerified: true },
     });
 
-    console.log(`User ${user.id} marked as verified`);
-
     // Send welcome email via queue (fire and forget)
-    emailQueue.add('send-welcome-email', {
-      type: 'welcome',
-      to: user.email,
-      username: user.username,
-    }).catch((error) => {
-      console.error('Failed to queue welcome email:', error);
-    });
+    emailQueue
+      .add('send-welcome-email', {
+        type: 'welcome',
+        to: user.email,
+        username: user.username,
+      })
+      .catch((error) => {
+        this.logger.error(
+          { email: user.email, error },
+          'Failed to queue welcome email',
+        );
+      });
 
     // Delete OTP from Redis
     await this.redis.del(`otp:${email}`);
-    console.log(`OTP deleted from Redis for ${email}`);
 
     const payload: jwtPayloadDto = {
       userId: user.id,
@@ -129,13 +180,13 @@ export class AuthService {
       role: user.role,
     };
 
-    console.log(`Creating tokens for user ${user.id}`);
-
     try {
-      const accessToken = await this.createAccessToken(payload);
-      const refreshToken = await this.createRefreshToken(payload);
+      const accessToken = this.createAccessToken(payload);
+      const refreshToken = this.createRefreshToken(payload);
 
-      console.log('Tokens created successfully for user:', user.email);
+      this.logger.info({ email: user.email }, 'Tokens created successfully');
+
+      this.otpVerifications.inc({ status: 'success' });
 
       return {
         message: 'Email verified successfully. Welcome to our social app!',
@@ -143,20 +194,14 @@ export class AuthService {
         refreshToken,
       };
     } catch (error) {
-      console.error('Error creating tokens:', error);
-      throw new Error('Failed to create authentication tokens');
+      this.logger.error({ email: user.email, error }, 'Error creating tokens');
+      this.otpVerifications.inc({ status: 'failed' });
+      throw new BadRequestError('Failed to create authentication tokens');
     }
   }
 
-async  createAccessToken(payload: jwtPayloadDto) {
-    return await this.accessTokenService.sign(payload);
-  }
-async  createRefreshToken(payload: jwtPayloadDto) {
-    return await this.refreshTokenService.sign(payload);
-  }
-
   async login(loginData: LoginDto) {
-    console.log(`Login attempt for email: ${loginData.email}`);
+    this.logger.info({ email: loginData.email }, 'Login attempt');
 
     // Find user by email
     const user = await this.prisma.client.user.findUnique({
@@ -164,24 +209,27 @@ async  createRefreshToken(payload: jwtPayloadDto) {
     });
 
     if (!user) {
-      console.log(`User not found for email: ${loginData.email}`);
-      throw new Error('Invalid email or password');
+      this.logger.warn({ email: loginData.email }, 'User not found');
+      throw new UnauthorizedError('Invalid email or password');
     }
 
     // Verify password
-    const isPasswordValid = await bcrypt.compare(loginData.password, user.passwordHash);
+    const isPasswordValid = await bcrypt.compare(
+      loginData.password,
+      user.passwordHash,
+    );
     if (!isPasswordValid) {
-      console.log(`Invalid password for user: ${user.email}`);
-      throw new Error('Invalid email or password');
+      this.logger.warn({ email: user.email }, 'Invalid password');
+      throw new UnauthorizedError('Invalid email or password');
     }
 
     // Check if user is verified
     if (!user.isVerified) {
-      console.log(`User ${user.email} is not verified`);
-      throw new Error('Please verify your email before logging in');
+      this.logger.warn({ email: user.email }, 'User not verified');
+      throw new UnauthorizedError('Please verify your email before logging in');
     }
 
-    console.log(`Login successful for user: ${user.email}`);
+    this.logger.info({ email: user.email }, 'Login successful');
 
     // Create JWT payload
     const payload: jwtPayloadDto = {
@@ -191,10 +239,15 @@ async  createRefreshToken(payload: jwtPayloadDto) {
     };
 
     try {
-      const accessToken = await this.createAccessToken(payload);
-      const refreshToken = await this.createRefreshToken(payload);
+      const accessToken = this.createAccessToken(payload);
+      const refreshToken = this.createRefreshToken(payload);
 
-      console.log('Login tokens created successfully for user:', user.email);
+      this.logger.info(
+        { email: user.email },
+        'Login tokens created successfully',
+      );
+
+      this.userLogins.inc({ status: 'success' });
 
       return {
         message: 'Login successful',
@@ -209,8 +262,108 @@ async  createRefreshToken(payload: jwtPayloadDto) {
         },
       };
     } catch (error) {
-      console.error('Error creating login tokens:', error);
+      this.logger.error(
+        { email: user.email, error },
+        'Error creating login tokens',
+      );
+      this.userLogins.inc({ status: 'failed' });
       throw new Error('Failed to create authentication tokens');
     }
+  }
+
+  async forgetPassword(email: string) {
+    this.logger.info({ email }, 'Password reset requested');
+
+    // Check if user exists
+    const user = await this.prisma.client.user.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      this.logger.warn(
+        { email },
+        'Password reset requested for non-existent user',
+      );
+      // Don't reveal if user exists or not for security
+      return {
+        message: 'If the email exists, a password reset link has been sent.',
+      };
+    }
+
+    const payload: jwtPayloadDto = {
+      userId: user.id,
+      email: user.email,
+      role: user.role,
+    };
+
+    // Generate reset token
+    const resetToken = this.generateResetToken(payload);
+
+    // Store reset token in Redis with 5min TTL
+    await this.redis.set(`reset:${resetToken}`, user.email, 300);
+
+    this.logger.debug({ email }, 'Reset token stored in Redis');
+
+    // Send password reset email via queue
+    await emailQueue.add('send-password-reset-email', {
+      type: 'password-reset',
+      to: user.email,
+      resetToken,
+    });
+
+    this.logger.info({ email }, 'Password reset email queued for sending');
+
+    return {
+      message: 'If the email exists, a password reset link has been sent.',
+      resetToken,
+    };
+  }
+
+  async resetPassword(token: string, newPassword: string) {
+    this.logger.info('Password reset attempt');
+
+    // Get email from Redis
+    const email = await this.redis.get(`reset:${token}`);
+    if (!email) {
+      this.logger.warn({ token }, 'Invalid or expired reset token');
+      throw new BadRequestError('Invalid or expired reset token');
+    }
+
+    // Find user
+    const user = await this.prisma.client.user.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      this.logger.error({ email }, 'User not found during password reset');
+      throw new NotFoundError('User not found');
+    }
+
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(newPassword, this.salultRounds);
+
+    // Update password
+    await this.prisma.client.user.update({
+      where: { email },
+      data: { passwordHash: hashedPassword },
+    });
+
+    // Delete reset token from Redis
+    await this.redis.del(`reset:${token}`);
+
+    this.logger.info({ email }, 'Password reset successfully');
+
+    return { message: 'Password reset successfully' };
+  }
+
+  createAccessToken(payload: jwtPayloadDto) {
+    return this.accessTokenService.sign(payload);
+  }
+  createRefreshToken(payload: jwtPayloadDto) {
+    return this.refreshTokenService.sign(payload);
+  }
+
+  private generateResetToken(payload: jwtPayloadDto): string {
+    return this.resetPassTokenService.sign(payload);
   }
 }

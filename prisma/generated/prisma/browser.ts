@@ -108,6 +108,11 @@ export type UserSocialLink = Prisma.UserSocialLinkModel
  */
 export type User = Prisma.UserModel
 /**
+ * Model UserInterest
+ * 
+ */
+export type UserInterest = Prisma.UserInterestModel
+/**
  * Model UserSettings
  * 
  */

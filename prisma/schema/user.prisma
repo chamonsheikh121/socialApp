@@ -1,59 +1,46 @@
-
-
-
-
-
 // Users
 model User {
-  id             String   @id @default(uuid())
-  username       String   @unique
-  email          String   @unique
-  phone          String?  @unique
-  passwordHash   String
-  fullName       String?
-  bio            String?
-  avatarUrl      String?
-  coverPhotoUrl  String?
-  location       String?
-  role           String   @default("user")
-  isVerified     Boolean  @default(false)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id            String    @id @default(uuid())
+  username      String    @unique
+  email         String    @unique
+  phone         String?   @unique
+  passwordHash  String
+  fullName      String?
+  bio           String?
+  avatarUrl     String?
+  coverPhotoUrl String?
+  location      String?
+  role          UserRoles @default(USER)
+  isVerified    Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
-  refreshTokens   RefreshToken[]
-  socialLinks     UserSocialLink[]
-  posts           Post[]
-  comments        Comment[]
-  likes           Like[]
-  bookmarks       Bookmark[]
-  followers       Follow[] @relation("FollowingRelation")
-  following       Follow[] @relation("FollowerRelation")
-  messagesSent    Message[] @relation("SenderMessages")
-  messagesReceived Message[] @relation("ReceiverMessages")
-  notifications   Notification[] @relation("UserNotifications")
+  // Relations
+  refreshTokens        RefreshToken[]
+  socialLinks         UserSocialLink[]
+  posts               Post[]
+  comments            Comment[]
+  likes               Like[]
+  bookmarks           Bookmark[]
+  followers           Follow[]         @relation("FollowingRelation")
+  following           Follow[]         @relation("FollowerRelation")
+  messagesSent        Message[]        @relation("SenderMessages")
+  messagesReceived    Message[]        @relation("ReceiverMessages")
+  notifications      Notification[]    @relation("UserNotifications")
   notificationsAsActor Notification[]
-  pagesOwned      Page[]
-  pageAdmins      PageAdmin[]
-  pagePosts       PagePost[]
-  userSettings    UserSettings?
+  pagesOwned         Page[]
+  pageAdmins         PageAdmin[]
+  pagePosts          PagePost[]
+  userSettings       UserSettings?
+  interests          UserInterest[]
 
   @@index([username])
   @@index([email])
+  @@index([id])
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+enum UserRoles {
+  USER
+  ADMIN
+}
 

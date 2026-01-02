@@ -35,7 +35,7 @@ export type UserMinAggregateOutputType = {
   avatarUrl: string | null
   coverPhotoUrl: string | null
   location: string | null
-  role: string | null
+  role: $Enums.UserRoles | null
   isVerified: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -52,7 +52,7 @@ export type UserMaxAggregateOutputType = {
   avatarUrl: string | null
   coverPhotoUrl: string | null
   location: string | null
-  role: string | null
+  role: $Enums.UserRoles | null
   isVerified: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -212,7 +212,7 @@ export type UserGroupByOutputType = {
   avatarUrl: string | null
   coverPhotoUrl: string | null
   location: string | null
-  role: string
+  role: $Enums.UserRoles
   isVerified: boolean
   createdAt: Date
   updatedAt: Date
@@ -250,7 +250,7 @@ export type UserWhereInput = {
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   coverPhotoUrl?: Prisma.StringNullableFilter<"User"> | string | null
   location?: Prisma.StringNullableFilter<"User"> | string | null
-  role?: Prisma.StringFilter<"User"> | string
+  role?: Prisma.EnumUserRolesFilter<"User"> | $Enums.UserRoles
   isVerified?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -270,6 +270,7 @@ export type UserWhereInput = {
   pageAdmins?: Prisma.PageAdminListRelationFilter
   pagePosts?: Prisma.PagePostListRelationFilter
   userSettings?: Prisma.XOR<Prisma.UserSettingsNullableScalarRelationFilter, Prisma.UserSettingsWhereInput> | null
+  interests?: Prisma.UserInterestListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -303,6 +304,7 @@ export type UserOrderByWithRelationInput = {
   pageAdmins?: Prisma.PageAdminOrderByRelationAggregateInput
   pagePosts?: Prisma.PagePostOrderByRelationAggregateInput
   userSettings?: Prisma.UserSettingsOrderByWithRelationInput
+  interests?: Prisma.UserInterestOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -319,7 +321,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   coverPhotoUrl?: Prisma.StringNullableFilter<"User"> | string | null
   location?: Prisma.StringNullableFilter<"User"> | string | null
-  role?: Prisma.StringFilter<"User"> | string
+  role?: Prisma.EnumUserRolesFilter<"User"> | $Enums.UserRoles
   isVerified?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -339,6 +341,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   pageAdmins?: Prisma.PageAdminListRelationFilter
   pagePosts?: Prisma.PagePostListRelationFilter
   userSettings?: Prisma.XOR<Prisma.UserSettingsNullableScalarRelationFilter, Prisma.UserSettingsWhereInput> | null
+  interests?: Prisma.UserInterestListRelationFilter
 }, "id" | "username" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -375,7 +378,7 @@ export type UserScalarWhereWithAggregatesInput = {
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   coverPhotoUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   location?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  role?: Prisma.StringWithAggregatesFilter<"User"> | string
+  role?: Prisma.EnumUserRolesWithAggregatesFilter<"User"> | $Enums.UserRoles
   isVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -392,7 +395,7 @@ export type UserCreateInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -412,6 +415,7 @@ export type UserCreateInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -425,7 +429,7 @@ export type UserUncheckedCreateInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -445,6 +449,7 @@ export type UserUncheckedCreateInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -458,7 +463,7 @@ export type UserUpdateInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -478,6 +483,7 @@ export type UserUpdateInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -491,7 +497,7 @@ export type UserUncheckedUpdateInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -511,6 +517,7 @@ export type UserUncheckedUpdateInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -524,7 +531,7 @@ export type UserCreateManyInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -541,7 +548,7 @@ export type UserUpdateManyMutationInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -558,7 +565,7 @@ export type UserUncheckedUpdateManyInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -837,6 +844,24 @@ export type UserUpdateOneRequiredWithoutSocialLinksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSocialLinksInput, Prisma.UserUpdateWithoutSocialLinksInput>, Prisma.UserUncheckedUpdateWithoutSocialLinksInput>
 }
 
+export type EnumUserRolesFieldUpdateOperationsInput = {
+  set?: $Enums.UserRoles
+}
+
+export type UserCreateNestedOneWithoutInterestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInterestsInput, Prisma.UserUncheckedCreateWithoutInterestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInterestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutInterestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInterestsInput, Prisma.UserUncheckedCreateWithoutInterestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInterestsInput
+  upsert?: Prisma.UserUpsertWithoutInterestsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInterestsInput, Prisma.UserUpdateWithoutInterestsInput>, Prisma.UserUncheckedUpdateWithoutInterestsInput>
+}
+
 export type UserCreateNestedOneWithoutUserSettingsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutUserSettingsInput, Prisma.UserUncheckedCreateWithoutUserSettingsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserSettingsInput
@@ -862,7 +887,7 @@ export type UserCreateWithoutBookmarksInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -881,6 +906,7 @@ export type UserCreateWithoutBookmarksInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBookmarksInput = {
@@ -894,7 +920,7 @@ export type UserUncheckedCreateWithoutBookmarksInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -913,6 +939,7 @@ export type UserUncheckedCreateWithoutBookmarksInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBookmarksInput = {
@@ -942,7 +969,7 @@ export type UserUpdateWithoutBookmarksInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -961,6 +988,7 @@ export type UserUpdateWithoutBookmarksInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBookmarksInput = {
@@ -974,7 +1002,7 @@ export type UserUncheckedUpdateWithoutBookmarksInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -993,6 +1021,7 @@ export type UserUncheckedUpdateWithoutBookmarksInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCommentsInput = {
@@ -1006,7 +1035,7 @@ export type UserCreateWithoutCommentsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1025,6 +1054,7 @@ export type UserCreateWithoutCommentsInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCommentsInput = {
@@ -1038,7 +1068,7 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1057,6 +1087,7 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCommentsInput = {
@@ -1086,7 +1117,7 @@ export type UserUpdateWithoutCommentsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1105,6 +1136,7 @@ export type UserUpdateWithoutCommentsInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -1118,7 +1150,7 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1137,6 +1169,7 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutFollowingInput = {
@@ -1150,7 +1183,7 @@ export type UserCreateWithoutFollowingInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1169,6 +1202,7 @@ export type UserCreateWithoutFollowingInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutFollowingInput = {
@@ -1182,7 +1216,7 @@ export type UserUncheckedCreateWithoutFollowingInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1201,6 +1235,7 @@ export type UserUncheckedCreateWithoutFollowingInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutFollowingInput = {
@@ -1219,7 +1254,7 @@ export type UserCreateWithoutFollowersInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1238,6 +1273,7 @@ export type UserCreateWithoutFollowersInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutFollowersInput = {
@@ -1251,7 +1287,7 @@ export type UserUncheckedCreateWithoutFollowersInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1270,6 +1306,7 @@ export type UserUncheckedCreateWithoutFollowersInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutFollowersInput = {
@@ -1299,7 +1336,7 @@ export type UserUpdateWithoutFollowingInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1318,6 +1355,7 @@ export type UserUpdateWithoutFollowingInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFollowingInput = {
@@ -1331,7 +1369,7 @@ export type UserUncheckedUpdateWithoutFollowingInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1350,6 +1388,7 @@ export type UserUncheckedUpdateWithoutFollowingInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutFollowersInput = {
@@ -1374,7 +1413,7 @@ export type UserUpdateWithoutFollowersInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1393,6 +1432,7 @@ export type UserUpdateWithoutFollowersInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFollowersInput = {
@@ -1406,7 +1446,7 @@ export type UserUncheckedUpdateWithoutFollowersInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1425,6 +1465,7 @@ export type UserUncheckedUpdateWithoutFollowersInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutLikesInput = {
@@ -1438,7 +1479,7 @@ export type UserCreateWithoutLikesInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1457,6 +1498,7 @@ export type UserCreateWithoutLikesInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutLikesInput = {
@@ -1470,7 +1512,7 @@ export type UserUncheckedCreateWithoutLikesInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1489,6 +1531,7 @@ export type UserUncheckedCreateWithoutLikesInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutLikesInput = {
@@ -1518,7 +1561,7 @@ export type UserUpdateWithoutLikesInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1537,6 +1580,7 @@ export type UserUpdateWithoutLikesInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLikesInput = {
@@ -1550,7 +1594,7 @@ export type UserUncheckedUpdateWithoutLikesInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1569,6 +1613,7 @@ export type UserUncheckedUpdateWithoutLikesInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMessagesSentInput = {
@@ -1582,7 +1627,7 @@ export type UserCreateWithoutMessagesSentInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1601,6 +1646,7 @@ export type UserCreateWithoutMessagesSentInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMessagesSentInput = {
@@ -1614,7 +1660,7 @@ export type UserUncheckedCreateWithoutMessagesSentInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1633,6 +1679,7 @@ export type UserUncheckedCreateWithoutMessagesSentInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMessagesSentInput = {
@@ -1651,7 +1698,7 @@ export type UserCreateWithoutMessagesReceivedInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1670,6 +1717,7 @@ export type UserCreateWithoutMessagesReceivedInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMessagesReceivedInput = {
@@ -1683,7 +1731,7 @@ export type UserUncheckedCreateWithoutMessagesReceivedInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1702,6 +1750,7 @@ export type UserUncheckedCreateWithoutMessagesReceivedInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMessagesReceivedInput = {
@@ -1731,7 +1780,7 @@ export type UserUpdateWithoutMessagesSentInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1750,6 +1799,7 @@ export type UserUpdateWithoutMessagesSentInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMessagesSentInput = {
@@ -1763,7 +1813,7 @@ export type UserUncheckedUpdateWithoutMessagesSentInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1782,6 +1832,7 @@ export type UserUncheckedUpdateWithoutMessagesSentInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutMessagesReceivedInput = {
@@ -1806,7 +1857,7 @@ export type UserUpdateWithoutMessagesReceivedInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1825,6 +1876,7 @@ export type UserUpdateWithoutMessagesReceivedInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMessagesReceivedInput = {
@@ -1838,7 +1890,7 @@ export type UserUncheckedUpdateWithoutMessagesReceivedInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1857,6 +1909,7 @@ export type UserUncheckedUpdateWithoutMessagesReceivedInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -1870,7 +1923,7 @@ export type UserCreateWithoutNotificationsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1889,6 +1942,7 @@ export type UserCreateWithoutNotificationsInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -1902,7 +1956,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1921,6 +1975,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -1939,7 +1994,7 @@ export type UserCreateWithoutNotificationsAsActorInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1958,6 +2013,7 @@ export type UserCreateWithoutNotificationsAsActorInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsAsActorInput = {
@@ -1971,7 +2027,7 @@ export type UserUncheckedCreateWithoutNotificationsAsActorInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1990,6 +2046,7 @@ export type UserUncheckedCreateWithoutNotificationsAsActorInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsAsActorInput = {
@@ -2019,7 +2076,7 @@ export type UserUpdateWithoutNotificationsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2038,6 +2095,7 @@ export type UserUpdateWithoutNotificationsInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -2051,7 +2109,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2070,6 +2128,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutNotificationsAsActorInput = {
@@ -2094,7 +2153,7 @@ export type UserUpdateWithoutNotificationsAsActorInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2113,6 +2172,7 @@ export type UserUpdateWithoutNotificationsAsActorInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsAsActorInput = {
@@ -2126,7 +2186,7 @@ export type UserUncheckedUpdateWithoutNotificationsAsActorInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2145,6 +2205,7 @@ export type UserUncheckedUpdateWithoutNotificationsAsActorInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPagesOwnedInput = {
@@ -2158,7 +2219,7 @@ export type UserCreateWithoutPagesOwnedInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2177,6 +2238,7 @@ export type UserCreateWithoutPagesOwnedInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPagesOwnedInput = {
@@ -2190,7 +2252,7 @@ export type UserUncheckedCreateWithoutPagesOwnedInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2209,6 +2271,7 @@ export type UserUncheckedCreateWithoutPagesOwnedInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPagesOwnedInput = {
@@ -2238,7 +2301,7 @@ export type UserUpdateWithoutPagesOwnedInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2257,6 +2320,7 @@ export type UserUpdateWithoutPagesOwnedInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagesOwnedInput = {
@@ -2270,7 +2334,7 @@ export type UserUncheckedUpdateWithoutPagesOwnedInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2289,6 +2353,7 @@ export type UserUncheckedUpdateWithoutPagesOwnedInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPageAdminsInput = {
@@ -2302,7 +2367,7 @@ export type UserCreateWithoutPageAdminsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2321,6 +2386,7 @@ export type UserCreateWithoutPageAdminsInput = {
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPageAdminsInput = {
@@ -2334,7 +2400,7 @@ export type UserUncheckedCreateWithoutPageAdminsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2353,6 +2419,7 @@ export type UserUncheckedCreateWithoutPageAdminsInput = {
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPageAdminsInput = {
@@ -2382,7 +2449,7 @@ export type UserUpdateWithoutPageAdminsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2401,6 +2468,7 @@ export type UserUpdateWithoutPageAdminsInput = {
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPageAdminsInput = {
@@ -2414,7 +2482,7 @@ export type UserUncheckedUpdateWithoutPageAdminsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2433,6 +2501,7 @@ export type UserUncheckedUpdateWithoutPageAdminsInput = {
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPagePostsInput = {
@@ -2446,7 +2515,7 @@ export type UserCreateWithoutPagePostsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2465,6 +2534,7 @@ export type UserCreateWithoutPagePostsInput = {
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPagePostsInput = {
@@ -2478,7 +2548,7 @@ export type UserUncheckedCreateWithoutPagePostsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2497,6 +2567,7 @@ export type UserUncheckedCreateWithoutPagePostsInput = {
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPagePostsInput = {
@@ -2526,7 +2597,7 @@ export type UserUpdateWithoutPagePostsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2545,6 +2616,7 @@ export type UserUpdateWithoutPagePostsInput = {
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagePostsInput = {
@@ -2558,7 +2630,7 @@ export type UserUncheckedUpdateWithoutPagePostsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2577,6 +2649,7 @@ export type UserUncheckedUpdateWithoutPagePostsInput = {
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPostsInput = {
@@ -2590,7 +2663,7 @@ export type UserCreateWithoutPostsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2609,6 +2682,7 @@ export type UserCreateWithoutPostsInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPostsInput = {
@@ -2622,7 +2696,7 @@ export type UserUncheckedCreateWithoutPostsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2641,6 +2715,7 @@ export type UserUncheckedCreateWithoutPostsInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPostsInput = {
@@ -2670,7 +2745,7 @@ export type UserUpdateWithoutPostsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2689,6 +2764,7 @@ export type UserUpdateWithoutPostsInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPostsInput = {
@@ -2702,7 +2778,7 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2721,6 +2797,7 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRefreshTokensInput = {
@@ -2734,7 +2811,7 @@ export type UserCreateWithoutRefreshTokensInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2753,6 +2830,7 @@ export type UserCreateWithoutRefreshTokensInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -2766,7 +2844,7 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2785,6 +2863,7 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -2814,7 +2893,7 @@ export type UserUpdateWithoutRefreshTokensInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2833,6 +2912,7 @@ export type UserUpdateWithoutRefreshTokensInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -2846,7 +2926,7 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2865,6 +2945,7 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSocialLinksInput = {
@@ -2878,7 +2959,7 @@ export type UserCreateWithoutSocialLinksInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2897,6 +2978,7 @@ export type UserCreateWithoutSocialLinksInput = {
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSocialLinksInput = {
@@ -2910,7 +2992,7 @@ export type UserUncheckedCreateWithoutSocialLinksInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2929,6 +3011,7 @@ export type UserUncheckedCreateWithoutSocialLinksInput = {
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSocialLinksInput = {
@@ -2958,7 +3041,7 @@ export type UserUpdateWithoutSocialLinksInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2977,6 +3060,7 @@ export type UserUpdateWithoutSocialLinksInput = {
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSocialLinksInput = {
@@ -2990,11 +3074,160 @@ export type UserUncheckedUpdateWithoutSocialLinksInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutInterestsInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutInterestsInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutInterestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutInterestsInput, Prisma.UserUncheckedCreateWithoutInterestsInput>
+}
+
+export type UserUpsertWithoutInterestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutInterestsInput, Prisma.UserUncheckedUpdateWithoutInterestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutInterestsInput, Prisma.UserUncheckedCreateWithoutInterestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutInterestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutInterestsInput, Prisma.UserUncheckedUpdateWithoutInterestsInput>
+}
+
+export type UserUpdateWithoutInterestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutInterestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedUpdateManyWithoutUserNestedInput
   posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
@@ -3022,7 +3255,7 @@ export type UserCreateWithoutUserSettingsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3041,6 +3274,7 @@ export type UserCreateWithoutUserSettingsInput = {
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutUserSettingsInput = {
@@ -3054,7 +3288,7 @@ export type UserUncheckedCreateWithoutUserSettingsInput = {
   avatarUrl?: string | null
   coverPhotoUrl?: string | null
   location?: string | null
-  role?: string
+  role?: $Enums.UserRoles
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3073,6 +3307,7 @@ export type UserUncheckedCreateWithoutUserSettingsInput = {
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutUserSettingsInput = {
@@ -3102,7 +3337,7 @@ export type UserUpdateWithoutUserSettingsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3121,6 +3356,7 @@ export type UserUpdateWithoutUserSettingsInput = {
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserSettingsInput = {
@@ -3134,7 +3370,7 @@ export type UserUncheckedUpdateWithoutUserSettingsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3153,6 +3389,7 @@ export type UserUncheckedUpdateWithoutUserSettingsInput = {
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -3176,6 +3413,7 @@ export type UserCountOutputType = {
   pagesOwned: number
   pageAdmins: number
   pagePosts: number
+  interests: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3194,6 +3432,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   pagesOwned?: boolean | UserCountOutputTypeCountPagesOwnedArgs
   pageAdmins?: boolean | UserCountOutputTypeCountPageAdminsArgs
   pagePosts?: boolean | UserCountOutputTypeCountPagePostsArgs
+  interests?: boolean | UserCountOutputTypeCountInterestsArgs
 }
 
 /**
@@ -3311,6 +3550,13 @@ export type UserCountOutputTypeCountPagePostsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.PagePostWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountInterestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserInterestWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3343,6 +3589,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   pageAdmins?: boolean | Prisma.User$pageAdminsArgs<ExtArgs>
   pagePosts?: boolean | Prisma.User$pagePostsArgs<ExtArgs>
   userSettings?: boolean | Prisma.User$userSettingsArgs<ExtArgs>
+  interests?: boolean | Prisma.User$interestsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -3415,6 +3662,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   pageAdmins?: boolean | Prisma.User$pageAdminsArgs<ExtArgs>
   pagePosts?: boolean | Prisma.User$pagePostsArgs<ExtArgs>
   userSettings?: boolean | Prisma.User$userSettingsArgs<ExtArgs>
+  interests?: boolean | Prisma.User$interestsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -3439,6 +3687,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     pageAdmins: Prisma.$PageAdminPayload<ExtArgs>[]
     pagePosts: Prisma.$PagePostPayload<ExtArgs>[]
     userSettings: Prisma.$UserSettingsPayload<ExtArgs> | null
+    interests: Prisma.$UserInterestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3451,7 +3700,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     avatarUrl: string | null
     coverPhotoUrl: string | null
     location: string | null
-    role: string
+    role: $Enums.UserRoles
     isVerified: boolean
     createdAt: Date
     updatedAt: Date
@@ -3865,6 +4114,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   pageAdmins<T extends Prisma.User$pageAdminsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pageAdminsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PageAdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagePosts<T extends Prisma.User$pagePostsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pagePostsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagePostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   userSettings<T extends Prisma.User$userSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$userSettingsArgs<ExtArgs>>): Prisma.Prisma__UserSettingsClient<runtime.Types.Result.GetResult<Prisma.$UserSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  interests<T extends Prisma.User$interestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$interestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserInterestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3904,7 +4154,7 @@ export interface UserFieldRefs {
   readonly avatarUrl: Prisma.FieldRef<"User", 'String'>
   readonly coverPhotoUrl: Prisma.FieldRef<"User", 'String'>
   readonly location: Prisma.FieldRef<"User", 'String'>
-  readonly role: Prisma.FieldRef<"User", 'String'>
+  readonly role: Prisma.FieldRef<"User", 'UserRoles'>
   readonly isVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
@@ -4672,6 +4922,30 @@ export type User$userSettingsArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   include?: Prisma.UserSettingsInclude<ExtArgs> | null
   where?: Prisma.UserSettingsWhereInput
+}
+
+/**
+ * User.interests
+ */
+export type User$interestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserInterest
+   */
+  select?: Prisma.UserInterestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserInterest
+   */
+  omit?: Prisma.UserInterestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInterestInclude<ExtArgs> | null
+  where?: Prisma.UserInterestWhereInput
+  orderBy?: Prisma.UserInterestOrderByWithRelationInput | Prisma.UserInterestOrderByWithRelationInput[]
+  cursor?: Prisma.UserInterestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserInterestScalarFieldEnum | Prisma.UserInterestScalarFieldEnum[]
 }
 
 /**

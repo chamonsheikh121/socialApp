@@ -69,6 +69,7 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   UserSocialLink: 'UserSocialLink',
   User: 'User',
+  UserInterest: 'UserInterest',
   UserSettings: 'UserSettings'
 } as const
 
@@ -318,6 +319,15 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const UserInterestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  category: 'category'
+} as const
+
+export type UserInterestScalarFieldEnum = (typeof UserInterestScalarFieldEnum)[keyof typeof UserInterestScalarFieldEnum]
 
 
 export const UserSettingsScalarFieldEnum = {

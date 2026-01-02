@@ -4,11 +4,17 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import './lib/bullmq/email.worker'
- 
+
+import './lib/bullmq/email.worker';
+import { GlobalExceptionFilter } from './common/error';
+import { join } from 'path';
+import { existsSync, mkdirSync } from 'fs';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Global exception filter
+  app.useGlobalFilters(new GlobalExceptionFilter());
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -18,6 +24,10 @@ async function bootstrap() {
     }),
   );
 
+  const uploadsDir = join(__dirname, '..', 'uploads');
+  if (!existsSync(uploadsDir)) {
+    mkdirSync(uploadsDir, { recursive: true });
+  }
   const config = new DocumentBuilder()
     .setTitle('Social App')
     .setDescription('')

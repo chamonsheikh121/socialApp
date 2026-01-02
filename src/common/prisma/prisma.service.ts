@@ -1,4 +1,4 @@
-import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 
 import { PrismaPg } from '@prisma/adapter-pg';
 import 'dotenv/config';
@@ -18,10 +18,10 @@ export class PrismaService implements OnModuleInit {
 
   async onModuleInit() {
     await this.prisma.$connect();
-    console.log('database is connected');
+    console.log('Database is connected');
   }
 
-  get client() {
+  get client(): PrismaClient {
     return this.prisma;
   }
 }

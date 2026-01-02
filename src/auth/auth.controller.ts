@@ -1,9 +1,11 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { CreateUserDtos } from './dto/register.dto';
 import { verifyOtpDto } from './dto/verifyOtp.dto';
 import { LoginDto } from './dto/login.dto';
+import { ForgetPasswordDto } from './dto/forgetPassword.dto';
+import { ResetPasswordDto } from './dto/resetPassword.dto';
 import { Response } from 'express';
 
 @ApiTags('authentication')
@@ -17,34 +19,27 @@ export class AuthController {
   }
 
   @Post('login')
-  async login(@Body() loginData: LoginDto, @Res() res: Response) {
+  async login(@Body() loginData: LoginDto) {
     const result = await this.authService.login(loginData);
 
-    res.cookie('refresh-token', result.refreshToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'none',
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    });
-
     // Remove refreshToken from response body since it's in the cookie
-    const { refreshToken, ...response } = result;
-    return res.json(response);
+    return result;
   }
 
   @Post('verify-otp')
-  async verifyOtp(@Body() body: verifyOtpDto, @Res() res: Response) {
+  async verifyOtp(@Body() body: verifyOtpDto) {
     const result = await this.authService.verifyOtp(body.email, body.otp);
 
-    res.cookie('refresh-token', result.refreshToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'none',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+    return result;
+  }
 
-    // Remove refreshToken from response body since it's in the cookie
-    const { refreshToken, ...response } = result;
-    return res.json(response);
+  @Post('forget-password')
+  async forgetPassword(@Body() body: ForgetPasswordDto) {
+    return this.authService.forgetPassword(body.email);
+  }
+
+  @Post('reset-password')
+  async resetPassword(@Body() body: ResetPasswordDto) {
+    return this.authService.resetPassword(body.token, body.newPassword);
   }
 }

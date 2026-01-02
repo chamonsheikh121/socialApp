@@ -41,3 +41,11 @@ export const PostType = {
 } as const
 
 export type PostType = (typeof PostType)[keyof typeof PostType]
+
+
+export const UserRoles = {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+} as const
+
+export type UserRoles = (typeof UserRoles)[keyof typeof UserRoles]

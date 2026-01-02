@@ -402,6 +402,7 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   UserSocialLink: 'UserSocialLink',
   User: 'User',
+  UserInterest: 'UserInterest',
   UserSettings: 'UserSettings'
 } as const
 
@@ -418,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "bookmark" | "category" | "comment" | "follow" | "hashtag" | "like" | "media" | "message" | "notification" | "page" | "pageAdmin" | "pagePost" | "post" | "postCategory" | "postHashtag" | "refreshToken" | "userSocialLink" | "user" | "userSettings"
+    modelProps: "bookmark" | "category" | "comment" | "follow" | "hashtag" | "like" | "media" | "message" | "notification" | "page" | "pageAdmin" | "pagePost" | "post" | "postCategory" | "postHashtag" | "refreshToken" | "userSocialLink" | "user" | "userInterest" | "userSettings"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1754,6 +1755,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    UserInterest: {
+      payload: Prisma.$UserInterestPayload<ExtArgs>
+      fields: Prisma.UserInterestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserInterestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInterestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserInterestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInterestPayload>
+        }
+        findFirst: {
+          args: Prisma.UserInterestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInterestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserInterestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInterestPayload>
+        }
+        findMany: {
+          args: Prisma.UserInterestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInterestPayload>[]
+        }
+        create: {
+          args: Prisma.UserInterestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInterestPayload>
+        }
+        createMany: {
+          args: Prisma.UserInterestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserInterestCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInterestPayload>[]
+        }
+        delete: {
+          args: Prisma.UserInterestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInterestPayload>
+        }
+        update: {
+          args: Prisma.UserInterestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInterestPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserInterestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserInterestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserInterestUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInterestPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserInterestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInterestPayload>
+        }
+        aggregate: {
+          args: Prisma.UserInterestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserInterest>
+        }
+        groupBy: {
+          args: Prisma.UserInterestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserInterestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserInterestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserInterestCountAggregateOutputType> | number
+        }
+      }
+    }
     UserSettings: {
       payload: Prisma.$UserSettingsPayload<ExtArgs>
       fields: Prisma.UserSettingsFieldRefs
@@ -2099,6 +2174,15 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const UserInterestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  category: 'category'
+} as const
+
+export type UserInterestScalarFieldEnum = (typeof UserInterestScalarFieldEnum)[keyof typeof UserInterestScalarFieldEnum]
+
+
 export const UserSettingsScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -2276,6 +2360,20 @@ export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
 
 
 /**
+ * Reference to a field of type 'UserRoles'
+ */
+export type EnumUserRolesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRoles'>
+    
+
+
+/**
+ * Reference to a field of type 'UserRoles[]'
+ */
+export type ListEnumUserRolesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRoles[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2401,6 +2499,7 @@ export type GlobalOmitConfig = {
   refreshToken?: Prisma.RefreshTokenOmit
   userSocialLink?: Prisma.UserSocialLinkOmit
   user?: Prisma.UserOmit
+  userInterest?: Prisma.UserInterestOmit
   userSettings?: Prisma.UserSettingsOmit
 }
 

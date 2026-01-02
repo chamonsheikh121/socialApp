@@ -27,11 +27,13 @@ export class MailService {
 
   async sendMail(options: MailOptions): Promise<void> {
     const mailOptions = {
-      from: this.configService.get<string>('EMAIL_FROM') || this.configService.get<string>('EMAIL_USER'),
-      to: options.to,
-      subject: options.subject,
-      text: options.text,
-      html: options.html,
+      from:
+        this.configService.get<string>('EMAIL_FROM') ||
+        this.configService.get<string>('EMAIL_USER'),
+      to: options?.to,
+      subject: options?.subject,
+      text: options?.text,
+      html: options?.html,
     };
 
     try {
@@ -89,33 +91,55 @@ export class MailService {
     await this.sendMail(mailOptions);
   }
 
-  async sendPasswordResetEmail(email: string, resetToken: string): Promise<void> {
+  async sendPasswordResetEmail(
+    email: string,
+    resetToken: string,
+  ): Promise<void> {
     const resetUrl = `${this.configService.get<string>('FRONTEND_URL') || 'http://localhost:3000'}/reset-password?token=${resetToken}`;
 
     const mailOptions: MailOptions = {
       to: email,
       subject: 'Password Reset Request',
-      text: `You requested a password reset. Click this link to reset your password: ${resetUrl}. This link expires in 1 hour.`,
+      text: `You requested a password reset. Click this link to reset your password: ${resetUrl}. This link expires in 5 min.`,
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2>Password Reset Request</h2>
-          <p>You requested a password reset for your account.</p>
-          <p>Click the button below to reset your password:</p>
-          <div style="text-align: center; margin: 30px 0;">
-            <a href="${resetUrl}" style="background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">Reset Password</a>
-          </div>
-          <p>This link expires in 1 hour.</p>
-          <p>If you didn't request this, please ignore this email.</p>
-          <br>
-          <p>Best regards,<br>The Social App Team</p>
-        </div>
-      `,
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+  <h2>Password Reset Request</h2>
+  <p>You requested a password reset for your account.</p>
+  <p>Click the button below to reset your password:</p>
+
+  <div style="text-align: center; margin: 30px 0;">
+    <a href="${resetUrl}" style="text-decoration: none;">
+      <button 
+        style="
+          background-color: #007bff;
+          color: white;
+          padding: 12px 24px;
+          border: none;
+          border-radius: 5px;
+          font-size: 16px;
+          cursor: pointer;
+        ">
+        Reset Password
+      </button>
+    </a>
+  </div>
+
+  <p>This link expires in 5 min.</p>
+  <p>If you didn't request this, please ignore this email.</p>
+  <br>
+  <p>Best regards,<br>The Social App Team</p>
+</div>
+`,
     };
 
     await this.sendMail(mailOptions);
   }
 
-  async sendNotificationEmail(email: string, title: string, message: string): Promise<void> {
+  async sendNotificationEmail(
+    email: string,
+    title: string,
+    message: string,
+  ): Promise<void> {
     const mailOptions: MailOptions = {
       to: email,
       subject: title,
@@ -133,7 +157,10 @@ export class MailService {
     await this.sendMail(mailOptions);
   }
 
-  async sendFollowNotificationEmail(email: string, followerName: string): Promise<void> {
+  async sendFollowNotificationEmail(
+    email: string,
+    followerName: string,
+  ): Promise<void> {
     const mailOptions: MailOptions = {
       to: email,
       subject: `${followerName} started following you`,
@@ -152,8 +179,14 @@ export class MailService {
     await this.sendMail(mailOptions);
   }
 
-  async sendLikeNotificationEmail(email: string, likerName: string, postTitle?: string): Promise<void> {
-    const content = postTitle ? `liked your post: "${postTitle}"` : 'liked your post';
+  async sendLikeNotificationEmail(
+    email: string,
+    likerName: string,
+    postTitle?: string,
+  ): Promise<void> {
+    const content = postTitle
+      ? `liked your post: "${postTitle}"`
+      : 'liked your post';
 
     const mailOptions: MailOptions = {
       to: email,
@@ -172,8 +205,15 @@ export class MailService {
     await this.sendMail(mailOptions);
   }
 
-  async sendCommentNotificationEmail(email: string, commenterName: string, comment: string, postTitle?: string): Promise<void> {
-    const content = postTitle ? `commented on your post "${postTitle}": "${comment}"` : `commented on your post: "${comment}"`;
+  async sendCommentNotificationEmail(
+    email: string,
+    commenterName: string,
+    comment: string,
+    postTitle?: string,
+  ): Promise<void> {
+    const content = postTitle
+      ? `commented on your post "${postTitle}": "${comment}"`
+      : `commented on your post: "${comment}"`;
 
     const mailOptions: MailOptions = {
       to: email,

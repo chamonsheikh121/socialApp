@@ -1,0 +1,10 @@
+// ✅ New user interest table
+model UserInterest {
+    id       String   @id @default(uuid())
+    userId   String
+    photoURL String
+    user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    interest String[]
+
+    @@index([userId])
+}

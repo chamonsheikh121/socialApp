@@ -6,22 +6,20 @@ import { RedisModule } from '../common/redis/redis.module';
 import { MailModule } from '../lib/mail/mail.module';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { JwtAuthGuard } from './jwt-auth.guard';
 
 @Module({
-  imports: [
-    PrismaModule,
-    RedisModule,
-    MailModule,
-  ],
+  imports: [PrismaModule, RedisModule, MailModule],
   providers: [
     AuthService,
+    JwtAuthGuard,
     {
       provide: 'ACCESS_JWT',
       useFactory: (config: ConfigService) => {
         return new JwtService({
           secret: config.get('ACCESS_TOKEN_SECRET'),
           signOptions: {
-            expiresIn: '15m',
+            expiresIn: '1d',
           },
         });
       },
@@ -39,7 +37,20 @@ import { JwtService } from '@nestjs/jwt';
       },
       inject: [ConfigService],
     },
+    {
+      provide: 'RESET_PASS_JWT',
+      useFactory: (config: ConfigService) => {
+        return new JwtService({
+          secret: config.get('RESET_PASS_TOKEN_SECRET'),
+          signOptions: {
+            expiresIn: '5m',
+          },
+        });
+      },
+      inject: [ConfigService],
+    },
   ],
+  exports: [JwtAuthGuard],
   controllers: [AuthController],
 })
 export class AuthModule {}

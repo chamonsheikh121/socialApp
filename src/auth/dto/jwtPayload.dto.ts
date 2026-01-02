@@ -1,6 +1,5 @@
-import { Optional } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsString, IsOptional, IsUUID } from 'class-validator';
+import { IsEmail, IsString, IsUUID } from 'class-validator';
 
 export class jwtPayloadDto {
   @IsUUID()
@@ -15,6 +14,3 @@ export class jwtPayloadDto {
   @ApiProperty()
   role: string;
 }
-
-
-
