@@ -6,9 +6,10 @@ import { PrismaModule } from '../common/prisma/prisma.module';
 import { FileUploadService } from '../common/file-upload.service';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { MetricsModule } from '../metrics/metrics.module';
 
 @Module({
-  imports: [AuthModule, PrismaModule],
+  imports: [AuthModule, PrismaModule, MetricsModule],
   controllers: [UserController],
   providers: [
     UserService,

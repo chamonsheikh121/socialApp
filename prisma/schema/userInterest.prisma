@@ -1,7 +1,7 @@
 // ✅ New user interest table
 model UserInterest {
     id       String   @id @default(uuid())
-    userId   String
+    userId   String   @unique
     photoURL String
     user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
     interest String[]

@@ -18,7 +18,7 @@ export class UserInterestService {
 
   async create(userId: string, createUserInterestDto: CreateUserInterestDto) {
     this.logger.info(
-      { userId, category: createUserInterestDto.category },
+      { userId, interests: createUserInterestDto.interest },
       'Creating user interest',
     );
 
@@ -32,26 +32,21 @@ export class UserInterestService {
       throw new NotFoundError('User not found');
     }
 
-    // Check if interest already exists for this user
-    const existingInterest = await this.prisma.client.userInterest.findFirst({
-      where: {
-        userId,
-        category: createUserInterestDto.category,
-      },
+    // Check if user already has interests
+    const existingInterest = await this.prisma.client.userInterest.findUnique({
+      where: { userId },
     });
 
     if (existingInterest) {
-      this.logger.warn(
-        { userId, category: createUserInterestDto.category },
-        'Interest already exists for user',
-      );
-      throw new Error('Interest already exists for this user');
+      this.logger.warn({ userId }, 'User interest already exists');
+      throw new Error('User interest already exists. Use update instead.');
     }
 
     const userInterest = await this.prisma.client.userInterest.create({
       data: {
         userId,
-        category: createUserInterestDto.category,
+        photoURL: createUserInterestDto.photoURL,
+        interest: createUserInterestDto.interest,
       },
     });
 
@@ -61,99 +56,83 @@ export class UserInterestService {
     );
 
     return {
-      message: 'Interest added successfully',
+      message: 'Interests added successfully',
       interest: userInterest,
     };
   }
 
   async findAll(userId: string) {
-    this.logger.info({ userId }, 'Getting all user interests');
+    this.logger.info({ userId }, 'Getting user interests');
 
-    const interests = await this.prisma.client.userInterest.findMany({
+    const userInterest = await this.prisma.client.userInterest.findUnique({
       where: { userId },
-      orderBy: { category: 'asc' },
     });
+
+    if (!userInterest) {
+      return {
+        message: 'No interests found for user',
+        interest: null,
+      };
+    }
 
     return {
       message: 'Interests retrieved successfully',
-      interests,
-      count: interests.length,
+      interest: userInterest,
     };
   }
 
-  async findOne(userId: string, interestId: string) {
-    this.logger.info({ userId, interestId }, 'Getting user interest by ID');
+  async findOne(userId: string) {
+    this.logger.info({ userId }, 'Getting user interest');
 
-    const interest = await this.prisma.client.userInterest.findFirst({
-      where: {
-        id: interestId,
-        userId,
-      },
+    const userInterest = await this.prisma.client.userInterest.findUnique({
+      where: { userId },
     });
 
-    if (!interest) {
-      this.logger.warn({ userId, interestId }, 'Interest not found');
-      throw new NotFoundError('Interest not found');
+    if (!userInterest) {
+      this.logger.warn({ userId }, 'User interest not found');
+      throw new NotFoundError('User interest not found');
     }
 
     return {
       message: 'Interest retrieved successfully',
-      interest,
+      interest: userInterest,
     };
   }
 
   async update(
     userId: string,
-    interestId: string,
     updateUserInterestDto: UpdateUserInterestDto,
   ) {
     this.logger.info(
-      { userId, interestId, category: updateUserInterestDto.category },
+      { userId, interests: updateUserInterestDto.interest },
       'Updating user interest',
     );
 
-    // Check if interest exists and belongs to user
-    const existingInterest = await this.prisma.client.userInterest.findFirst({
-      where: {
-        id: interestId,
-        userId,
-      },
+    // Check if user interest exists
+    const existingInterest = await this.prisma.client.userInterest.findUnique({
+      where: { userId },
     });
 
     if (!existingInterest) {
-      this.logger.warn({ userId, interestId }, 'Interest not found for update');
-      throw new NotFoundError('Interest not found');
+      this.logger.warn({ userId }, 'User interest not found for update');
+      throw new NotFoundError('User interest not found');
     }
 
-    // Check if the new category already exists for this user (excluding current interest)
-    if (updateUserInterestDto.category !== existingInterest.category) {
-      const duplicateInterest = await this.prisma.client.userInterest.findFirst(
-        {
-          where: {
-            userId,
-            category: updateUserInterestDto.category,
-          },
-        },
-      );
-
-      if (duplicateInterest) {
-        this.logger.warn(
-          { userId, category: updateUserInterestDto.category },
-          'Interest category already exists for user',
-        );
-        throw new Error('Interest category already exists for this user');
-      }
+    const updateData: any = {};
+    if (updateUserInterestDto.interest !== undefined) {
+      updateData.interest = updateUserInterestDto.interest;
+    }
+    if (updateUserInterestDto.photoURL !== undefined) {
+      updateData.photoURL = updateUserInterestDto.photoURL;
     }
 
     const updatedInterest = await this.prisma.client.userInterest.update({
-      where: { id: interestId },
-      data: {
-        category: updateUserInterestDto.category,
-      },
+      where: { userId },
+      data: updateData,
     });
 
     this.logger.info(
-      { userId, interestId },
+      { userId },
       'User interest updated successfully',
     );
 
@@ -163,68 +142,91 @@ export class UserInterestService {
     };
   }
 
-  async remove(userId: string, interestId: string) {
-    this.logger.info({ userId, interestId }, 'Removing user interest');
+  async remove(userId: string) {
+    this.logger.info({ userId }, 'Removing user interest');
 
-    // Check if interest exists and belongs to user
-    const existingInterest = await this.prisma.client.userInterest.findFirst({
-      where: {
-        id: interestId,
-        userId,
-      },
+    // Check if user interest exists
+    const existingInterest = await this.prisma.client.userInterest.findUnique({
+      where: { userId },
     });
 
     if (!existingInterest) {
-      this.logger.warn(
-        { userId, interestId },
-        'Interest not found for removal',
-      );
-      throw new NotFoundError('Interest not found');
+      this.logger.warn({ userId }, 'User interest not found for removal');
+      throw new NotFoundError('User interest not found');
     }
 
     await this.prisma.client.userInterest.delete({
-      where: { id: interestId },
+      where: { userId },
     });
 
-    this.logger.info(
-      { userId, interestId },
-      'User interest removed successfully',
-    );
+    this.logger.info({ userId }, 'User interest removed successfully');
 
     return {
       message: 'Interest removed successfully',
     };
   }
 
-  async removeByCategory(userId: string, category: string) {
-    this.logger.info(
-      { userId, category },
-      'Removing user interest by category',
-    );
+  async addInterest(userId: string, newInterest: string) {
+    this.logger.info({ userId, newInterest }, 'Adding interest to user');
 
-    const existingInterest = await this.prisma.client.userInterest.findFirst({
-      where: {
-        userId,
-        category,
-      },
+    const existingInterest = await this.prisma.client.userInterest.findUnique({
+      where: { userId },
     });
 
     if (!existingInterest) {
-      this.logger.warn({ userId, category }, 'Interest not found for removal');
-      throw new NotFoundError('Interest not found');
+      this.logger.warn({ userId }, 'User interest not found');
+      throw new NotFoundError('User interest not found');
     }
 
-    await this.prisma.client.userInterest.delete({
-      where: { id: existingInterest.id },
+    if (existingInterest.interest.includes(newInterest)) {
+      throw new Error('Interest already exists');
+    }
+
+    const updatedInterests = [...existingInterest.interest, newInterest];
+
+    const updatedInterest = await this.prisma.client.userInterest.update({
+      where: { userId },
+      data: { interest: updatedInterests },
     });
 
-    this.logger.info(
-      { userId, category },
-      'User interest removed successfully',
+    this.logger.info({ userId, newInterest }, 'Interest added successfully');
+
+    return {
+      message: 'Interest added successfully',
+      interest: updatedInterest,
+    };
+  }
+
+  async removeInterest(userId: string, interestToRemove: string) {
+    this.logger.info({ userId, interestToRemove }, 'Removing interest from user');
+
+    const existingInterest = await this.prisma.client.userInterest.findUnique({
+      where: { userId },
+    });
+
+    if (!existingInterest) {
+      this.logger.warn({ userId }, 'User interest not found');
+      throw new NotFoundError('User interest not found');
+    }
+
+    if (!existingInterest.interest.includes(interestToRemove)) {
+      throw new Error('Interest not found');
+    }
+
+    const updatedInterests = existingInterest.interest.filter(
+      (interest) => interest !== interestToRemove,
     );
+
+    const updatedInterest = await this.prisma.client.userInterest.update({
+      where: { userId },
+      data: { interest: updatedInterests },
+    });
+
+    this.logger.info({ userId, interestToRemove }, 'Interest removed successfully');
 
     return {
       message: 'Interest removed successfully',
+      interest: updatedInterest,
     };
   }
 }

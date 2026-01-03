@@ -1,24 +1,46 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsArray, IsOptional } from 'class-validator';
 
 export class CreateUserInterestDto {
   @ApiProperty({
-    description: 'The interest category',
-    example: 'Technology',
+    description: 'Array of interest categories',
+    example: ['Technology', 'Sports', 'Music'],
+  })
+  @IsArray()
+  @IsString({ each: true })
+  @IsNotEmpty({ each: true })
+  interest: string[];
+
+  @ApiProperty({
+    description: 'Photo URL for the user interest',
+    example: 'https://example.com/photo.jpg',
   })
   @IsString()
   @IsNotEmpty()
-  category: string;
+  photoURL: string;
 }
 
 export class UpdateUserInterestDto {
   @ApiProperty({
-    description: 'The interest category',
-    example: 'Technology',
+    description: 'Array of interest categories',
+    example: ['Technology', 'Sports', 'Music'],
+    required: false,
   })
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  @IsNotEmpty({ each: true })
+  interest?: string[];
+
+  @ApiProperty({
+    description: 'Photo URL for the user interest',
+    example: 'https://example.com/photo.jpg',
+    required: false,
+  })
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
-  category: string;
+  photoURL?: string;
 }
 
 export class UserInterestResponseDto {
@@ -35,14 +57,14 @@ export class UserInterestResponseDto {
   userId: string;
 
   @ApiProperty({
-    description: 'The interest category',
-    example: 'Technology',
+    description: 'Photo URL for the user interest',
+    example: 'https://example.com/photo.jpg',
   })
-  category: string;
+  photoURL: string;
 
   @ApiProperty({
-    description: 'The creation timestamp',
-    example: '2023-01-01T00:00:00.000Z',
+    description: 'Array of interest categories',
+    example: ['Technology', 'Sports', 'Music'],
   })
-  createdAt: Date;
+  interest: string[];
 }

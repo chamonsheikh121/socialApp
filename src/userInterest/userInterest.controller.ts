@@ -3,9 +3,9 @@ import {
   Get,
   Post,
   Body,
-  Param,
   Delete,
   Put,
+  Param,
   UseGuards,
 } from '@nestjs/common';
 import { UserInterestService } from './userInterest.service';
@@ -31,11 +31,11 @@ export class UserInterestController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  @ApiOperation({ summary: 'Add a new interest for the current user' })
-  @ApiResponse({ status: 201, description: 'Interest added successfully' })
+  @ApiOperation({ summary: 'Create user interests' })
+  @ApiResponse({ status: 201, description: 'Interests created successfully' })
   @ApiResponse({
     status: 400,
-    description: 'Bad request - interest already exists',
+    description: 'Bad request - interests already exist',
   })
   @ApiResponse({ status: 404, description: 'User not found' })
   create(
@@ -47,60 +47,55 @@ export class UserInterestController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  @ApiOperation({ summary: 'Get all interests for the current user' })
+  @ApiOperation({ summary: 'Get user interests' })
   @ApiResponse({ status: 200, description: 'Interests retrieved successfully' })
   findAll(@CurrentUser() user: jwtPayloadDto) {
     return this.userInterestService.findAll(user.userId);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get(':id')
-  @ApiOperation({ summary: 'Get a specific interest by ID' })
-  @ApiResponse({ status: 200, description: 'Interest retrieved successfully' })
-  @ApiResponse({ status: 404, description: 'Interest not found' })
-  findOne(@CurrentUser() user: jwtPayloadDto, @Param('id') id: string) {
-    return this.userInterestService.findOne(user.userId, id);
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Put(':id')
-  @ApiOperation({ summary: 'Update a specific interest' })
-  @ApiResponse({ status: 200, description: 'Interest updated successfully' })
-  @ApiResponse({ status: 404, description: 'Interest not found' })
-  @ApiResponse({
-    status: 400,
-    description: 'Bad request - category already exists',
-  })
+  @Put()
+  @ApiOperation({ summary: 'Update user interests' })
+  @ApiResponse({ status: 200, description: 'Interests updated successfully' })
+  @ApiResponse({ status: 404, description: 'User interests not found' })
   update(
     @CurrentUser() user: jwtPayloadDto,
-    @Param('id') id: string,
     @Body() updateUserInterestDto: UpdateUserInterestDto,
   ) {
-    return this.userInterestService.update(
-      user.userId,
-      id,
-      updateUserInterestDto,
-    );
+    return this.userInterestService.update(user.userId, updateUserInterestDto);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Delete(':id')
-  @ApiOperation({ summary: 'Remove a specific interest' })
-  @ApiResponse({ status: 200, description: 'Interest removed successfully' })
-  @ApiResponse({ status: 404, description: 'Interest not found' })
-  remove(@CurrentUser() user: jwtPayloadDto, @Param('id') id: string) {
-    return this.userInterestService.remove(user.userId, id);
+  @Delete()
+  @ApiOperation({ summary: 'Remove all user interests' })
+  @ApiResponse({ status: 200, description: 'Interests removed successfully' })
+  @ApiResponse({ status: 404, description: 'User interests not found' })
+  remove(@CurrentUser() user: jwtPayloadDto) {
+    return this.userInterestService.remove(user.userId);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Delete('category/:category')
-  @ApiOperation({ summary: 'Remove interest by category name' })
-  @ApiResponse({ status: 200, description: 'Interest removed successfully' })
-  @ApiResponse({ status: 404, description: 'Interest not found' })
-  removeByCategory(
+  @Post('add')
+  @ApiOperation({ summary: 'Add a single interest to user interests' })
+  @ApiResponse({ status: 200, description: 'Interest added successfully' })
+  @ApiResponse({ status: 404, description: 'User interests not found' })
+  @ApiResponse({ status: 400, description: 'Interest already exists' })
+  addInterest(
     @CurrentUser() user: jwtPayloadDto,
-    @Param('category') category: string,
+    @Body('interest') interest: string,
   ) {
-    return this.userInterestService.removeByCategory(user.userId, category);
+    return this.userInterestService.addInterest(user.userId, interest);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('remove/:interest')
+  @ApiOperation({ summary: 'Remove a single interest from user interests' })
+  @ApiResponse({ status: 200, description: 'Interest removed successfully' })
+  @ApiResponse({ status: 404, description: 'User interests or interest not found' })
+  removeInterest(
+    @CurrentUser() user: jwtPayloadDto,
+    @Param('interest') interest: string,
+  ) {
+    return this.userInterestService.removeInterest(user.userId, interest);
   }
 }

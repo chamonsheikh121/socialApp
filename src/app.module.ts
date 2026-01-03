@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -9,6 +9,8 @@ import { BullMQModule } from './lib/bullmq/bullmq.module';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
+import { MetricsModule } from './metrics/metrics.module';
+import { MetricsMiddleware } from './metrics/metrics.middleware';
 
 @Module({
   imports: [
@@ -18,15 +20,42 @@ import { PrometheusModule } from '@willsoto/nestjs-prometheus';
     }),
     LoggerModule.forRoot({
       pinoHttp: {
+        autoLogging: {
+          ignore: (req) => req.url?.includes('/metrics')!,
+        },
         transport: {
-          target: 'pino-pretty',
-          options: {
-            singleLine: true,
-          },
+          targets: [
+            {
+              target: 'pino-pretty',
+              options: {
+                singleLine: true,
+              },
+              level: 'info',
+            },
+            {
+              target: 'pino-loki',
+              options: {
+                host: 'http://10.10.10.52:3100',
+                batching: true,
+                interval: 5,
+                labels: {
+                  app: 'socialapp',
+                  service: 'nestjs',
+                },
+              },
+              level: 'info',
+            },
+          ],
         },
       },
     }),
-    PrometheusModule.register(),
+    PrometheusModule.register({
+      path: '/metrics',
+      defaultMetrics: {
+        enabled: true,
+      },
+    }),
+    MetricsModule,
     AuthModule,
     UserModule,
     UserInterestModule,
@@ -36,4 +65,8 @@ import { PrometheusModule } from '@willsoto/nestjs-prometheus';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    // consumer.apply(MetricsMiddleware).forRoutes('*');
+  }
+}

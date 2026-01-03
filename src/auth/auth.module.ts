@@ -7,9 +7,10 @@ import { MailModule } from '../lib/mail/mail.module';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { JwtAuthGuard } from './jwt-auth.guard';
+import { MetricsModule } from '../metrics/metrics.module';
 
 @Module({
-  imports: [PrismaModule, RedisModule, MailModule],
+  imports: [PrismaModule, RedisModule, MailModule, MetricsModule],
   providers: [
     AuthService,
     JwtAuthGuard,

@@ -27,19 +27,20 @@ export type AggregateUserInterest = {
 export type UserInterestMinAggregateOutputType = {
   id: string | null
   userId: string | null
-  category: string | null
+  photoURL: string | null
 }
 
 export type UserInterestMaxAggregateOutputType = {
   id: string | null
   userId: string | null
-  category: string | null
+  photoURL: string | null
 }
 
 export type UserInterestCountAggregateOutputType = {
   id: number
   userId: number
-  category: number
+  photoURL: number
+  interest: number
   _all: number
 }
 
@@ -47,19 +48,20 @@ export type UserInterestCountAggregateOutputType = {
 export type UserInterestMinAggregateInputType = {
   id?: true
   userId?: true
-  category?: true
+  photoURL?: true
 }
 
 export type UserInterestMaxAggregateInputType = {
   id?: true
   userId?: true
-  category?: true
+  photoURL?: true
 }
 
 export type UserInterestCountAggregateInputType = {
   id?: true
   userId?: true
-  category?: true
+  photoURL?: true
+  interest?: true
   _all?: true
 }
 
@@ -138,7 +140,8 @@ export type UserInterestGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type UserInterestGroupByOutputType = {
   id: string
   userId: string
-  category: string
+  photoURL: string
+  interest: string[]
   _count: UserInterestCountAggregateOutputType | null
   _min: UserInterestMinAggregateOutputType | null
   _max: UserInterestMaxAggregateOutputType | null
@@ -165,31 +168,35 @@ export type UserInterestWhereInput = {
   NOT?: Prisma.UserInterestWhereInput | Prisma.UserInterestWhereInput[]
   id?: Prisma.StringFilter<"UserInterest"> | string
   userId?: Prisma.StringFilter<"UserInterest"> | string
-  category?: Prisma.StringFilter<"UserInterest"> | string
+  photoURL?: Prisma.StringFilter<"UserInterest"> | string
+  interest?: Prisma.StringNullableListFilter<"UserInterest">
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type UserInterestOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  photoURL?: Prisma.SortOrder
+  interest?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type UserInterestWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  userId?: string
   AND?: Prisma.UserInterestWhereInput | Prisma.UserInterestWhereInput[]
   OR?: Prisma.UserInterestWhereInput[]
   NOT?: Prisma.UserInterestWhereInput | Prisma.UserInterestWhereInput[]
-  userId?: Prisma.StringFilter<"UserInterest"> | string
-  category?: Prisma.StringFilter<"UserInterest"> | string
+  photoURL?: Prisma.StringFilter<"UserInterest"> | string
+  interest?: Prisma.StringNullableListFilter<"UserInterest">
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}, "id">
+}, "id" | "userId">
 
 export type UserInterestOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  photoURL?: Prisma.SortOrder
+  interest?: Prisma.SortOrder
   _count?: Prisma.UserInterestCountOrderByAggregateInput
   _max?: Prisma.UserInterestMaxOrderByAggregateInput
   _min?: Prisma.UserInterestMinOrderByAggregateInput
@@ -201,48 +208,56 @@ export type UserInterestScalarWhereWithAggregatesInput = {
   NOT?: Prisma.UserInterestScalarWhereWithAggregatesInput | Prisma.UserInterestScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"UserInterest"> | string
   userId?: Prisma.StringWithAggregatesFilter<"UserInterest"> | string
-  category?: Prisma.StringWithAggregatesFilter<"UserInterest"> | string
+  photoURL?: Prisma.StringWithAggregatesFilter<"UserInterest"> | string
+  interest?: Prisma.StringNullableListFilter<"UserInterest">
 }
 
 export type UserInterestCreateInput = {
   id?: string
-  category: string
+  photoURL: string
+  interest?: Prisma.UserInterestCreateinterestInput | string[]
   user: Prisma.UserCreateNestedOneWithoutInterestsInput
 }
 
 export type UserInterestUncheckedCreateInput = {
   id?: string
   userId: string
-  category: string
+  photoURL: string
+  interest?: Prisma.UserInterestCreateinterestInput | string[]
 }
 
 export type UserInterestUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  photoURL?: Prisma.StringFieldUpdateOperationsInput | string
+  interest?: Prisma.UserInterestUpdateinterestInput | string[]
   user?: Prisma.UserUpdateOneRequiredWithoutInterestsNestedInput
 }
 
 export type UserInterestUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  photoURL?: Prisma.StringFieldUpdateOperationsInput | string
+  interest?: Prisma.UserInterestUpdateinterestInput | string[]
 }
 
 export type UserInterestCreateManyInput = {
   id?: string
   userId: string
-  category: string
+  photoURL: string
+  interest?: Prisma.UserInterestCreateinterestInput | string[]
 }
 
 export type UserInterestUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  photoURL?: Prisma.StringFieldUpdateOperationsInput | string
+  interest?: Prisma.UserInterestUpdateinterestInput | string[]
 }
 
 export type UserInterestUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  photoURL?: Prisma.StringFieldUpdateOperationsInput | string
+  interest?: Prisma.UserInterestUpdateinterestInput | string[]
 }
 
 export type UserInterestListRelationFilter = {
@@ -255,22 +270,31 @@ export type UserInterestOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
 export type UserInterestCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  photoURL?: Prisma.SortOrder
+  interest?: Prisma.SortOrder
 }
 
 export type UserInterestMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  photoURL?: Prisma.SortOrder
 }
 
 export type UserInterestMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  photoURL?: Prisma.SortOrder
 }
 
 export type UserInterestCreateNestedManyWithoutUserInput = {
@@ -315,14 +339,25 @@ export type UserInterestUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.UserInterestScalarWhereInput | Prisma.UserInterestScalarWhereInput[]
 }
 
+export type UserInterestCreateinterestInput = {
+  set: string[]
+}
+
+export type UserInterestUpdateinterestInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
 export type UserInterestCreateWithoutUserInput = {
   id?: string
-  category: string
+  photoURL: string
+  interest?: Prisma.UserInterestCreateinterestInput | string[]
 }
 
 export type UserInterestUncheckedCreateWithoutUserInput = {
   id?: string
-  category: string
+  photoURL: string
+  interest?: Prisma.UserInterestCreateinterestInput | string[]
 }
 
 export type UserInterestCreateOrConnectWithoutUserInput = {
@@ -357,27 +392,32 @@ export type UserInterestScalarWhereInput = {
   NOT?: Prisma.UserInterestScalarWhereInput | Prisma.UserInterestScalarWhereInput[]
   id?: Prisma.StringFilter<"UserInterest"> | string
   userId?: Prisma.StringFilter<"UserInterest"> | string
-  category?: Prisma.StringFilter<"UserInterest"> | string
+  photoURL?: Prisma.StringFilter<"UserInterest"> | string
+  interest?: Prisma.StringNullableListFilter<"UserInterest">
 }
 
 export type UserInterestCreateManyUserInput = {
   id?: string
-  category: string
+  photoURL: string
+  interest?: Prisma.UserInterestCreateinterestInput | string[]
 }
 
 export type UserInterestUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  photoURL?: Prisma.StringFieldUpdateOperationsInput | string
+  interest?: Prisma.UserInterestUpdateinterestInput | string[]
 }
 
 export type UserInterestUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  photoURL?: Prisma.StringFieldUpdateOperationsInput | string
+  interest?: Prisma.UserInterestUpdateinterestInput | string[]
 }
 
 export type UserInterestUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  photoURL?: Prisma.StringFieldUpdateOperationsInput | string
+  interest?: Prisma.UserInterestUpdateinterestInput | string[]
 }
 
 
@@ -385,31 +425,35 @@ export type UserInterestUncheckedUpdateManyWithoutUserInput = {
 export type UserInterestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  category?: boolean
+  photoURL?: boolean
+  interest?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userInterest"]>
 
 export type UserInterestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  category?: boolean
+  photoURL?: boolean
+  interest?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userInterest"]>
 
 export type UserInterestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  category?: boolean
+  photoURL?: boolean
+  interest?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userInterest"]>
 
 export type UserInterestSelectScalar = {
   id?: boolean
   userId?: boolean
-  category?: boolean
+  photoURL?: boolean
+  interest?: boolean
 }
 
-export type UserInterestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "category", ExtArgs["result"]["userInterest"]>
+export type UserInterestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "photoURL" | "interest", ExtArgs["result"]["userInterest"]>
 export type UserInterestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -428,7 +472,8 @@ export type $UserInterestPayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    category: string
+    photoURL: string
+    interest: string[]
   }, ExtArgs["result"]["userInterest"]>
   composites: {}
 }
@@ -855,7 +900,8 @@ export interface Prisma__UserInterestClient<T, Null = never, ExtArgs extends run
 export interface UserInterestFieldRefs {
   readonly id: Prisma.FieldRef<"UserInterest", 'String'>
   readonly userId: Prisma.FieldRef<"UserInterest", 'String'>
-  readonly category: Prisma.FieldRef<"UserInterest", 'String'>
+  readonly photoURL: Prisma.FieldRef<"UserInterest", 'String'>
+  readonly interest: Prisma.FieldRef<"UserInterest", 'String[]'>
 }
     
 

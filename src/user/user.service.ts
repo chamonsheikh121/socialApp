@@ -9,6 +9,7 @@ import { PinoLogger, InjectPinoLogger } from 'nestjs-pino';
 import { NotFoundError } from '../common/error';
 import { Injectable } from '@nestjs/common';
 import { FileUploadService } from '../common/file-upload.service';
+import { MetricsService } from '../metrics/metrics.service';
 
 @Injectable()
 export class UserService {
@@ -16,6 +17,7 @@ export class UserService {
     private readonly prisma: PrismaService,
     @InjectPinoLogger(UserService.name) private readonly logger: PinoLogger,
     private readonly fileUploadService: FileUploadService,
+    private readonly metricsService: MetricsService,
   ) {}
 
   async updateProfile(
@@ -112,35 +114,48 @@ export class UserService {
   }
 
   async getProfile(userId: string) {
-    this.logger.info({ userId }, 'Getting user profile');
+    const startTime = Date.now();
 
-    const user = await this.prisma.client.user.findUnique({
-      where: { id: userId },
-      select: {
-        id: true,
-        username: true,
-        email: true,
-        fullName: true,
-        bio: true,
-        avatarUrl: true,
-        coverPhotoUrl: true,
-        location: true,
-        phone: true,
-        role: true,
-        isVerified: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    });
+    try {
+      this.logger.info({ userId }, 'Getting user profile');
 
-    if (!user) {
-      this.logger.warn({ userId }, 'User not found for profile retrieval');
-      throw new NotFoundError('User not found');
+      const user = await this.prisma.client.user.findUnique({
+        where: { id: userId },
+        select: {
+          id: true,
+          username: true,
+          email: true,
+          fullName: true,
+          bio: true,
+          avatarUrl: true,
+          coverPhotoUrl: true,
+          location: true,
+          phone: true,
+          role: true,
+          isVerified: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+      });
+
+      if (!user) {
+        this.logger.error({ userId }, 'User not found for profile retrieval');
+        throw new NotFoundError('User not found');
+      }
+
+      this.metricsService.incrementUserProfileGet();
+
+      const duration = (Date.now() - startTime) / 1000; // Convert to seconds
+      this.metricsService.recordUserProfileGetDuration(duration);
+
+      return {
+        message: 'Profile retrieved successfully',
+        user,
+      };
+    } catch (error) {
+      const duration = (Date.now() - startTime) / 1000; // Convert to seconds
+      this.metricsService.recordUserProfileGetDuration(duration);
+      throw error;
     }
-
-    return {
-      message: 'Profile retrieved successfully',
-      user,
-    };
   }
 }

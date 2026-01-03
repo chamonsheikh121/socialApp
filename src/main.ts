@@ -42,7 +42,7 @@ async function bootstrap() {
     },
   });
 
-  const port = process.env.PORT! || 3000;
+  const port = process.env.PORT! || 5000;
   await app.listen(process.env.PORT ?? port);
   console.log(`the server running at http://localhost:${port}/api`);
 }

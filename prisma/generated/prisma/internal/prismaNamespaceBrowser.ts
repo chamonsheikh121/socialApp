@@ -324,7 +324,8 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const UserInterestScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  category: 'category'
+  photoURL: 'photoURL',
+  interest: 'interest'
 } as const
 
 export type UserInterestScalarFieldEnum = (typeof UserInterestScalarFieldEnum)[keyof typeof UserInterestScalarFieldEnum]

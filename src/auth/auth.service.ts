@@ -18,6 +18,7 @@ import {
   NotFoundError,
 } from '../common/error';
 import { ConfigService } from '@nestjs/config';
+import { MetricsService } from '../metrics/metrics.service';
 
 @Injectable()
 export class AuthService {
@@ -29,6 +30,7 @@ export class AuthService {
     private readonly prisma: PrismaService,
     private readonly redis: RedisService,
     private readonly configService: ConfigService,
+    private readonly metricsService: MetricsService,
     @Inject('ACCESS_JWT') private readonly accessTokenService: JwtService,
     @Inject('REFRESH_JWT') private readonly refreshTokenService: JwtService,
     @Inject('RESET_PASS_JWT')
@@ -63,71 +65,82 @@ export class AuthService {
   }
 
   async register(userData: CreateUserDtos) {
-    this.logger.info(
-      { email: userData.email, username: userData.username },
-      'Attempting user registration',
-    );
+    const startTime = Date.now();
 
-    // Check if user exists
-    const existingUser = await this.prisma.client.user.findFirst({
-      where: {
-        OR: [{ email: userData.email }, { username: userData.username }],
-      },
-    });
-
-    if (existingUser) {
-      this.logger.warn(
+    try {
+      this.logger.info(
         { email: userData.email, username: userData.username },
-        'User already exists',
+        'Attempting user registration',
       );
-      this.userRegistrations.inc({ status: 'failed' });
-      throw new BadRequestError('User already exists');
+
+      // Check if user exists
+      const existingUser = await this.prisma.client.user.findFirst({
+        where: {
+          OR: [{ email: userData.email }, { username: userData.username }],
+        },
+      });
+
+      if (existingUser) {
+        this.logger.warn(
+          { email: userData.email, username: userData.username },
+          'User already exists',
+        );
+        this.userRegistrations.inc({ status: 'failed' });
+        throw new BadRequestError('User already exists');
+      }
+
+      // Hash password
+      const hashedPassword = await bcrypt.hash(
+        userData.password,
+        this.salultRounds,
+      );
+
+      this.logger.debug('Password hashed successfully');
+
+      // Create user
+      const user = await this.prisma.client.user.create({
+        data: {
+          username: userData.username,
+          email: userData.email,
+          passwordHash: hashedPassword,
+        },
+      });
+
+      this.logger.info(
+        { userId: user.id, email: user.email },
+        'User created successfully',
+      );
+
+      // Generate OTP
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+      // Store OTP in Redis with 10 minutes TTL
+      await this.redis.set(`otp:${user.email}`, otp, 600);
+
+      this.logger.debug({ email: user.email }, 'OTP stored in Redis');
+
+      await emailQueue.add('send-otp-email', {
+        type: 'otp',
+        to: user.email,
+        otp,
+      });
+
+      this.logger.info({ email: user.email }, 'OTP email queued for sending');
+
+      this.metricsService.incrementUserRegistration();
+
+      const duration = (Date.now() - startTime) / 1000; // Convert to seconds
+      this.metricsService.recordUserRegistrationDuration(duration);
+
+      return {
+        message:
+          'User registered successfully. Please verify your email it may take 1 min or less',
+      };
+    } catch (error) {
+      const duration = (Date.now() - startTime) / 1000; // Convert to seconds
+      this.metricsService.recordUserRegistrationDuration(duration);
+      throw error;
     }
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(
-      userData.password,
-      this.salultRounds,
-    );
-
-    this.logger.debug('Password hashed successfully');
-
-    // Create user
-    const user = await this.prisma.client.user.create({
-      data: {
-        username: userData.username,
-        email: userData.email,
-        passwordHash: hashedPassword,
-      },
-    });
-
-    this.logger.info(
-      { userId: user.id, email: user.email },
-      'User created successfully',
-    );
-
-    // Generate OTP
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-
-    // Store OTP in Redis with 10 minutes TTL
-    await this.redis.set(`otp:${user.email}`, otp, 600);
-
-    this.logger.debug({ email: user.email }, 'OTP stored in Redis');
-
-    await emailQueue.add('send-otp-email', {
-      type: 'otp',
-      to: user.email,
-      otp,
-    });
-
-    this.logger.info({ email: user.email }, 'OTP email queued for sending');
-
-    this.userRegistrations.inc({ status: 'success' });
-
-    return {
-      message:
-        'User registered successfully. Please verify your email it may take 1 min or less',
-    };
   }
 
   async verifyOtp(email: string, otp: string) {
