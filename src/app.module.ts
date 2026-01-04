@@ -1,4 +1,5 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -10,7 +11,6 @@ import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 import { MetricsModule } from './metrics/metrics.module';
-import { MetricsMiddleware } from './metrics/metrics.middleware';
 
 @Module({
   imports: [
@@ -35,7 +35,7 @@ import { MetricsMiddleware } from './metrics/metrics.middleware';
             {
               target: 'pino-loki',
               options: {
-                host: 'http://10.10.10.52:3100',
+                host: '192.168.0.121:3100',
                 batching: true,
                 interval: 5,
                 labels: {
@@ -65,8 +65,4 @@ import { MetricsMiddleware } from './metrics/metrics.middleware';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    // consumer.apply(MetricsMiddleware).forRoutes('*');
-  }
-}
+export class AppModule {}
