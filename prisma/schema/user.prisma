@@ -17,22 +17,22 @@ model User {
 
   // Relations
   refreshTokens        RefreshToken[]
-  socialLinks         UserSocialLink[]
-  posts               Post[]
-  comments            Comment[]
-  likes               Like[]
-  bookmarks           Bookmark[]
-  followers           Follow[]         @relation("FollowingRelation")
-  following           Follow[]         @relation("FollowerRelation")
-  messagesSent        Message[]        @relation("SenderMessages")
-  messagesReceived    Message[]        @relation("ReceiverMessages")
-  notifications      Notification[]    @relation("UserNotifications")
+  socialLinks          UserSocialLink[]
+  posts                Post[]
+  comments             Comment[]
+  likes                Like[]
+  bookmarks            Bookmark[]
+  followers            Follow[]         @relation("FollowingRelation")
+  following            Follow[]         @relation("FollowerRelation")
+  messagesSent         Message[]        @relation("SenderMessages")
+  messagesReceived     Message[]        @relation("ReceiverMessages")
+  notifications        Notification[]   @relation("UserNotifications")
   notificationsAsActor Notification[]
-  pagesOwned         Page[]
-  pageAdmins         PageAdmin[]
-  pagePosts          PagePost[]
-  userSettings       UserSettings?
-  interests          UserInterest[]
+  pagesOwned           Page[]
+  pageAdmins           PageAdmin[]
+  pagePosts            PagePost[]
+  userSettings         UserSettings?
+  interests            UserInterest[]
 
   @@index([username])
   @@index([email])
@@ -43,4 +43,3 @@ enum UserRoles {
   USER
   ADMIN
 }
-

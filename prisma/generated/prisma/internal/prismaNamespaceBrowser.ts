@@ -52,10 +52,11 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Bookmark: 'Bookmark',
-  Category: 'Category',
+  PCategory: 'PCategory',
   Comment: 'Comment',
   Follow: 'Follow',
   Hashtag: 'Hashtag',
+  Interest: 'Interest',
   Like: 'Like',
   Media: 'Media',
   Message: 'Message',
@@ -101,7 +102,7 @@ export const BookmarkScalarFieldEnum = {
 export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]
 
 
-export const CategoryScalarFieldEnum = {
+export const PCategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
@@ -114,7 +115,7 @@ export const CategoryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 } as const
 
-export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+export type PCategoryScalarFieldEnum = (typeof PCategoryScalarFieldEnum)[keyof typeof PCategoryScalarFieldEnum]
 
 
 export const CommentScalarFieldEnum = {
@@ -149,6 +150,17 @@ export const HashtagScalarFieldEnum = {
 } as const
 
 export type HashtagScalarFieldEnum = (typeof HashtagScalarFieldEnum)[keyof typeof HashtagScalarFieldEnum]
+
+
+export const InterestScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  canvasUrl: 'canvasUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InterestScalarFieldEnum = (typeof InterestScalarFieldEnum)[keyof typeof InterestScalarFieldEnum]
 
 
 export const LikeScalarFieldEnum = {
@@ -324,8 +336,8 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const UserInterestScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  photoURL: 'photoURL',
-  interest: 'interest'
+  interestId: 'interestId',
+  createdAt: 'createdAt'
 } as const
 
 export type UserInterestScalarFieldEnum = (typeof UserInterestScalarFieldEnum)[keyof typeof UserInterestScalarFieldEnum]

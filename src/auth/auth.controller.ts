@@ -6,7 +6,7 @@ import { verifyOtpDto } from './dto/verifyOtp.dto';
 import { LoginDto } from './dto/login.dto';
 import { ForgetPasswordDto } from './dto/forgetPassword.dto';
 import { ResetPasswordDto } from './dto/resetPassword.dto';
-import { Response } from 'express';
+import { RefreshTokenDto } from './dto/refreshToken.dto';
 
 @ApiTags('authentication')
 @Controller('auth')
@@ -24,6 +24,11 @@ export class AuthController {
 
     // Remove refreshToken from response body since it's in the cookie
     return result;
+  }
+
+  @Post('refresh-token')
+  async refreshToken(@Body() body: RefreshTokenDto) {
+    return this.authService.refreshAccessToken(body.refreshToken);
   }
 
   @Post('verify-otp')

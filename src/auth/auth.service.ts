@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Inject, Injectable } from '@nestjs/common';
 import { PrismaService } from '../common/prisma/prisma.service';
@@ -26,6 +25,7 @@ export class AuthService {
   private readonly userRegistrations: Counter<string>;
   private readonly userLogins: Counter<string>;
   private readonly otpVerifications: Counter<string>;
+
   constructor(
     private readonly prisma: PrismaService,
     private readonly redis: RedisService,
@@ -195,7 +195,7 @@ export class AuthService {
 
     try {
       const accessToken = this.createAccessToken(payload);
-      const refreshToken = this.createRefreshToken(payload);
+      const refreshToken = await this.createRefreshToken(payload);
 
       this.logger.info({ email: user.email }, 'Tokens created successfully');
 
@@ -239,7 +239,29 @@ export class AuthService {
     // Check if user is verified
     if (!user.isVerified) {
       this.logger.warn({ email: user.email }, 'User not verified');
-      throw new UnauthorizedError('Please verify your email before logging in');
+      // Delete OTP from Redis if it exists
+      const exists = await this.redis.get(`otp:${user.email}`);
+
+      if (exists) {
+        this.logger.info({ email: loginData.email }, 'removing old otp');
+        await this.redis.del(`otp:${user.email}`);
+      }
+
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+      // Store OTP in Redis with 10 minutes TTL
+      await this.redis.set(`otp:${user.email}`, otp, 600);
+
+      this.logger.debug({ email: user.email }, 'OTP stored in Redis');
+
+      await emailQueue.add('send-otp-email', {
+        type: 'otp',
+        to: user.email,
+        otp,
+      });
+
+      throw new UnauthorizedError(
+        'Check your email for OTP to verify your account',
+      );
     }
 
     this.logger.info({ email: user.email }, 'Login successful');
@@ -253,7 +275,7 @@ export class AuthService {
 
     try {
       const accessToken = this.createAccessToken(payload);
-      const refreshToken = this.createRefreshToken(payload);
+      const refreshToken = await this.createRefreshToken(payload);
 
       this.logger.info(
         { email: user.email },
@@ -372,8 +394,90 @@ export class AuthService {
   createAccessToken(payload: jwtPayloadDto) {
     return this.accessTokenService.sign(payload);
   }
-  createRefreshToken(payload: jwtPayloadDto) {
-    return this.refreshTokenService.sign(payload);
+
+  async createRefreshToken(payload: jwtPayloadDto) {
+    const refreshToken = this.refreshTokenService.sign(payload);
+
+    // Persist refresh token in the database
+    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+
+    const existing = await this.prisma.client.refreshToken.findFirst({
+      where: { userId: payload.userId, revoked: false },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    if (existing) {
+      await this.prisma.client.refreshToken.update({
+        where: { id: existing.id },
+        data: {
+          token: refreshToken,
+          expiresAt,
+        },
+      });
+    } else {
+      await this.prisma.client.refreshToken.create({
+        data: {
+          userId: payload.userId,
+          token: refreshToken,
+          expiresAt,
+        },
+      });
+    }
+
+    return refreshToken;
+  }
+
+  async refreshAccessToken(refreshToken: string) {
+    this.logger.info('Refresh token request received');
+
+    if (!refreshToken) {
+      this.logger.warn('No refresh token provided');
+      throw new UnauthorizedError('Refresh token is required');
+    }
+
+    let decoded: jwtPayloadDto & { exp?: number; iat?: number };
+    try {
+      decoded = this.refreshTokenService.verify<
+        jwtPayloadDto & { exp?: number; iat?: number }
+      >(refreshToken);
+    } catch (error) {
+      this.logger.warn({ error }, 'Invalid refresh token during verify');
+      throw new UnauthorizedError('Invalid refresh token');
+    }
+
+    const tokenRecord = await this.prisma.client.refreshToken.findUnique({
+      where: { token: refreshToken },
+    });
+
+    if (!tokenRecord) {
+      this.logger.warn('Refresh token not found in database');
+      throw new UnauthorizedError('Invalid refresh token');
+    }
+
+    if (tokenRecord.revoked) {
+      this.logger.warn({ id: tokenRecord.id }, 'Refresh token is revoked');
+      throw new UnauthorizedError('Refresh token is revoked');
+    }
+
+    if (tokenRecord.expiresAt < new Date()) {
+      this.logger.warn({ id: tokenRecord.id }, 'Refresh token is expired');
+      throw new UnauthorizedError('Refresh token has expired');
+    }
+
+    const payload: jwtPayloadDto = {
+      userId: decoded.userId,
+      email: decoded.email,
+      role: decoded.role,
+    };
+
+    const accessToken = this.createAccessToken(payload);
+
+    this.logger.info(
+      { userId: payload.userId },
+      'Access token refreshed successfully',
+    );
+
+    return { accessToken };
   }
 
   private generateResetToken(payload: jwtPayloadDto): string {

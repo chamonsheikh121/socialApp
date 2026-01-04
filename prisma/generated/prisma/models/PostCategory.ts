@@ -175,7 +175,7 @@ export type PostCategoryWhereInput = {
   categoryId?: Prisma.StringFilter<"PostCategory"> | string
   createdAt?: Prisma.DateTimeFilter<"PostCategory"> | Date | string
   post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>
-  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
+  category?: Prisma.XOR<Prisma.PCategoryScalarRelationFilter, Prisma.PCategoryWhereInput>
 }
 
 export type PostCategoryOrderByWithRelationInput = {
@@ -184,7 +184,7 @@ export type PostCategoryOrderByWithRelationInput = {
   categoryId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   post?: Prisma.PostOrderByWithRelationInput
-  category?: Prisma.CategoryOrderByWithRelationInput
+  category?: Prisma.PCategoryOrderByWithRelationInput
 }
 
 export type PostCategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -197,7 +197,7 @@ export type PostCategoryWhereUniqueInput = Prisma.AtLeast<{
   categoryId?: Prisma.StringFilter<"PostCategory"> | string
   createdAt?: Prisma.DateTimeFilter<"PostCategory"> | Date | string
   post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>
-  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
+  category?: Prisma.XOR<Prisma.PCategoryScalarRelationFilter, Prisma.PCategoryWhereInput>
 }, "id" | "postId_categoryId">
 
 export type PostCategoryOrderByWithAggregationInput = {
@@ -224,7 +224,7 @@ export type PostCategoryCreateInput = {
   id?: string
   createdAt?: Date | string
   post: Prisma.PostCreateNestedOneWithoutPostCategoriesInput
-  category: Prisma.CategoryCreateNestedOneWithoutPostCategoriesInput
+  category: Prisma.PCategoryCreateNestedOneWithoutPostCategoriesInput
 }
 
 export type PostCategoryUncheckedCreateInput = {
@@ -238,7 +238,7 @@ export type PostCategoryUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   post?: Prisma.PostUpdateOneRequiredWithoutPostCategoriesNestedInput
-  category?: Prisma.CategoryUpdateOneRequiredWithoutPostCategoriesNestedInput
+  category?: Prisma.PCategoryUpdateOneRequiredWithoutPostCategoriesNestedInput
 }
 
 export type PostCategoryUncheckedUpdateInput = {
@@ -438,7 +438,7 @@ export type PostCategoryScalarWhereInput = {
 export type PostCategoryCreateWithoutPostInput = {
   id?: string
   createdAt?: Date | string
-  category: Prisma.CategoryCreateNestedOneWithoutPostCategoriesInput
+  category: Prisma.PCategoryCreateNestedOneWithoutPostCategoriesInput
 }
 
 export type PostCategoryUncheckedCreateWithoutPostInput = {
@@ -506,7 +506,7 @@ export type PostCategoryCreateManyPostInput = {
 export type PostCategoryUpdateWithoutPostInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  category?: Prisma.CategoryUpdateOneRequiredWithoutPostCategoriesNestedInput
+  category?: Prisma.PCategoryUpdateOneRequiredWithoutPostCategoriesNestedInput
 }
 
 export type PostCategoryUncheckedUpdateWithoutPostInput = {
@@ -529,7 +529,7 @@ export type PostCategorySelect<ExtArgs extends runtime.Types.Extensions.Internal
   categoryId?: boolean
   createdAt?: boolean
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
-  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.PCategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postCategory"]>
 
 export type PostCategorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -538,7 +538,7 @@ export type PostCategorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   categoryId?: boolean
   createdAt?: boolean
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
-  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.PCategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postCategory"]>
 
 export type PostCategorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -547,7 +547,7 @@ export type PostCategorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   categoryId?: boolean
   createdAt?: boolean
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
-  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.PCategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postCategory"]>
 
 export type PostCategorySelectScalar = {
@@ -560,22 +560,22 @@ export type PostCategorySelectScalar = {
 export type PostCategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "postId" | "categoryId" | "createdAt", ExtArgs["result"]["postCategory"]>
 export type PostCategoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
-  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.PCategoryDefaultArgs<ExtArgs>
 }
 export type PostCategoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
-  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.PCategoryDefaultArgs<ExtArgs>
 }
 export type PostCategoryIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
-  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.PCategoryDefaultArgs<ExtArgs>
 }
 
 export type $PostCategoryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PostCategory"
   objects: {
     post: Prisma.$PostPayload<ExtArgs>
-    category: Prisma.$CategoryPayload<ExtArgs>
+    category: Prisma.$PCategoryPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -977,7 +977,7 @@ readonly fields: PostCategoryFieldRefs;
 export interface Prisma__PostCategoryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   post<T extends Prisma.PostDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PostDefaultArgs<ExtArgs>>): Prisma.Prisma__PostClient<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  category<T extends Prisma.CategoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CategoryDefaultArgs<ExtArgs>>): Prisma.Prisma__CategoryClient<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  category<T extends Prisma.PCategoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PCategoryDefaultArgs<ExtArgs>>): Prisma.Prisma__PCategoryClient<runtime.Types.Result.GetResult<Prisma.$PCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

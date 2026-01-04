@@ -2,6 +2,8 @@ services:
   postgres:
     image: postgres:15
     container_name: postgres_db
+    profiles:
+      - dev
     restart: always
     environment:
       - POSTGRES_USER=${POSTGRES_USER}

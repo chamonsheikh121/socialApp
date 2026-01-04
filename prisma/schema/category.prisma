@@ -1,5 +1,5 @@
 // Categories
-model Category {
+model PCategory {
   id          String   @id @default(uuid())
   name        String
   slug        String   @unique
@@ -17,3 +17,4 @@ model Category {
   @@index([isActive])
   @@index([sortOrder])
 }
+

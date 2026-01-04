@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import {
   makeCounterProvider,
   makeHistogramProvider,
@@ -6,6 +6,7 @@ import {
 import { MetricsService } from './metrics.service';
 import { MetricsMiddleware } from './metrics.middleware';
 
+@Global()
 @Module({
   providers: [
     makeCounterProvider({
@@ -19,7 +20,7 @@ import { MetricsMiddleware } from './metrics.middleware';
     makeHistogramProvider({
       name: 'user_registration_duration_seconds',
       help: 'Duration of user registration operations in seconds',
-      labelNames: ['method', 'route','status_code'],
+      labelNames: ['method', 'route', 'status_code'],
       buckets: [0.1, 0.5, 1, 2, 5, 10],
     }),
     makeHistogramProvider({
@@ -36,6 +37,10 @@ import { MetricsMiddleware } from './metrics.middleware';
     MetricsService,
     MetricsMiddleware,
   ],
-  exports: [MetricsService, MetricsMiddleware],
+  exports: [
+    MetricsService,
+    MetricsMiddleware,
+    'PROM_METRIC_HTTP_SERVER_REQUEST_DURATION_SECONDS',
+  ],
 })
 export class MetricsModule {}

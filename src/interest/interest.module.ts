@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
-import { UserInterestController } from './userInterest.controller';
+import { InterestService } from './interest.service';
+import { InterestController } from './interest.controller';
 import { PrismaModule } from '../common/prisma/prisma.module';
-import { UserInterestService } from './userInterest.service';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { AuthModule } from '@/auth/auth.module';
 
 @Module({
   imports: [PrismaModule, AuthModule],
-  controllers: [UserInterestController],
+  controllers: [InterestController],
   providers: [
-    UserInterestService,
+    InterestService,
     {
       provide: 'ACCESS_JWT',
       useFactory: (config: ConfigService) => {
@@ -24,6 +24,6 @@ import { AuthModule } from '@/auth/auth.module';
       inject: [ConfigService],
     },
   ],
-  exports: [UserInterestService],
+  exports: [InterestService],
 })
-export class UserInterestModule {}
+export class InterestModule {}

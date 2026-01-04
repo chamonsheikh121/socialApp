@@ -23,10 +23,10 @@ export * from './enums';
  */
 export type Bookmark = Prisma.BookmarkModel
 /**
- * Model Category
+ * Model PCategory
  * 
  */
-export type Category = Prisma.CategoryModel
+export type PCategory = Prisma.PCategoryModel
 /**
  * Model Comment
  * 
@@ -42,6 +42,11 @@ export type Follow = Prisma.FollowModel
  * 
  */
 export type Hashtag = Prisma.HashtagModel
+/**
+ * Model Interest
+ * 
+ */
+export type Interest = Prisma.InterestModel
 /**
  * Model Like
  * 

@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { UserInterestModule } from './userInterest/userInterest.module';
+import { InterestModule } from './interest/interest.module';
+import { PostModule } from './post/post.module';
+import { CategoryModule } from './category/category.module';
 import { PrismaModule } from './common/prisma/prisma.module';
 import { BullMQModule } from './lib/bullmq/bullmq.module';
 import { ConfigModule } from '@nestjs/config';
@@ -58,7 +62,10 @@ import { MetricsMiddleware } from './metrics/metrics.middleware';
     MetricsModule,
     AuthModule,
     UserModule,
+    InterestModule,
     UserInterestModule,
+    PostModule,
+    CategoryModule,
     PrismaModule,
     BullMQModule,
   ],
@@ -67,6 +74,6 @@ import { MetricsMiddleware } from './metrics/metrics.middleware';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    // consumer.apply(MetricsMiddleware).forRoutes('*');
+    consumer.apply(MetricsMiddleware).forRoutes('*');
   }
 }

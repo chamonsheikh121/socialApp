@@ -51,7 +51,7 @@ import { MetricsModule } from '../metrics/metrics.module';
       inject: [ConfigService],
     },
   ],
-  exports: [JwtAuthGuard],
+  exports: [JwtAuthGuard, 'ACCESS_JWT'],
   controllers: [AuthController],
 })
 export class AuthModule {}
