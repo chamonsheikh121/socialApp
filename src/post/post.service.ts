@@ -63,14 +63,36 @@ export class PostService {
       }
     }
 
-    // Create post with categories and media
+    let hashtags = dto.hashtags || [];
+
+    hashtags = hashtags[0].split(',');
+
+    console.log('Hashtags:');
+
+    // Prepare hashtag connections - create or connect to existing hashtags
+    const hashtagData = hashtags
+      ? {
+          create: hashtags.map((hashtagName) => ({
+            hashtag: {
+              connectOrCreate: {
+                where: { name: hashtagName.toLowerCase() },
+                create: {
+                  name: hashtagName.toLowerCase(),
+                  trendCount: 1,
+                },
+              },
+            },
+          })),
+        }
+      : undefined;
+
+    // Create post with categories, media, and hashtags
     const post = await this.prisma.client.post.create({
       data: {
         userId,
         content: dto.content,
         postType: dto.postType,
         isPublic: dto.isPublic,
-        allowComments: dto.allowComments,
         postCategories: dto.categoryIds
           ? {
               createMany: {
@@ -78,6 +100,7 @@ export class PostService {
               },
             }
           : undefined,
+        postHashtags: hashtagData,
         media:
           imageUrls.length > 0
             ? {
@@ -95,7 +118,6 @@ export class PostService {
           select: {
             id: true,
             fullName: true,
-
             username: true,
             avatarUrl: true,
           },
@@ -103,6 +125,11 @@ export class PostService {
         postCategories: {
           include: {
             category: true,
+          },
+        },
+        postHashtags: {
+          include: {
+            hashtag: true,
           },
         },
         media: true,
@@ -325,7 +352,6 @@ export class PostService {
         content: dto.content,
         postType: dto.postType,
         isPublic: dto.isPublic,
-        allowComments: dto.allowComments,
         postCategories: dto.categoryIds
           ? {
               deleteMany: {},

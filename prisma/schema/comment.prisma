@@ -5,18 +5,17 @@ model Comment {
   id              String      @id @default(uuid())
   commentText     String
   userId          String
-  PostType     PostType
-  contentId       String
+  postId       String
   parentCommentId String?
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
 
   user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  post            Post?       @relation("PostComments", fields: [contentId], references: [id], onDelete: Cascade)
+  post            Post        @relation("PostComments", fields: [postId], references: [id], onDelete: Cascade)
   parentComment   Comment?    @relation("CommentParent", fields: [parentCommentId], references: [id])
   childComments   Comment[]   @relation("CommentParent")
 
-  @@index([PostType, contentId, createdAt])
+  @@index([postId, createdAt])
   @@index([userId])
   @@index([parentCommentId])
 }

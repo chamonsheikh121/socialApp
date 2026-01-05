@@ -45,31 +45,32 @@ export class FollowController {
     return this.followService.unfollowUser(currentUser.userId, followingId);
   }
 
-  @Get('followers/:userId')
-  @ApiOperation({ summary: 'Get followers of a user' })
+  @UseGuards(JwtAuthGuard)
+  @Get('my-followers')
+  @ApiOperation({ summary: 'Get followers of the current user' })
   @ApiParam({ name: 'userId', description: 'ID of the user' })
   async getFollowers(
-    @Param('userId') userId: string,
+    @CurrentUser() currentUser: jwtPayloadDto,
     @Query('page') page?: string,
     @Query('limit') limit?: string,
   ) {
     return this.followService.getFollowers(
-      userId,
+      currentUser.userId,
       page ? parseInt(page) : 1,
       limit ? parseInt(limit) : 20,
     );
   }
-
-  @Get('following/:userId')
-  @ApiOperation({ summary: 'Get users that a user is following' })
+  @UseGuards(JwtAuthGuard)
+  @Get('me-following')
+  @ApiOperation({ summary: 'Get users that the current user is following' })
   @ApiParam({ name: 'userId', description: 'ID of the user' })
   async getFollowing(
-    @Param('userId') userId: string,
+    @CurrentUser('userId') currentUser: jwtPayloadDto,
     @Query('page') page?: string,
     @Query('limit') limit?: string,
   ) {
     return this.followService.getFollowing(
-      userId,
+      currentUser.userId,
       page ? parseInt(page) : 1,
       limit ? parseInt(limit) : 20,
     );

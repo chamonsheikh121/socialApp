@@ -42,17 +42,27 @@ export class CreatePostDto {
   isPublic?: boolean;
 
   @ApiPropertyOptional({
-    description: 'Allow comments on post',
-    default: true,
+    description: 'Hashtags for post (without # symbol)',
+    type: [String],
+    example: ['javascript', 'nodejs', 'web-development'],
   })
-  @Transform(({ value }): boolean | undefined => {
-    if (value === 'true' || value === true) return true;
-    if (value === 'false' || value === false) return false;
-    return undefined;
+  @Transform(({ value }): string[] | undefined => {
+    if (!value) return undefined;
+    if (Array.isArray(value)) return value as string[];
+    if (typeof value === 'string') {
+      try {
+        const parsed: unknown = JSON.parse(value);
+        return Array.isArray(parsed) ? (parsed as string[]) : [value];
+      } catch {
+        return [value];
+      }
+    }
+    return [String(value)];
   })
-  @IsBoolean()
+  @IsArray()
+  @IsString({ each: true })
   @IsOptional()
-  allowComments?: boolean;
+  hashtags?: string[];
 
   @ApiPropertyOptional({
     description: 'Category IDs to associate with post',
@@ -76,4 +86,15 @@ export class CreatePostDto {
   @IsString({ each: true })
   @IsOptional()
   categoryIds?: string[];
+
+  @ApiPropertyOptional({
+    description: 'Image files to upload (max 10 files)',
+    type: 'array',
+    items: {
+      type: 'string',
+      format: 'binary',
+    },
+  })
+  @IsOptional()
+  images?: Express.Multer.File[];
 }

@@ -40,7 +40,7 @@ import { MetricsMiddleware } from './metrics/metrics.middleware';
             {
               target: 'pino-loki',
               options: {
-                host: 'http://10.10.10.52:3100',
+                host: '192.168.0.121:3100',
                 batching: true,
                 interval: 5,
                 labels: {

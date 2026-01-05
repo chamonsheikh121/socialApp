@@ -4,8 +4,16 @@ import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { jwtPayloadDto } from './dto/jwtPayload.dto';
 
 export const CurrentUser = createParamDecorator(
-  (data: unknown, ctx: ExecutionContext) => {
+  (data: string | undefined, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest();
-    return request.user as jwtPayloadDto;
+    const user = request.user as jwtPayloadDto;
+
+    // If a specific field is requested, return that field
+    if (data && user) {
+      return user[data as keyof jwtPayloadDto];
+    }
+
+    // Otherwise return the entire user object
+    return user;
   },
 );
