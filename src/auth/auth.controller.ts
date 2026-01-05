@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { CreateUserDtos } from './dto/register.dto';
@@ -7,6 +7,9 @@ import { LoginDto } from './dto/login.dto';
 import { ForgetPasswordDto } from './dto/forgetPassword.dto';
 import { ResetPasswordDto } from './dto/resetPassword.dto';
 import { RefreshTokenDto } from './dto/refreshToken.dto';
+import { JwtAuthGuard } from './jwt-auth.guard';
+import { CurrentUser } from './current-user.decorator';
+import { jwtPayloadDto } from './dto/jwtPayload.dto';
 
 @ApiTags('authentication')
 @Controller('auth')
@@ -46,5 +49,11 @@ export class AuthController {
   @Post('reset-password')
   async resetPassword(@Body() body: ResetPasswordDto) {
     return this.authService.resetPassword(body.token, body.newPassword);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('logout')
+  async logout(@CurrentUser() user: jwtPayloadDto) {
+    return this.authService.logout(user.userId);
   }
 }

@@ -480,6 +480,36 @@ export class AuthService {
     return { accessToken };
   }
 
+  async logout(userId: string) {
+    this.logger.info({ userId }, 'Logout attempt');
+
+    try {
+      const refreshToken = await this.prisma.client.refreshToken.findFirst({
+        where: { userId, revoked: false },
+      });
+
+      if (!refreshToken) {
+        this.logger.warn({ userId }, 'No active refresh token found');
+        return { message: 'Logged out successfully' };
+      }
+
+      await this.prisma.client.refreshToken.update({
+        where: { id: refreshToken.id },
+        data: { revoked: true },
+      });
+
+      this.logger.info(
+        { userId, tokenId: refreshToken.id },
+        'Refresh token revoked successfully',
+      );
+
+      return { message: 'Logged out successfully' };
+    } catch (error) {
+      this.logger.error({ userId, error }, 'Error during logout');
+      throw new BadRequestError('Failed to logout');
+    }
+  }
+
   private generateResetToken(payload: jwtPayloadDto): string {
     return this.resetPassTokenService.sign(payload);
   }

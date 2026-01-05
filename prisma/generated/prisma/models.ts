@@ -8,6 +8,7 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/BlockUser'
 export type * from './models/Bookmark'
 export type * from './models/PCategory'
 export type * from './models/Comment'

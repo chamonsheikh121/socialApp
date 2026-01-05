@@ -384,6 +384,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  BlockUser: 'BlockUser',
   Bookmark: 'Bookmark',
   PCategory: 'PCategory',
   Comment: 'Comment',
@@ -420,10 +421,84 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "bookmark" | "pCategory" | "comment" | "follow" | "hashtag" | "interest" | "like" | "media" | "message" | "notification" | "page" | "pageAdmin" | "pagePost" | "post" | "postCategory" | "postHashtag" | "refreshToken" | "userSocialLink" | "user" | "userInterest" | "userSettings"
+    modelProps: "blockUser" | "bookmark" | "pCategory" | "comment" | "follow" | "hashtag" | "interest" | "like" | "media" | "message" | "notification" | "page" | "pageAdmin" | "pagePost" | "post" | "postCategory" | "postHashtag" | "refreshToken" | "userSocialLink" | "user" | "userInterest" | "userSettings"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    BlockUser: {
+      payload: Prisma.$BlockUserPayload<ExtArgs>
+      fields: Prisma.BlockUserFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BlockUserFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockUserPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BlockUserFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockUserPayload>
+        }
+        findFirst: {
+          args: Prisma.BlockUserFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockUserPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BlockUserFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockUserPayload>
+        }
+        findMany: {
+          args: Prisma.BlockUserFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockUserPayload>[]
+        }
+        create: {
+          args: Prisma.BlockUserCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockUserPayload>
+        }
+        createMany: {
+          args: Prisma.BlockUserCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BlockUserCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockUserPayload>[]
+        }
+        delete: {
+          args: Prisma.BlockUserDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockUserPayload>
+        }
+        update: {
+          args: Prisma.BlockUserUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockUserPayload>
+        }
+        deleteMany: {
+          args: Prisma.BlockUserDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BlockUserUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BlockUserUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockUserPayload>[]
+        }
+        upsert: {
+          args: Prisma.BlockUserUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlockUserPayload>
+        }
+        aggregate: {
+          args: Prisma.BlockUserAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBlockUser>
+        }
+        groupBy: {
+          args: Prisma.BlockUserGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BlockUserGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BlockUserCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BlockUserCountAggregateOutputType> | number
+        }
+      }
+    }
     Bookmark: {
       payload: Prisma.$BookmarkPayload<ExtArgs>
       fields: Prisma.BookmarkFieldRefs
@@ -2017,6 +2092,16 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const BlockUserScalarFieldEnum = {
+  id: 'id',
+  blockerId: 'blockerId',
+  blockedId: 'blockedId',
+  createdAt: 'createdAt'
+} as const
+
+export type BlockUserScalarFieldEnum = (typeof BlockUserScalarFieldEnum)[keyof typeof BlockUserScalarFieldEnum]
+
+
 export const BookmarkScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -2253,6 +2338,9 @@ export const UserScalarFieldEnum = {
   location: 'location',
   role: 'role',
   isVerified: 'isVerified',
+  isDeleted: 'isDeleted',
+  isBlocked: 'isBlocked',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -2342,20 +2430,6 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'PostType'
- */
-export type EnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType'>
-    
-
-
-/**
- * Reference to a field of type 'PostType[]'
- */
-export type ListEnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType[]'>
-    
-
-
-/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2366,6 +2440,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PostType'
+ */
+export type EnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType'>
+    
+
+
+/**
+ * Reference to a field of type 'PostType[]'
+ */
+export type ListEnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType[]'>
     
 
 
@@ -2461,6 +2549,20 @@ export type ListEnumUserRolesFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
 
 
 /**
+ * Reference to a field of type 'UserStatus'
+ */
+export type EnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'UserStatus[]'
+ */
+export type ListEnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2552,6 +2654,7 @@ export type PrismaClientOptions = ({
   omit?: GlobalOmitConfig
 }
 export type GlobalOmitConfig = {
+  blockUser?: Prisma.BlockUserOmit
   bookmark?: Prisma.BookmarkOmit
   pCategory?: Prisma.PCategoryOmit
   comment?: Prisma.CommentOmit

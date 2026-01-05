@@ -8,6 +8,7 @@ import { UserInterestModule } from './userInterest/userInterest.module';
 import { InterestModule } from './interest/interest.module';
 import { PostModule } from './post/post.module';
 import { CategoryModule } from './category/category.module';
+import { FollowModule } from './follow/follow.module';
 import { PrismaModule } from './common/prisma/prisma.module';
 import { BullMQModule } from './lib/bullmq/bullmq.module';
 import { ConfigModule } from '@nestjs/config';
@@ -66,6 +67,7 @@ import { MetricsMiddleware } from './metrics/metrics.middleware';
     UserInterestModule,
     PostModule,
     CategoryModule,
+    FollowModule,
     PrismaModule,
     BullMQModule,
   ],

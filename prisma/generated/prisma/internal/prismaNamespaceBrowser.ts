@@ -51,6 +51,7 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  BlockUser: 'BlockUser',
   Bookmark: 'Bookmark',
   PCategory: 'PCategory',
   Comment: 'Comment',
@@ -88,6 +89,16 @@ export const TransactionIsolationLevel = {
 } as const
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const BlockUserScalarFieldEnum = {
+  id: 'id',
+  blockerId: 'blockerId',
+  blockedId: 'blockedId',
+  createdAt: 'createdAt'
+} as const
+
+export type BlockUserScalarFieldEnum = (typeof BlockUserScalarFieldEnum)[keyof typeof BlockUserScalarFieldEnum]
 
 
 export const BookmarkScalarFieldEnum = {
@@ -326,6 +337,9 @@ export const UserScalarFieldEnum = {
   location: 'location',
   role: 'role',
   isVerified: 'isVerified',
+  isDeleted: 'isDeleted',
+  isBlocked: 'isBlocked',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

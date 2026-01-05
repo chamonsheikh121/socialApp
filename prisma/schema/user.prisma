@@ -1,21 +1,25 @@
-// Users
+
+
 model User {
-  id            String    @id @default(uuid())
-  username      String    @unique
-  email         String    @unique
-  phone         String?   @unique
+  id            String     @id @default(uuid())
+  username      String     @unique
+  email         String     @unique
+  phone         String?    @unique
   passwordHash  String
   fullName      String?
   bio           String?
   avatarUrl     String?
   coverPhotoUrl String?
   location      String?
-  role          UserRoles @default(USER)
-  isVerified    Boolean   @default(false)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  role          UserRoles  @default(USER)
+  isVerified    Boolean    @default(false)
+  isDeleted     Boolean    @default(false) // ← added
+  isBlocked     Boolean    @default(false) // ← added (admin block flag)
+  status        UserStatus @default(ACTIVE) // ← added
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 
-  // Relations
+  // Relations (unchanged)
   refreshTokens        RefreshToken[]
   socialLinks          UserSocialLink[]
   posts                Post[]
@@ -24,6 +28,8 @@ model User {
   bookmarks            Bookmark[]
   followers            Follow[]         @relation("FollowingRelation")
   following            Follow[]         @relation("FollowerRelation")
+  blockedUsers         BlockUser[]      @relation("BlockerRelation")
+  blockedByUsers       BlockUser[]      @relation("BlockedRelation")
   messagesSent         Message[]        @relation("SenderMessages")
   messagesReceived     Message[]        @relation("ReceiverMessages")
   notifications        Notification[]   @relation("UserNotifications")
@@ -42,4 +48,10 @@ model User {
 enum UserRoles {
   USER
   ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  DEACTIVATED
+  SUSPENDED
 }
