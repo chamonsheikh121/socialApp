@@ -8,11 +8,13 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/BlockUser'
 export type * from './models/Bookmark'
-export type * from './models/Category'
+export type * from './models/PCategory'
 export type * from './models/Comment'
 export type * from './models/Follow'
 export type * from './models/Hashtag'
+export type * from './models/Interest'
 export type * from './models/Like'
 export type * from './models/Media'
 export type * from './models/Message'

@@ -51,11 +51,13 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  BlockUser: 'BlockUser',
   Bookmark: 'Bookmark',
-  Category: 'Category',
+  PCategory: 'PCategory',
   Comment: 'Comment',
   Follow: 'Follow',
   Hashtag: 'Hashtag',
+  Interest: 'Interest',
   Like: 'Like',
   Media: 'Media',
   Message: 'Message',
@@ -89,6 +91,16 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const BlockUserScalarFieldEnum = {
+  id: 'id',
+  blockerId: 'blockerId',
+  blockedId: 'blockedId',
+  createdAt: 'createdAt'
+} as const
+
+export type BlockUserScalarFieldEnum = (typeof BlockUserScalarFieldEnum)[keyof typeof BlockUserScalarFieldEnum]
+
+
 export const BookmarkScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -101,7 +113,7 @@ export const BookmarkScalarFieldEnum = {
 export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]
 
 
-export const CategoryScalarFieldEnum = {
+export const PCategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
@@ -114,7 +126,7 @@ export const CategoryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 } as const
 
-export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+export type PCategoryScalarFieldEnum = (typeof PCategoryScalarFieldEnum)[keyof typeof PCategoryScalarFieldEnum]
 
 
 export const CommentScalarFieldEnum = {
@@ -149,6 +161,17 @@ export const HashtagScalarFieldEnum = {
 } as const
 
 export type HashtagScalarFieldEnum = (typeof HashtagScalarFieldEnum)[keyof typeof HashtagScalarFieldEnum]
+
+
+export const InterestScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  canvasUrl: 'canvasUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InterestScalarFieldEnum = (typeof InterestScalarFieldEnum)[keyof typeof InterestScalarFieldEnum]
 
 
 export const LikeScalarFieldEnum = {
@@ -314,6 +337,9 @@ export const UserScalarFieldEnum = {
   location: 'location',
   role: 'role',
   isVerified: 'isVerified',
+  isDeleted: 'isDeleted',
+  isBlocked: 'isBlocked',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -324,8 +350,8 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const UserInterestScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  photoURL: 'photoURL',
-  interest: 'interest'
+  interestId: 'interestId',
+  createdAt: 'createdAt'
 } as const
 
 export type UserInterestScalarFieldEnum = (typeof UserInterestScalarFieldEnum)[keyof typeof UserInterestScalarFieldEnum]

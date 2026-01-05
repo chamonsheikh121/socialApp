@@ -1,10 +1,18 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+<<<<<<< HEAD
 import { Module } from '@nestjs/common';
+=======
+import { MiddlewareConsumer, Module } from '@nestjs/common';
+>>>>>>> ecdf2d2d795a0007205eeafc3c2850640445cc0b
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { UserInterestModule } from './userInterest/userInterest.module';
+import { InterestModule } from './interest/interest.module';
+import { PostModule } from './post/post.module';
+import { CategoryModule } from './category/category.module';
+import { FollowModule } from './follow/follow.module';
 import { PrismaModule } from './common/prisma/prisma.module';
 import { BullMQModule } from './lib/bullmq/bullmq.module';
 import { ConfigModule } from '@nestjs/config';
@@ -58,11 +66,23 @@ import { MetricsModule } from './metrics/metrics.module';
     MetricsModule,
     AuthModule,
     UserModule,
+    InterestModule,
     UserInterestModule,
+    PostModule,
+    CategoryModule,
+    FollowModule,
     PrismaModule,
     BullMQModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
+<<<<<<< HEAD
 export class AppModule {}
+=======
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(MetricsMiddleware).forRoutes('*');
+  }
+}
+>>>>>>> ecdf2d2d795a0007205eeafc3c2850640445cc0b

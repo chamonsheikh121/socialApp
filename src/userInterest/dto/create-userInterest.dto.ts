@@ -1,46 +1,28 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsArray, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsArray, IsUUID } from 'class-validator';
 
-export class CreateUserInterestDto {
+export class AddUserInterestDto {
   @ApiProperty({
-    description: 'Array of interest categories',
-    example: ['Technology', 'Sports', 'Music'],
-  })
-  @IsArray()
-  @IsString({ each: true })
-  @IsNotEmpty({ each: true })
-  interest: string[];
-
-  @ApiProperty({
-    description: 'Photo URL for the user interest',
-    example: 'https://example.com/photo.jpg',
+    description: 'Interest ID to add to user',
+    example: '123e4567-e89b-12d3-a456-426614174000',
   })
   @IsString()
   @IsNotEmpty()
-  photoURL: string;
+  @IsUUID()
+  interestId: string;
 }
 
-export class UpdateUserInterestDto {
+export class AddMultipleUserInterestsDto {
   @ApiProperty({
-    description: 'Array of interest categories',
-    example: ['Technology', 'Sports', 'Music'],
-    required: false,
+    description: 'Array of interest IDs to add',
+    example: [
+      '123e4567-e89b-12d3-a456-426614174000',
+      '223e4567-e89b-12d3-a456-426614174001',
+    ],
   })
-  @IsOptional()
   @IsArray()
-  @IsString({ each: true })
-  @IsNotEmpty({ each: true })
-  interest?: string[];
-
-  @ApiProperty({
-    description: 'Photo URL for the user interest',
-    example: 'https://example.com/photo.jpg',
-    required: false,
-  })
-  @IsOptional()
-  @IsString()
-  @IsNotEmpty()
-  photoURL?: string;
+  @IsUUID('4', { each: true })
+  interestIds: string[];
 }
 
 export class UserInterestResponseDto {

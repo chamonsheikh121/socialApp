@@ -5,6 +5,7 @@ import {
   Body,
   Put,
   Get,
+  Query,
   UseGuards,
   UseInterceptors,
   UploadedFiles,
@@ -29,6 +30,18 @@ export class UserController {
   @Get('my-profile')
   async getProfile(@CurrentUser() user: jwtPayloadDto) {
     return this.userService.getProfile(user.userId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('all')
+  async getAllUsers(
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+    return this.userService.getAllUsers(
+      page ? parseInt(page, 10) : 1,
+      limit ? parseInt(limit, 10) : 20,
+    );
   }
 
   @UseGuards(JwtAuthGuard)

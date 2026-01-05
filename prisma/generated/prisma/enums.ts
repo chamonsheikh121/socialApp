@@ -49,3 +49,12 @@ export const UserRoles = {
 } as const
 
 export type UserRoles = (typeof UserRoles)[keyof typeof UserRoles]
+
+
+export const UserStatus = {
+  ACTIVE: 'ACTIVE',
+  DEACTIVATED: 'DEACTIVATED',
+  SUSPENDED: 'SUSPENDED'
+} as const
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]

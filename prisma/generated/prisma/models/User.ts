@@ -37,6 +37,9 @@ export type UserMinAggregateOutputType = {
   location: string | null
   role: $Enums.UserRoles | null
   isVerified: boolean | null
+  isDeleted: boolean | null
+  isBlocked: boolean | null
+  status: $Enums.UserStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -54,6 +57,9 @@ export type UserMaxAggregateOutputType = {
   location: string | null
   role: $Enums.UserRoles | null
   isVerified: boolean | null
+  isDeleted: boolean | null
+  isBlocked: boolean | null
+  status: $Enums.UserStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -71,6 +77,9 @@ export type UserCountAggregateOutputType = {
   location: number
   role: number
   isVerified: number
+  isDeleted: number
+  isBlocked: number
+  status: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -90,6 +99,9 @@ export type UserMinAggregateInputType = {
   location?: true
   role?: true
   isVerified?: true
+  isDeleted?: true
+  isBlocked?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -107,6 +119,9 @@ export type UserMaxAggregateInputType = {
   location?: true
   role?: true
   isVerified?: true
+  isDeleted?: true
+  isBlocked?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -124,6 +139,9 @@ export type UserCountAggregateInputType = {
   location?: true
   role?: true
   isVerified?: true
+  isDeleted?: true
+  isBlocked?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -214,6 +232,9 @@ export type UserGroupByOutputType = {
   location: string | null
   role: $Enums.UserRoles
   isVerified: boolean
+  isDeleted: boolean
+  isBlocked: boolean
+  status: $Enums.UserStatus
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -252,6 +273,9 @@ export type UserWhereInput = {
   location?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumUserRolesFilter<"User"> | $Enums.UserRoles
   isVerified?: Prisma.BoolFilter<"User"> | boolean
+  isDeleted?: Prisma.BoolFilter<"User"> | boolean
+  isBlocked?: Prisma.BoolFilter<"User"> | boolean
+  status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   refreshTokens?: Prisma.RefreshTokenListRelationFilter
@@ -262,6 +286,8 @@ export type UserWhereInput = {
   bookmarks?: Prisma.BookmarkListRelationFilter
   followers?: Prisma.FollowListRelationFilter
   following?: Prisma.FollowListRelationFilter
+  blockedUsers?: Prisma.BlockUserListRelationFilter
+  blockedByUsers?: Prisma.BlockUserListRelationFilter
   messagesSent?: Prisma.MessageListRelationFilter
   messagesReceived?: Prisma.MessageListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
@@ -286,6 +312,9 @@ export type UserOrderByWithRelationInput = {
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  isBlocked?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   refreshTokens?: Prisma.RefreshTokenOrderByRelationAggregateInput
@@ -296,6 +325,8 @@ export type UserOrderByWithRelationInput = {
   bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
   followers?: Prisma.FollowOrderByRelationAggregateInput
   following?: Prisma.FollowOrderByRelationAggregateInput
+  blockedUsers?: Prisma.BlockUserOrderByRelationAggregateInput
+  blockedByUsers?: Prisma.BlockUserOrderByRelationAggregateInput
   messagesSent?: Prisma.MessageOrderByRelationAggregateInput
   messagesReceived?: Prisma.MessageOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
@@ -323,6 +354,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   location?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumUserRolesFilter<"User"> | $Enums.UserRoles
   isVerified?: Prisma.BoolFilter<"User"> | boolean
+  isDeleted?: Prisma.BoolFilter<"User"> | boolean
+  isBlocked?: Prisma.BoolFilter<"User"> | boolean
+  status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   refreshTokens?: Prisma.RefreshTokenListRelationFilter
@@ -333,6 +367,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   bookmarks?: Prisma.BookmarkListRelationFilter
   followers?: Prisma.FollowListRelationFilter
   following?: Prisma.FollowListRelationFilter
+  blockedUsers?: Prisma.BlockUserListRelationFilter
+  blockedByUsers?: Prisma.BlockUserListRelationFilter
   messagesSent?: Prisma.MessageListRelationFilter
   messagesReceived?: Prisma.MessageListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
@@ -357,6 +393,9 @@ export type UserOrderByWithAggregationInput = {
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  isBlocked?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -380,6 +419,9 @@ export type UserScalarWhereWithAggregatesInput = {
   location?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   role?: Prisma.EnumUserRolesWithAggregatesFilter<"User"> | $Enums.UserRoles
   isVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  isBlocked?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  status?: Prisma.EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -397,6 +439,9 @@ export type UserCreateInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -407,6 +452,8 @@ export type UserCreateInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -431,6 +478,9 @@ export type UserUncheckedCreateInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -441,6 +491,8 @@ export type UserUncheckedCreateInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -465,6 +517,9 @@ export type UserUpdateInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -475,6 +530,8 @@ export type UserUpdateInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -499,6 +556,9 @@ export type UserUncheckedUpdateInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -509,6 +569,8 @@ export type UserUncheckedUpdateInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -533,6 +595,9 @@ export type UserCreateManyInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -550,6 +615,9 @@ export type UserUpdateManyMutationInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -567,6 +635,9 @@ export type UserUncheckedUpdateManyInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -594,6 +665,9 @@ export type UserCountOrderByAggregateInput = {
   location?: Prisma.SortOrder
   role?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  isBlocked?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -611,6 +685,9 @@ export type UserMaxOrderByAggregateInput = {
   location?: Prisma.SortOrder
   role?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  isBlocked?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -628,8 +705,39 @@ export type UserMinOrderByAggregateInput = {
   location?: Prisma.SortOrder
   role?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  isBlocked?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type UserCreateNestedOneWithoutBlockedUsersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBlockedUsersInput, Prisma.UserUncheckedCreateWithoutBlockedUsersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBlockedUsersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutBlockedByUsersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBlockedByUsersInput, Prisma.UserUncheckedCreateWithoutBlockedByUsersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBlockedByUsersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutBlockedUsersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBlockedUsersInput, Prisma.UserUncheckedCreateWithoutBlockedUsersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBlockedUsersInput
+  upsert?: Prisma.UserUpsertWithoutBlockedUsersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBlockedUsersInput, Prisma.UserUpdateWithoutBlockedUsersInput>, Prisma.UserUncheckedUpdateWithoutBlockedUsersInput>
+}
+
+export type UserUpdateOneRequiredWithoutBlockedByUsersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBlockedByUsersInput, Prisma.UserUncheckedCreateWithoutBlockedByUsersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBlockedByUsersInput
+  upsert?: Prisma.UserUpsertWithoutBlockedByUsersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBlockedByUsersInput, Prisma.UserUpdateWithoutBlockedByUsersInput>, Prisma.UserUncheckedUpdateWithoutBlockedByUsersInput>
 }
 
 export type UserCreateNestedOneWithoutBookmarksInput = {
@@ -848,6 +956,10 @@ export type EnumUserRolesFieldUpdateOperationsInput = {
   set?: $Enums.UserRoles
 }
 
+export type EnumUserStatusFieldUpdateOperationsInput = {
+  set?: $Enums.UserStatus
+}
+
 export type UserCreateNestedOneWithoutInterestsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutInterestsInput, Prisma.UserUncheckedCreateWithoutInterestsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutInterestsInput
@@ -876,6 +988,342 @@ export type UserUpdateOneRequiredWithoutUserSettingsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUserSettingsInput, Prisma.UserUpdateWithoutUserSettingsInput>, Prisma.UserUncheckedUpdateWithoutUserSettingsInput>
 }
 
+export type UserCreateWithoutBlockedUsersInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutBlockedUsersInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutBlockedUsersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBlockedUsersInput, Prisma.UserUncheckedCreateWithoutBlockedUsersInput>
+}
+
+export type UserCreateWithoutBlockedByUsersInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutBlockedByUsersInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutBlockedByUsersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBlockedByUsersInput, Prisma.UserUncheckedCreateWithoutBlockedByUsersInput>
+}
+
+export type UserUpsertWithoutBlockedUsersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBlockedUsersInput, Prisma.UserUncheckedUpdateWithoutBlockedUsersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBlockedUsersInput, Prisma.UserUncheckedCreateWithoutBlockedUsersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBlockedUsersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBlockedUsersInput, Prisma.UserUncheckedUpdateWithoutBlockedUsersInput>
+}
+
+export type UserUpdateWithoutBlockedUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBlockedUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutBlockedByUsersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBlockedByUsersInput, Prisma.UserUncheckedUpdateWithoutBlockedByUsersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBlockedByUsersInput, Prisma.UserUncheckedCreateWithoutBlockedByUsersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBlockedByUsersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBlockedByUsersInput, Prisma.UserUncheckedUpdateWithoutBlockedByUsersInput>
+}
+
+export type UserUpdateWithoutBlockedByUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBlockedByUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+}
+
 export type UserCreateWithoutBookmarksInput = {
   id?: string
   username: string
@@ -889,6 +1337,9 @@ export type UserCreateWithoutBookmarksInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -898,6 +1349,8 @@ export type UserCreateWithoutBookmarksInput = {
   likes?: Prisma.LikeCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -922,6 +1375,9 @@ export type UserUncheckedCreateWithoutBookmarksInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -931,6 +1387,8 @@ export type UserUncheckedCreateWithoutBookmarksInput = {
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -971,6 +1429,9 @@ export type UserUpdateWithoutBookmarksInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -980,6 +1441,8 @@ export type UserUpdateWithoutBookmarksInput = {
   likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -1004,6 +1467,9 @@ export type UserUncheckedUpdateWithoutBookmarksInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -1013,6 +1479,8 @@ export type UserUncheckedUpdateWithoutBookmarksInput = {
   likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -1037,6 +1505,9 @@ export type UserCreateWithoutCommentsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -1046,6 +1517,8 @@ export type UserCreateWithoutCommentsInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -1070,6 +1543,9 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -1079,6 +1555,8 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -1119,6 +1597,9 @@ export type UserUpdateWithoutCommentsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -1128,6 +1609,8 @@ export type UserUpdateWithoutCommentsInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -1152,6 +1635,9 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -1161,6 +1647,8 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -1185,6 +1673,9 @@ export type UserCreateWithoutFollowingInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -1194,6 +1685,8 @@ export type UserCreateWithoutFollowingInput = {
   likes?: Prisma.LikeCreateNestedManyWithoutUserInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -1218,6 +1711,9 @@ export type UserUncheckedCreateWithoutFollowingInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -1227,6 +1723,8 @@ export type UserUncheckedCreateWithoutFollowingInput = {
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -1256,6 +1754,9 @@ export type UserCreateWithoutFollowersInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -1265,6 +1766,8 @@ export type UserCreateWithoutFollowersInput = {
   likes?: Prisma.LikeCreateNestedManyWithoutUserInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -1289,6 +1792,9 @@ export type UserUncheckedCreateWithoutFollowersInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -1298,6 +1804,8 @@ export type UserUncheckedCreateWithoutFollowersInput = {
   likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -1338,6 +1846,9 @@ export type UserUpdateWithoutFollowingInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -1347,6 +1858,8 @@ export type UserUpdateWithoutFollowingInput = {
   likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -1371,6 +1884,9 @@ export type UserUncheckedUpdateWithoutFollowingInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -1380,6 +1896,8 @@ export type UserUncheckedUpdateWithoutFollowingInput = {
   likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -1415,6 +1933,9 @@ export type UserUpdateWithoutFollowersInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -1424,6 +1945,8 @@ export type UserUpdateWithoutFollowersInput = {
   likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -1448,6 +1971,9 @@ export type UserUncheckedUpdateWithoutFollowersInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -1457,6 +1983,8 @@ export type UserUncheckedUpdateWithoutFollowersInput = {
   likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -1481,6 +2009,9 @@ export type UserCreateWithoutLikesInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -1490,6 +2021,8 @@ export type UserCreateWithoutLikesInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -1514,6 +2047,9 @@ export type UserUncheckedCreateWithoutLikesInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -1523,6 +2059,8 @@ export type UserUncheckedCreateWithoutLikesInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -1563,6 +2101,9 @@ export type UserUpdateWithoutLikesInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -1572,6 +2113,8 @@ export type UserUpdateWithoutLikesInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -1596,6 +2139,9 @@ export type UserUncheckedUpdateWithoutLikesInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -1605,6 +2151,8 @@ export type UserUncheckedUpdateWithoutLikesInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -1629,6 +2177,9 @@ export type UserCreateWithoutMessagesSentInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -1639,6 +2190,8 @@ export type UserCreateWithoutMessagesSentInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
@@ -1662,6 +2215,9 @@ export type UserUncheckedCreateWithoutMessagesSentInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -1672,6 +2228,8 @@ export type UserUncheckedCreateWithoutMessagesSentInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
@@ -1700,6 +2258,9 @@ export type UserCreateWithoutMessagesReceivedInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -1710,6 +2271,8 @@ export type UserCreateWithoutMessagesReceivedInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
@@ -1733,6 +2296,9 @@ export type UserUncheckedCreateWithoutMessagesReceivedInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -1743,6 +2309,8 @@ export type UserUncheckedCreateWithoutMessagesReceivedInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
@@ -1782,6 +2350,9 @@ export type UserUpdateWithoutMessagesSentInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -1792,6 +2363,8 @@ export type UserUpdateWithoutMessagesSentInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
@@ -1815,6 +2388,9 @@ export type UserUncheckedUpdateWithoutMessagesSentInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -1825,6 +2401,8 @@ export type UserUncheckedUpdateWithoutMessagesSentInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
@@ -1859,6 +2437,9 @@ export type UserUpdateWithoutMessagesReceivedInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -1869,6 +2450,8 @@ export type UserUpdateWithoutMessagesReceivedInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
@@ -1892,6 +2475,9 @@ export type UserUncheckedUpdateWithoutMessagesReceivedInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -1902,6 +2488,8 @@ export type UserUncheckedUpdateWithoutMessagesReceivedInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
@@ -1925,6 +2513,9 @@ export type UserCreateWithoutNotificationsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -1935,6 +2526,8 @@ export type UserCreateWithoutNotificationsInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
@@ -1958,6 +2551,9 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -1968,6 +2564,8 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
@@ -1996,6 +2594,9 @@ export type UserCreateWithoutNotificationsAsActorInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -2006,6 +2607,8 @@ export type UserCreateWithoutNotificationsAsActorInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -2029,6 +2632,9 @@ export type UserUncheckedCreateWithoutNotificationsAsActorInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -2039,6 +2645,8 @@ export type UserUncheckedCreateWithoutNotificationsAsActorInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -2078,6 +2686,9 @@ export type UserUpdateWithoutNotificationsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -2088,6 +2699,8 @@ export type UserUpdateWithoutNotificationsInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
@@ -2111,6 +2724,9 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -2121,6 +2737,8 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
@@ -2155,6 +2773,9 @@ export type UserUpdateWithoutNotificationsAsActorInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -2165,6 +2786,8 @@ export type UserUpdateWithoutNotificationsAsActorInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -2188,6 +2811,9 @@ export type UserUncheckedUpdateWithoutNotificationsAsActorInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -2198,6 +2824,8 @@ export type UserUncheckedUpdateWithoutNotificationsAsActorInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -2221,6 +2849,9 @@ export type UserCreateWithoutPagesOwnedInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -2231,6 +2862,8 @@ export type UserCreateWithoutPagesOwnedInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -2254,6 +2887,9 @@ export type UserUncheckedCreateWithoutPagesOwnedInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -2264,6 +2900,8 @@ export type UserUncheckedCreateWithoutPagesOwnedInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -2303,6 +2941,9 @@ export type UserUpdateWithoutPagesOwnedInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -2313,6 +2954,8 @@ export type UserUpdateWithoutPagesOwnedInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -2336,6 +2979,9 @@ export type UserUncheckedUpdateWithoutPagesOwnedInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -2346,6 +2992,8 @@ export type UserUncheckedUpdateWithoutPagesOwnedInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -2369,6 +3017,9 @@ export type UserCreateWithoutPageAdminsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -2379,6 +3030,8 @@ export type UserCreateWithoutPageAdminsInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -2402,6 +3055,9 @@ export type UserUncheckedCreateWithoutPageAdminsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -2412,6 +3068,8 @@ export type UserUncheckedCreateWithoutPageAdminsInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -2451,6 +3109,9 @@ export type UserUpdateWithoutPageAdminsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -2461,6 +3122,8 @@ export type UserUpdateWithoutPageAdminsInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -2484,6 +3147,9 @@ export type UserUncheckedUpdateWithoutPageAdminsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -2494,6 +3160,8 @@ export type UserUncheckedUpdateWithoutPageAdminsInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -2517,6 +3185,9 @@ export type UserCreateWithoutPagePostsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -2527,6 +3198,8 @@ export type UserCreateWithoutPagePostsInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -2550,6 +3223,9 @@ export type UserUncheckedCreateWithoutPagePostsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -2560,6 +3236,8 @@ export type UserUncheckedCreateWithoutPagePostsInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -2599,6 +3277,9 @@ export type UserUpdateWithoutPagePostsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -2609,6 +3290,8 @@ export type UserUpdateWithoutPagePostsInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -2632,6 +3315,9 @@ export type UserUncheckedUpdateWithoutPagePostsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -2642,6 +3328,8 @@ export type UserUncheckedUpdateWithoutPagePostsInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -2665,6 +3353,9 @@ export type UserCreateWithoutPostsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -2674,6 +3365,8 @@ export type UserCreateWithoutPostsInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -2698,6 +3391,9 @@ export type UserUncheckedCreateWithoutPostsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -2707,6 +3403,8 @@ export type UserUncheckedCreateWithoutPostsInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -2747,6 +3445,9 @@ export type UserUpdateWithoutPostsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -2756,6 +3457,8 @@ export type UserUpdateWithoutPostsInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -2780,6 +3483,9 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -2789,6 +3495,8 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -2813,6 +3521,9 @@ export type UserCreateWithoutRefreshTokensInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
@@ -2822,6 +3533,8 @@ export type UserCreateWithoutRefreshTokensInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -2846,6 +3559,9 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
@@ -2855,6 +3571,8 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -2895,6 +3613,9 @@ export type UserUpdateWithoutRefreshTokensInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   socialLinks?: Prisma.UserSocialLinkUpdateManyWithoutUserNestedInput
@@ -2904,6 +3625,8 @@ export type UserUpdateWithoutRefreshTokensInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -2928,6 +3651,9 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   socialLinks?: Prisma.UserSocialLinkUncheckedUpdateManyWithoutUserNestedInput
@@ -2937,6 +3663,8 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -2961,6 +3689,9 @@ export type UserCreateWithoutSocialLinksInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -2970,6 +3701,8 @@ export type UserCreateWithoutSocialLinksInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -2994,6 +3727,9 @@ export type UserUncheckedCreateWithoutSocialLinksInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -3003,6 +3739,8 @@ export type UserUncheckedCreateWithoutSocialLinksInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -3043,6 +3781,9 @@ export type UserUpdateWithoutSocialLinksInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -3052,6 +3793,8 @@ export type UserUpdateWithoutSocialLinksInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -3076,6 +3819,9 @@ export type UserUncheckedUpdateWithoutSocialLinksInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -3085,6 +3831,8 @@ export type UserUncheckedUpdateWithoutSocialLinksInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -3109,6 +3857,9 @@ export type UserCreateWithoutInterestsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -3119,6 +3870,8 @@ export type UserCreateWithoutInterestsInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -3142,6 +3895,9 @@ export type UserUncheckedCreateWithoutInterestsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -3152,6 +3908,8 @@ export type UserUncheckedCreateWithoutInterestsInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -3191,6 +3949,9 @@ export type UserUpdateWithoutInterestsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -3201,6 +3962,8 @@ export type UserUpdateWithoutInterestsInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -3224,6 +3987,9 @@ export type UserUncheckedUpdateWithoutInterestsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -3234,6 +4000,8 @@ export type UserUncheckedUpdateWithoutInterestsInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -3257,6 +4025,9 @@ export type UserCreateWithoutUserSettingsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
@@ -3267,6 +4038,8 @@ export type UserCreateWithoutUserSettingsInput = {
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -3290,6 +4063,9 @@ export type UserUncheckedCreateWithoutUserSettingsInput = {
   location?: string | null
   role?: $Enums.UserRoles
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -3300,6 +4076,8 @@ export type UserUncheckedCreateWithoutUserSettingsInput = {
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -3339,6 +4117,9 @@ export type UserUpdateWithoutUserSettingsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
@@ -3349,6 +4130,8 @@ export type UserUpdateWithoutUserSettingsInput = {
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -3372,6 +4155,9 @@ export type UserUncheckedUpdateWithoutUserSettingsInput = {
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -3382,6 +4168,8 @@ export type UserUncheckedUpdateWithoutUserSettingsInput = {
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -3406,6 +4194,8 @@ export type UserCountOutputType = {
   bookmarks: number
   followers: number
   following: number
+  blockedUsers: number
+  blockedByUsers: number
   messagesSent: number
   messagesReceived: number
   notifications: number
@@ -3425,6 +4215,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   bookmarks?: boolean | UserCountOutputTypeCountBookmarksArgs
   followers?: boolean | UserCountOutputTypeCountFollowersArgs
   following?: boolean | UserCountOutputTypeCountFollowingArgs
+  blockedUsers?: boolean | UserCountOutputTypeCountBlockedUsersArgs
+  blockedByUsers?: boolean | UserCountOutputTypeCountBlockedByUsersArgs
   messagesSent?: boolean | UserCountOutputTypeCountMessagesSentArgs
   messagesReceived?: boolean | UserCountOutputTypeCountMessagesReceivedArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
@@ -3504,6 +4296,20 @@ export type UserCountOutputTypeCountFollowingArgs<ExtArgs extends runtime.Types.
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountBlockedUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BlockUserWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBlockedByUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BlockUserWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountMessagesSentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.MessageWhereInput
 }
@@ -3571,6 +4377,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   location?: boolean
   role?: boolean
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
@@ -3581,6 +4390,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   bookmarks?: boolean | Prisma.User$bookmarksArgs<ExtArgs>
   followers?: boolean | Prisma.User$followersArgs<ExtArgs>
   following?: boolean | Prisma.User$followingArgs<ExtArgs>
+  blockedUsers?: boolean | Prisma.User$blockedUsersArgs<ExtArgs>
+  blockedByUsers?: boolean | Prisma.User$blockedByUsersArgs<ExtArgs>
   messagesSent?: boolean | Prisma.User$messagesSentArgs<ExtArgs>
   messagesReceived?: boolean | Prisma.User$messagesReceivedArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
@@ -3606,6 +4417,9 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   location?: boolean
   role?: boolean
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -3623,6 +4437,9 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   location?: boolean
   role?: boolean
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -3640,11 +4457,14 @@ export type UserSelectScalar = {
   location?: boolean
   role?: boolean
   isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "email" | "phone" | "passwordHash" | "fullName" | "bio" | "avatarUrl" | "coverPhotoUrl" | "location" | "role" | "isVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "email" | "phone" | "passwordHash" | "fullName" | "bio" | "avatarUrl" | "coverPhotoUrl" | "location" | "role" | "isVerified" | "isDeleted" | "isBlocked" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
   socialLinks?: boolean | Prisma.User$socialLinksArgs<ExtArgs>
@@ -3654,6 +4474,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   bookmarks?: boolean | Prisma.User$bookmarksArgs<ExtArgs>
   followers?: boolean | Prisma.User$followersArgs<ExtArgs>
   following?: boolean | Prisma.User$followingArgs<ExtArgs>
+  blockedUsers?: boolean | Prisma.User$blockedUsersArgs<ExtArgs>
+  blockedByUsers?: boolean | Prisma.User$blockedByUsersArgs<ExtArgs>
   messagesSent?: boolean | Prisma.User$messagesSentArgs<ExtArgs>
   messagesReceived?: boolean | Prisma.User$messagesReceivedArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
@@ -3679,6 +4501,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
     followers: Prisma.$FollowPayload<ExtArgs>[]
     following: Prisma.$FollowPayload<ExtArgs>[]
+    blockedUsers: Prisma.$BlockUserPayload<ExtArgs>[]
+    blockedByUsers: Prisma.$BlockUserPayload<ExtArgs>[]
     messagesSent: Prisma.$MessagePayload<ExtArgs>[]
     messagesReceived: Prisma.$MessagePayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
@@ -3702,6 +4526,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     location: string | null
     role: $Enums.UserRoles
     isVerified: boolean
+    isDeleted: boolean
+    isBlocked: boolean
+    status: $Enums.UserStatus
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -4106,6 +4933,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   bookmarks<T extends Prisma.User$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   followers<T extends Prisma.User$followersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$followersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   following<T extends Prisma.User$followingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$followingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  blockedUsers<T extends Prisma.User$blockedUsersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$blockedUsersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlockUserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  blockedByUsers<T extends Prisma.User$blockedByUsersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$blockedByUsersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlockUserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   messagesSent<T extends Prisma.User$messagesSentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesSentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   messagesReceived<T extends Prisma.User$messagesReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -4156,6 +4985,9 @@ export interface UserFieldRefs {
   readonly location: Prisma.FieldRef<"User", 'String'>
   readonly role: Prisma.FieldRef<"User", 'UserRoles'>
   readonly isVerified: Prisma.FieldRef<"User", 'Boolean'>
+  readonly isDeleted: Prisma.FieldRef<"User", 'Boolean'>
+  readonly isBlocked: Prisma.FieldRef<"User", 'Boolean'>
+  readonly status: Prisma.FieldRef<"User", 'UserStatus'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -4735,6 +5567,54 @@ export type User$followingArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.FollowScalarFieldEnum | Prisma.FollowScalarFieldEnum[]
+}
+
+/**
+ * User.blockedUsers
+ */
+export type User$blockedUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BlockUser
+   */
+  select?: Prisma.BlockUserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BlockUser
+   */
+  omit?: Prisma.BlockUserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BlockUserInclude<ExtArgs> | null
+  where?: Prisma.BlockUserWhereInput
+  orderBy?: Prisma.BlockUserOrderByWithRelationInput | Prisma.BlockUserOrderByWithRelationInput[]
+  cursor?: Prisma.BlockUserWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BlockUserScalarFieldEnum | Prisma.BlockUserScalarFieldEnum[]
+}
+
+/**
+ * User.blockedByUsers
+ */
+export type User$blockedByUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BlockUser
+   */
+  select?: Prisma.BlockUserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BlockUser
+   */
+  omit?: Prisma.BlockUserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BlockUserInclude<ExtArgs> | null
+  where?: Prisma.BlockUserWhereInput
+  orderBy?: Prisma.BlockUserOrderByWithRelationInput | Prisma.BlockUserOrderByWithRelationInput[]
+  cursor?: Prisma.BlockUserWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BlockUserScalarFieldEnum | Prisma.BlockUserScalarFieldEnum[]
 }
 
 /**

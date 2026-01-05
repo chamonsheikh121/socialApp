@@ -27,8 +27,8 @@ export * from "./enums"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Bookmarks
- * const bookmarks = await prisma.bookmark.findMany()
+ * // Fetch zero or more BlockUsers
+ * const blockUsers = await prisma.blockUser.findMany()
  * ```
  * 
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
@@ -38,15 +38,20 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
+ * Model BlockUser
+ * 
+ */
+export type BlockUser = Prisma.BlockUserModel
+/**
  * Model Bookmark
  * 
  */
 export type Bookmark = Prisma.BookmarkModel
 /**
- * Model Category
+ * Model PCategory
  * 
  */
-export type Category = Prisma.CategoryModel
+export type PCategory = Prisma.PCategoryModel
 /**
  * Model Comment
  * 
@@ -62,6 +67,11 @@ export type Follow = Prisma.FollowModel
  * 
  */
 export type Hashtag = Prisma.HashtagModel
+/**
+ * Model Interest
+ * 
+ */
+export type Interest = Prisma.InterestModel
 /**
  * Model Like
  * 

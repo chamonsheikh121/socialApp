@@ -158,4 +158,41 @@ export class UserService {
       throw error;
     }
   }
+
+  async getAllUsers(page = 1, limit = 20) {
+    const skip = (page - 1) * limit;
+
+    const [users, total] = await Promise.all([
+      this.prisma.client.user.findMany({
+        skip,
+        take: limit,
+        orderBy: { createdAt: 'desc' },
+        select: {
+          id: true,
+          username: true,
+          email: true,
+          fullName: true,
+          bio: true,
+          avatarUrl: true,
+          coverPhotoUrl: true,
+          location: true,
+          phone: true,
+          role: true,
+          isVerified: true,
+          createdAt: true,
+        },
+      }),
+      this.prisma.client.user.count(),
+    ]);
+
+    return {
+      data: users,
+      pagination: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
+  }
 }

@@ -348,16 +348,8 @@ export type BookmarkOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
 export type EnumPostTypeFieldUpdateOperationsInput = {
   set?: $Enums.PostType
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
 }
 
 export type BookmarkCreateNestedManyWithoutPostInput = {
