@@ -2134,8 +2134,7 @@ export const CommentScalarFieldEnum = {
   id: 'id',
   commentText: 'commentText',
   userId: 'userId',
-  PostType: 'PostType',
-  contentId: 'contentId',
+  postId: 'postId',
   parentCommentId: 'parentCommentId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -2272,7 +2271,6 @@ export const PostScalarFieldEnum = {
   content: 'content',
   postType: 'postType',
   isPublic: 'isPublic',
-  allowComments: 'allowComments',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

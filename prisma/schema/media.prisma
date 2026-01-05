@@ -18,3 +18,9 @@ model Media {
   /// Only one of postId, messageId, pagePostId should be non-null
 }
 
+enum MediaType {
+  IMAGE
+  VIDEO
+  AUDIO
+  GIF
+}

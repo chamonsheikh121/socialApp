@@ -1,9 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
-<<<<<<< HEAD
-import { Module } from '@nestjs/common';
-=======
 import { MiddlewareConsumer, Module } from '@nestjs/common';
->>>>>>> ecdf2d2d795a0007205eeafc3c2850640445cc0b
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -19,6 +15,7 @@ import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 import { MetricsModule } from './metrics/metrics.module';
+import { MetricsMiddleware } from './metrics/metrics.middleware';
 
 @Module({
   imports: [
@@ -77,12 +74,8 @@ import { MetricsModule } from './metrics/metrics.module';
   controllers: [AppController],
   providers: [AppService],
 })
-<<<<<<< HEAD
-export class AppModule {}
-=======
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(MetricsMiddleware).forRoutes('*');
   }
 }
->>>>>>> ecdf2d2d795a0007205eeafc3c2850640445cc0b

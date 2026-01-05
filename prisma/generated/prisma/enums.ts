@@ -9,6 +9,16 @@
 * 🟢 You can import this file directly.
 */
 
+export const MediaType = {
+  IMAGE: 'IMAGE',
+  VIDEO: 'VIDEO',
+  AUDIO: 'AUDIO',
+  GIF: 'GIF'
+} as const
+
+export type MediaType = (typeof MediaType)[keyof typeof MediaType]
+
+
 export const NotificationType = {
   LIKE: 'LIKE',
   COMMENT: 'COMMENT',
@@ -19,16 +29,6 @@ export const NotificationType = {
 } as const
 
 export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
-
-
-export const MediaType = {
-  IMAGE: 'IMAGE',
-  VIDEO: 'VIDEO',
-  AUDIO: 'AUDIO',
-  GIF: 'GIF'
-} as const
-
-export type MediaType = (typeof MediaType)[keyof typeof MediaType]
 
 
 export const PostType = {
