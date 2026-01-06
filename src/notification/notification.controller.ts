@@ -12,6 +12,7 @@ import {
 import { NotificationService } from './notification.service';
 import { CreateNotificationDto } from './dto/create-notification.dto';
 import { GetNotificationsDto } from './dto/get-notifications.dto';
+import { TestNotificationDto } from './dto/test-notification.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CurrentUser } from '../auth/current-user.decorator';
 import {
@@ -21,13 +22,17 @@ import {
   ApiResponse,
   ApiParam,
 } from '@nestjs/swagger';
+import { NotificationGateway } from './notification.gateway';
 
 @ApiTags('Notifications')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('notifications')
 export class NotificationController {
-  constructor(private readonly notificationService: NotificationService) {}
+  constructor(
+    private readonly notificationService: NotificationService,
+    private readonly notificationGateway: NotificationGateway,
+  ) {}
 
   @Post()
   @ApiOperation({ summary: 'Create a new notification' })
@@ -37,6 +42,27 @@ export class NotificationController {
   })
   create(@Body() createNotificationDto: CreateNotificationDto) {
     return this.notificationService.create(createNotificationDto);
+  }
+  @Post('/test')
+  @ApiOperation({ summary: 'Send test notification via WebSocket' })
+  @ApiResponse({
+    status: 201,
+    description: 'Test notification sent successfully',
+  })
+  createTestNotification(@Body() testNotificationDto: TestNotificationDto) {
+    this.notificationGateway.pushNotificationToUser(
+      testNotificationDto.userId,
+      {
+        message: testNotificationDto.message,
+        type: testNotificationDto.type || 'TEST',
+        data: testNotificationDto.data,
+      },
+    );
+    return {
+      success: true,
+      message: 'Test notification sent',
+      userId: testNotificationDto.userId,
+    };
   }
 
   @Get()
