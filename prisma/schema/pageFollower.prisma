@@ -1,0 +1,13 @@
+model PageFollower {
+  id         String   @id @default(uuid())
+  pageId     String
+  userId     String
+  followedAt DateTime @default(now())
+
+  page Page @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([pageId, userId])
+  @@index([pageId])
+}
+

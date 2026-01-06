@@ -2,7 +2,6 @@
 model Bookmark {
   id          String      @id @default(uuid())
   userId      String
-  PostType PostType
   contentId   String
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
@@ -10,6 +9,6 @@ model Bookmark {
   user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   post        Post?       @relation("PostBookmarks", fields: [contentId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, PostType, contentId])
-  @@index([PostType, contentId])
+  @@unique([userId, contentId])
+  @@index([contentId])
 }

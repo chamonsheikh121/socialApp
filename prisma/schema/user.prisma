@@ -36,9 +36,14 @@ model User {
   notificationsAsActor Notification[]
   pagesOwned           Page[]
   pageAdmins           PageAdmin[]
+  pageFollowers        PageFollower[]
+  pageInvitationsSent  PageInvitation[] @relation("PageInviteSender")
+  pageInvitationsReceived  PageInvitation[] @relation("PageInviteReceiver")
   pagePosts            PagePost[]
   userSettings         UserSettings?
   interests            UserInterest[]
+  mentionsReceived     Mention[]        @relation("MentionedUser")
+  mentionsGiven        Mention[]        @relation("Mentioner")
 
   @@index([username])
   @@index([email])

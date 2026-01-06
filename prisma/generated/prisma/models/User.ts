@@ -294,9 +294,14 @@ export type UserWhereInput = {
   notificationsAsActor?: Prisma.NotificationListRelationFilter
   pagesOwned?: Prisma.PageListRelationFilter
   pageAdmins?: Prisma.PageAdminListRelationFilter
+  pageFollowers?: Prisma.PageFollowerListRelationFilter
+  pageInvitationsSent?: Prisma.PageInvitationListRelationFilter
+  pageInvitationsReceived?: Prisma.PageInvitationListRelationFilter
   pagePosts?: Prisma.PagePostListRelationFilter
   userSettings?: Prisma.XOR<Prisma.UserSettingsNullableScalarRelationFilter, Prisma.UserSettingsWhereInput> | null
   interests?: Prisma.UserInterestListRelationFilter
+  mentionsReceived?: Prisma.MentionListRelationFilter
+  mentionsGiven?: Prisma.MentionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -333,9 +338,14 @@ export type UserOrderByWithRelationInput = {
   notificationsAsActor?: Prisma.NotificationOrderByRelationAggregateInput
   pagesOwned?: Prisma.PageOrderByRelationAggregateInput
   pageAdmins?: Prisma.PageAdminOrderByRelationAggregateInput
+  pageFollowers?: Prisma.PageFollowerOrderByRelationAggregateInput
+  pageInvitationsSent?: Prisma.PageInvitationOrderByRelationAggregateInput
+  pageInvitationsReceived?: Prisma.PageInvitationOrderByRelationAggregateInput
   pagePosts?: Prisma.PagePostOrderByRelationAggregateInput
   userSettings?: Prisma.UserSettingsOrderByWithRelationInput
   interests?: Prisma.UserInterestOrderByRelationAggregateInput
+  mentionsReceived?: Prisma.MentionOrderByRelationAggregateInput
+  mentionsGiven?: Prisma.MentionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -375,9 +385,14 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   notificationsAsActor?: Prisma.NotificationListRelationFilter
   pagesOwned?: Prisma.PageListRelationFilter
   pageAdmins?: Prisma.PageAdminListRelationFilter
+  pageFollowers?: Prisma.PageFollowerListRelationFilter
+  pageInvitationsSent?: Prisma.PageInvitationListRelationFilter
+  pageInvitationsReceived?: Prisma.PageInvitationListRelationFilter
   pagePosts?: Prisma.PagePostListRelationFilter
   userSettings?: Prisma.XOR<Prisma.UserSettingsNullableScalarRelationFilter, Prisma.UserSettingsWhereInput> | null
   interests?: Prisma.UserInterestListRelationFilter
+  mentionsReceived?: Prisma.MentionListRelationFilter
+  mentionsGiven?: Prisma.MentionListRelationFilter
 }, "id" | "username" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -460,9 +475,14 @@ export type UserCreateInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -499,9 +519,14 @@ export type UserUncheckedCreateInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUpdateInput = {
@@ -538,9 +563,14 @@ export type UserUpdateInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -577,9 +607,14 @@ export type UserUncheckedUpdateInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -810,6 +845,34 @@ export type UserUpdateOneRequiredWithoutLikesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLikesInput, Prisma.UserUpdateWithoutLikesInput>, Prisma.UserUncheckedUpdateWithoutLikesInput>
 }
 
+export type UserCreateNestedOneWithoutMentionsReceivedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMentionsReceivedInput, Prisma.UserUncheckedCreateWithoutMentionsReceivedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentionsReceivedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutMentionsGivenInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMentionsGivenInput, Prisma.UserUncheckedCreateWithoutMentionsGivenInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentionsGivenInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMentionsReceivedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMentionsReceivedInput, Prisma.UserUncheckedCreateWithoutMentionsReceivedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentionsReceivedInput
+  upsert?: Prisma.UserUpsertWithoutMentionsReceivedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMentionsReceivedInput, Prisma.UserUpdateWithoutMentionsReceivedInput>, Prisma.UserUncheckedUpdateWithoutMentionsReceivedInput>
+}
+
+export type UserUpdateOneRequiredWithoutMentionsGivenNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMentionsGivenInput, Prisma.UserUncheckedCreateWithoutMentionsGivenInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentionsGivenInput
+  upsert?: Prisma.UserUpsertWithoutMentionsGivenInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMentionsGivenInput, Prisma.UserUpdateWithoutMentionsGivenInput>, Prisma.UserUncheckedUpdateWithoutMentionsGivenInput>
+}
+
 export type UserCreateNestedOneWithoutMessagesSentInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutMessagesSentInput, Prisma.UserUncheckedCreateWithoutMessagesSentInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutMessagesSentInput
@@ -894,6 +957,48 @@ export type UserUpdateOneRequiredWithoutPageAdminsNestedInput = {
   upsert?: Prisma.UserUpsertWithoutPageAdminsInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPageAdminsInput, Prisma.UserUpdateWithoutPageAdminsInput>, Prisma.UserUncheckedUpdateWithoutPageAdminsInput>
+}
+
+export type UserCreateNestedOneWithoutPageFollowersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPageFollowersInput, Prisma.UserUncheckedCreateWithoutPageFollowersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPageFollowersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPageFollowersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPageFollowersInput, Prisma.UserUncheckedCreateWithoutPageFollowersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPageFollowersInput
+  upsert?: Prisma.UserUpsertWithoutPageFollowersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPageFollowersInput, Prisma.UserUpdateWithoutPageFollowersInput>, Prisma.UserUncheckedUpdateWithoutPageFollowersInput>
+}
+
+export type UserCreateNestedOneWithoutPageInvitationsSentInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPageInvitationsSentInput, Prisma.UserUncheckedCreateWithoutPageInvitationsSentInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPageInvitationsSentInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutPageInvitationsReceivedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPageInvitationsReceivedInput, Prisma.UserUncheckedCreateWithoutPageInvitationsReceivedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPageInvitationsReceivedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPageInvitationsSentNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPageInvitationsSentInput, Prisma.UserUncheckedCreateWithoutPageInvitationsSentInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPageInvitationsSentInput
+  upsert?: Prisma.UserUpsertWithoutPageInvitationsSentInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPageInvitationsSentInput, Prisma.UserUpdateWithoutPageInvitationsSentInput>, Prisma.UserUncheckedUpdateWithoutPageInvitationsSentInput>
+}
+
+export type UserUpdateOneRequiredWithoutPageInvitationsReceivedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPageInvitationsReceivedInput, Prisma.UserUncheckedCreateWithoutPageInvitationsReceivedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPageInvitationsReceivedInput
+  upsert?: Prisma.UserUpsertWithoutPageInvitationsReceivedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPageInvitationsReceivedInput, Prisma.UserUpdateWithoutPageInvitationsReceivedInput>, Prisma.UserUncheckedUpdateWithoutPageInvitationsReceivedInput>
 }
 
 export type UserCreateNestedOneWithoutPagePostsInput = {
@@ -1021,9 +1126,14 @@ export type UserCreateWithoutBlockedUsersInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutBlockedUsersInput = {
@@ -1059,9 +1169,14 @@ export type UserUncheckedCreateWithoutBlockedUsersInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutBlockedUsersInput = {
@@ -1102,9 +1217,14 @@ export type UserCreateWithoutBlockedByUsersInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutBlockedByUsersInput = {
@@ -1140,9 +1260,14 @@ export type UserUncheckedCreateWithoutBlockedByUsersInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutBlockedByUsersInput = {
@@ -1194,9 +1319,14 @@ export type UserUpdateWithoutBlockedUsersInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBlockedUsersInput = {
@@ -1232,9 +1362,14 @@ export type UserUncheckedUpdateWithoutBlockedUsersInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUpsertWithoutBlockedByUsersInput = {
@@ -1281,9 +1416,14 @@ export type UserUpdateWithoutBlockedByUsersInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBlockedByUsersInput = {
@@ -1319,9 +1459,14 @@ export type UserUncheckedUpdateWithoutBlockedByUsersInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutBookmarksInput = {
@@ -1357,9 +1502,14 @@ export type UserCreateWithoutBookmarksInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutBookmarksInput = {
@@ -1395,9 +1545,14 @@ export type UserUncheckedCreateWithoutBookmarksInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutBookmarksInput = {
@@ -1449,9 +1604,14 @@ export type UserUpdateWithoutBookmarksInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBookmarksInput = {
@@ -1487,9 +1647,14 @@ export type UserUncheckedUpdateWithoutBookmarksInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutCommentsInput = {
@@ -1525,9 +1690,14 @@ export type UserCreateWithoutCommentsInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutCommentsInput = {
@@ -1563,9 +1733,14 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutCommentsInput = {
@@ -1617,9 +1792,14 @@ export type UserUpdateWithoutCommentsInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -1655,9 +1835,14 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutFollowingInput = {
@@ -1693,9 +1878,14 @@ export type UserCreateWithoutFollowingInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutFollowingInput = {
@@ -1731,9 +1921,14 @@ export type UserUncheckedCreateWithoutFollowingInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutFollowingInput = {
@@ -1774,9 +1969,14 @@ export type UserCreateWithoutFollowersInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutFollowersInput = {
@@ -1812,9 +2012,14 @@ export type UserUncheckedCreateWithoutFollowersInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutFollowersInput = {
@@ -1866,9 +2071,14 @@ export type UserUpdateWithoutFollowingInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFollowingInput = {
@@ -1904,9 +2114,14 @@ export type UserUncheckedUpdateWithoutFollowingInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUpsertWithoutFollowersInput = {
@@ -1953,9 +2168,14 @@ export type UserUpdateWithoutFollowersInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFollowersInput = {
@@ -1991,9 +2211,14 @@ export type UserUncheckedUpdateWithoutFollowersInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutLikesInput = {
@@ -2029,9 +2254,14 @@ export type UserCreateWithoutLikesInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutLikesInput = {
@@ -2067,9 +2297,14 @@ export type UserUncheckedCreateWithoutLikesInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutLikesInput = {
@@ -2121,9 +2356,14 @@ export type UserUpdateWithoutLikesInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLikesInput = {
@@ -2159,9 +2399,390 @@ export type UserUncheckedUpdateWithoutLikesInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
+}
+
+export type UserCreateWithoutMentionsReceivedInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
+}
+
+export type UserUncheckedCreateWithoutMentionsReceivedInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
+}
+
+export type UserCreateOrConnectWithoutMentionsReceivedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMentionsReceivedInput, Prisma.UserUncheckedCreateWithoutMentionsReceivedInput>
+}
+
+export type UserCreateWithoutMentionsGivenInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+}
+
+export type UserUncheckedCreateWithoutMentionsGivenInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+}
+
+export type UserCreateOrConnectWithoutMentionsGivenInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMentionsGivenInput, Prisma.UserUncheckedCreateWithoutMentionsGivenInput>
+}
+
+export type UserUpsertWithoutMentionsReceivedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMentionsReceivedInput, Prisma.UserUncheckedUpdateWithoutMentionsReceivedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMentionsReceivedInput, Prisma.UserUncheckedCreateWithoutMentionsReceivedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMentionsReceivedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMentionsReceivedInput, Prisma.UserUncheckedUpdateWithoutMentionsReceivedInput>
+}
+
+export type UserUpdateWithoutMentionsReceivedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMentionsReceivedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
+}
+
+export type UserUpsertWithoutMentionsGivenInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMentionsGivenInput, Prisma.UserUncheckedUpdateWithoutMentionsGivenInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMentionsGivenInput, Prisma.UserUncheckedCreateWithoutMentionsGivenInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMentionsGivenInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMentionsGivenInput, Prisma.UserUncheckedUpdateWithoutMentionsGivenInput>
+}
+
+export type UserUpdateWithoutMentionsGivenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMentionsGivenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
 }
 
 export type UserCreateWithoutMessagesSentInput = {
@@ -2197,9 +2818,14 @@ export type UserCreateWithoutMessagesSentInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutMessagesSentInput = {
@@ -2235,9 +2861,14 @@ export type UserUncheckedCreateWithoutMessagesSentInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutMessagesSentInput = {
@@ -2278,9 +2909,14 @@ export type UserCreateWithoutMessagesReceivedInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutMessagesReceivedInput = {
@@ -2316,9 +2952,14 @@ export type UserUncheckedCreateWithoutMessagesReceivedInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutMessagesReceivedInput = {
@@ -2370,9 +3011,14 @@ export type UserUpdateWithoutMessagesSentInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMessagesSentInput = {
@@ -2408,9 +3054,14 @@ export type UserUncheckedUpdateWithoutMessagesSentInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUpsertWithoutMessagesReceivedInput = {
@@ -2457,9 +3108,14 @@ export type UserUpdateWithoutMessagesReceivedInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMessagesReceivedInput = {
@@ -2495,9 +3151,14 @@ export type UserUncheckedUpdateWithoutMessagesReceivedInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -2533,9 +3194,14 @@ export type UserCreateWithoutNotificationsInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -2571,9 +3237,14 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -2614,9 +3285,14 @@ export type UserCreateWithoutNotificationsAsActorInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsAsActorInput = {
@@ -2652,9 +3328,14 @@ export type UserUncheckedCreateWithoutNotificationsAsActorInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsAsActorInput = {
@@ -2706,9 +3387,14 @@ export type UserUpdateWithoutNotificationsInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -2744,9 +3430,14 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUpsertWithoutNotificationsAsActorInput = {
@@ -2793,9 +3484,14 @@ export type UserUpdateWithoutNotificationsAsActorInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsAsActorInput = {
@@ -2831,9 +3527,14 @@ export type UserUncheckedUpdateWithoutNotificationsAsActorInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutPagesOwnedInput = {
@@ -2869,9 +3570,14 @@ export type UserCreateWithoutPagesOwnedInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutPagesOwnedInput = {
@@ -2907,9 +3613,14 @@ export type UserUncheckedCreateWithoutPagesOwnedInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutPagesOwnedInput = {
@@ -2961,9 +3672,14 @@ export type UserUpdateWithoutPagesOwnedInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagesOwnedInput = {
@@ -2999,9 +3715,14 @@ export type UserUncheckedUpdateWithoutPagesOwnedInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutPageAdminsInput = {
@@ -3037,9 +3758,14 @@ export type UserCreateWithoutPageAdminsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutPageAdminsInput = {
@@ -3075,9 +3801,14 @@ export type UserUncheckedCreateWithoutPageAdminsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutPageAdminsInput = {
@@ -3129,9 +3860,14 @@ export type UserUpdateWithoutPageAdminsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPageAdminsInput = {
@@ -3167,9 +3903,578 @@ export type UserUncheckedUpdateWithoutPageAdminsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
+}
+
+export type UserCreateWithoutPageFollowersInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
+}
+
+export type UserUncheckedCreateWithoutPageFollowersInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
+}
+
+export type UserCreateOrConnectWithoutPageFollowersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPageFollowersInput, Prisma.UserUncheckedCreateWithoutPageFollowersInput>
+}
+
+export type UserUpsertWithoutPageFollowersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPageFollowersInput, Prisma.UserUncheckedUpdateWithoutPageFollowersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPageFollowersInput, Prisma.UserUncheckedCreateWithoutPageFollowersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPageFollowersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPageFollowersInput, Prisma.UserUncheckedUpdateWithoutPageFollowersInput>
+}
+
+export type UserUpdateWithoutPageFollowersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPageFollowersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
+}
+
+export type UserCreateWithoutPageInvitationsSentInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
+}
+
+export type UserUncheckedCreateWithoutPageInvitationsSentInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
+}
+
+export type UserCreateOrConnectWithoutPageInvitationsSentInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPageInvitationsSentInput, Prisma.UserUncheckedCreateWithoutPageInvitationsSentInput>
+}
+
+export type UserCreateWithoutPageInvitationsReceivedInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
+}
+
+export type UserUncheckedCreateWithoutPageInvitationsReceivedInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
+}
+
+export type UserCreateOrConnectWithoutPageInvitationsReceivedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPageInvitationsReceivedInput, Prisma.UserUncheckedCreateWithoutPageInvitationsReceivedInput>
+}
+
+export type UserUpsertWithoutPageInvitationsSentInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPageInvitationsSentInput, Prisma.UserUncheckedUpdateWithoutPageInvitationsSentInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPageInvitationsSentInput, Prisma.UserUncheckedCreateWithoutPageInvitationsSentInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPageInvitationsSentInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPageInvitationsSentInput, Prisma.UserUncheckedUpdateWithoutPageInvitationsSentInput>
+}
+
+export type UserUpdateWithoutPageInvitationsSentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPageInvitationsSentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
+}
+
+export type UserUpsertWithoutPageInvitationsReceivedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPageInvitationsReceivedInput, Prisma.UserUncheckedUpdateWithoutPageInvitationsReceivedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPageInvitationsReceivedInput, Prisma.UserUncheckedCreateWithoutPageInvitationsReceivedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPageInvitationsReceivedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPageInvitationsReceivedInput, Prisma.UserUncheckedUpdateWithoutPageInvitationsReceivedInput>
+}
+
+export type UserUpdateWithoutPageInvitationsReceivedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPageInvitationsReceivedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutPagePostsInput = {
@@ -3206,8 +4511,13 @@ export type UserCreateWithoutPagePostsInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutPagePostsInput = {
@@ -3244,8 +4554,13 @@ export type UserUncheckedCreateWithoutPagePostsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutPagePostsInput = {
@@ -3298,8 +4613,13 @@ export type UserUpdateWithoutPagePostsInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPagePostsInput = {
@@ -3336,8 +4656,13 @@ export type UserUncheckedUpdateWithoutPagePostsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutPostsInput = {
@@ -3373,9 +4698,14 @@ export type UserCreateWithoutPostsInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutPostsInput = {
@@ -3411,9 +4741,14 @@ export type UserUncheckedCreateWithoutPostsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutPostsInput = {
@@ -3465,9 +4800,14 @@ export type UserUpdateWithoutPostsInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPostsInput = {
@@ -3503,9 +4843,14 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutRefreshTokensInput = {
@@ -3541,9 +4886,14 @@ export type UserCreateWithoutRefreshTokensInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -3579,9 +4929,14 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -3633,9 +4988,14 @@ export type UserUpdateWithoutRefreshTokensInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -3671,9 +5031,14 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutSocialLinksInput = {
@@ -3709,9 +5074,14 @@ export type UserCreateWithoutSocialLinksInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutSocialLinksInput = {
@@ -3747,9 +5117,14 @@ export type UserUncheckedCreateWithoutSocialLinksInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutSocialLinksInput = {
@@ -3801,9 +5176,14 @@ export type UserUpdateWithoutSocialLinksInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSocialLinksInput = {
@@ -3839,9 +5219,14 @@ export type UserUncheckedUpdateWithoutSocialLinksInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutInterestsInput = {
@@ -3878,8 +5263,13 @@ export type UserCreateWithoutInterestsInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutInterestsInput = {
@@ -3916,8 +5306,13 @@ export type UserUncheckedCreateWithoutInterestsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutInterestsInput = {
@@ -3970,8 +5365,13 @@ export type UserUpdateWithoutInterestsInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInterestsInput = {
@@ -4008,8 +5408,13 @@ export type UserUncheckedUpdateWithoutInterestsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutUserSettingsInput = {
@@ -4046,8 +5451,13 @@ export type UserCreateWithoutUserSettingsInput = {
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
   interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
 }
 
 export type UserUncheckedCreateWithoutUserSettingsInput = {
@@ -4084,8 +5494,13 @@ export type UserUncheckedCreateWithoutUserSettingsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
   interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
 }
 
 export type UserCreateOrConnectWithoutUserSettingsInput = {
@@ -4138,8 +5553,13 @@ export type UserUpdateWithoutUserSettingsInput = {
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
   interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserSettingsInput = {
@@ -4176,8 +5596,13 @@ export type UserUncheckedUpdateWithoutUserSettingsInput = {
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 
@@ -4202,8 +5627,13 @@ export type UserCountOutputType = {
   notificationsAsActor: number
   pagesOwned: number
   pageAdmins: number
+  pageFollowers: number
+  pageInvitationsSent: number
+  pageInvitationsReceived: number
   pagePosts: number
   interests: number
+  mentionsReceived: number
+  mentionsGiven: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4223,8 +5653,13 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   notificationsAsActor?: boolean | UserCountOutputTypeCountNotificationsAsActorArgs
   pagesOwned?: boolean | UserCountOutputTypeCountPagesOwnedArgs
   pageAdmins?: boolean | UserCountOutputTypeCountPageAdminsArgs
+  pageFollowers?: boolean | UserCountOutputTypeCountPageFollowersArgs
+  pageInvitationsSent?: boolean | UserCountOutputTypeCountPageInvitationsSentArgs
+  pageInvitationsReceived?: boolean | UserCountOutputTypeCountPageInvitationsReceivedArgs
   pagePosts?: boolean | UserCountOutputTypeCountPagePostsArgs
   interests?: boolean | UserCountOutputTypeCountInterestsArgs
+  mentionsReceived?: boolean | UserCountOutputTypeCountMentionsReceivedArgs
+  mentionsGiven?: boolean | UserCountOutputTypeCountMentionsGivenArgs
 }
 
 /**
@@ -4352,6 +5787,27 @@ export type UserCountOutputTypeCountPageAdminsArgs<ExtArgs extends runtime.Types
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountPageFollowersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PageFollowerWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPageInvitationsSentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PageInvitationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPageInvitationsReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PageInvitationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountPagePostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PagePostWhereInput
 }
@@ -4361,6 +5817,20 @@ export type UserCountOutputTypeCountPagePostsArgs<ExtArgs extends runtime.Types.
  */
 export type UserCountOutputTypeCountInterestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.UserInterestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMentionsReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MentionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMentionsGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MentionWhereInput
 }
 
 
@@ -4398,9 +5868,14 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   notificationsAsActor?: boolean | Prisma.User$notificationsAsActorArgs<ExtArgs>
   pagesOwned?: boolean | Prisma.User$pagesOwnedArgs<ExtArgs>
   pageAdmins?: boolean | Prisma.User$pageAdminsArgs<ExtArgs>
+  pageFollowers?: boolean | Prisma.User$pageFollowersArgs<ExtArgs>
+  pageInvitationsSent?: boolean | Prisma.User$pageInvitationsSentArgs<ExtArgs>
+  pageInvitationsReceived?: boolean | Prisma.User$pageInvitationsReceivedArgs<ExtArgs>
   pagePosts?: boolean | Prisma.User$pagePostsArgs<ExtArgs>
   userSettings?: boolean | Prisma.User$userSettingsArgs<ExtArgs>
   interests?: boolean | Prisma.User$interestsArgs<ExtArgs>
+  mentionsReceived?: boolean | Prisma.User$mentionsReceivedArgs<ExtArgs>
+  mentionsGiven?: boolean | Prisma.User$mentionsGivenArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -4482,9 +5957,14 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   notificationsAsActor?: boolean | Prisma.User$notificationsAsActorArgs<ExtArgs>
   pagesOwned?: boolean | Prisma.User$pagesOwnedArgs<ExtArgs>
   pageAdmins?: boolean | Prisma.User$pageAdminsArgs<ExtArgs>
+  pageFollowers?: boolean | Prisma.User$pageFollowersArgs<ExtArgs>
+  pageInvitationsSent?: boolean | Prisma.User$pageInvitationsSentArgs<ExtArgs>
+  pageInvitationsReceived?: boolean | Prisma.User$pageInvitationsReceivedArgs<ExtArgs>
   pagePosts?: boolean | Prisma.User$pagePostsArgs<ExtArgs>
   userSettings?: boolean | Prisma.User$userSettingsArgs<ExtArgs>
   interests?: boolean | Prisma.User$interestsArgs<ExtArgs>
+  mentionsReceived?: boolean | Prisma.User$mentionsReceivedArgs<ExtArgs>
+  mentionsGiven?: boolean | Prisma.User$mentionsGivenArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -4509,9 +5989,14 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     notificationsAsActor: Prisma.$NotificationPayload<ExtArgs>[]
     pagesOwned: Prisma.$PagePayload<ExtArgs>[]
     pageAdmins: Prisma.$PageAdminPayload<ExtArgs>[]
+    pageFollowers: Prisma.$PageFollowerPayload<ExtArgs>[]
+    pageInvitationsSent: Prisma.$PageInvitationPayload<ExtArgs>[]
+    pageInvitationsReceived: Prisma.$PageInvitationPayload<ExtArgs>[]
     pagePosts: Prisma.$PagePostPayload<ExtArgs>[]
     userSettings: Prisma.$UserSettingsPayload<ExtArgs> | null
     interests: Prisma.$UserInterestPayload<ExtArgs>[]
+    mentionsReceived: Prisma.$MentionPayload<ExtArgs>[]
+    mentionsGiven: Prisma.$MentionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -4941,9 +6426,14 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   notificationsAsActor<T extends Prisma.User$notificationsAsActorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsAsActorArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagesOwned<T extends Prisma.User$pagesOwnedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pagesOwnedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pageAdmins<T extends Prisma.User$pageAdminsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pageAdminsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PageAdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pageFollowers<T extends Prisma.User$pageFollowersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pageFollowersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PageFollowerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pageInvitationsSent<T extends Prisma.User$pageInvitationsSentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pageInvitationsSentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PageInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pageInvitationsReceived<T extends Prisma.User$pageInvitationsReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pageInvitationsReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PageInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagePosts<T extends Prisma.User$pagePostsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pagePostsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagePostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   userSettings<T extends Prisma.User$userSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$userSettingsArgs<ExtArgs>>): Prisma.Prisma__UserSettingsClient<runtime.Types.Result.GetResult<Prisma.$UserSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   interests<T extends Prisma.User$interestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$interestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserInterestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mentionsReceived<T extends Prisma.User$mentionsReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mentionsReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mentionsGiven<T extends Prisma.User$mentionsGivenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mentionsGivenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5762,6 +7252,78 @@ export type User$pageAdminsArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * User.pageFollowers
+ */
+export type User$pageFollowersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PageFollower
+   */
+  select?: Prisma.PageFollowerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PageFollower
+   */
+  omit?: Prisma.PageFollowerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PageFollowerInclude<ExtArgs> | null
+  where?: Prisma.PageFollowerWhereInput
+  orderBy?: Prisma.PageFollowerOrderByWithRelationInput | Prisma.PageFollowerOrderByWithRelationInput[]
+  cursor?: Prisma.PageFollowerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PageFollowerScalarFieldEnum | Prisma.PageFollowerScalarFieldEnum[]
+}
+
+/**
+ * User.pageInvitationsSent
+ */
+export type User$pageInvitationsSentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PageInvitation
+   */
+  select?: Prisma.PageInvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PageInvitation
+   */
+  omit?: Prisma.PageInvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PageInvitationInclude<ExtArgs> | null
+  where?: Prisma.PageInvitationWhereInput
+  orderBy?: Prisma.PageInvitationOrderByWithRelationInput | Prisma.PageInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.PageInvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PageInvitationScalarFieldEnum | Prisma.PageInvitationScalarFieldEnum[]
+}
+
+/**
+ * User.pageInvitationsReceived
+ */
+export type User$pageInvitationsReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PageInvitation
+   */
+  select?: Prisma.PageInvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PageInvitation
+   */
+  omit?: Prisma.PageInvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PageInvitationInclude<ExtArgs> | null
+  where?: Prisma.PageInvitationWhereInput
+  orderBy?: Prisma.PageInvitationOrderByWithRelationInput | Prisma.PageInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.PageInvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PageInvitationScalarFieldEnum | Prisma.PageInvitationScalarFieldEnum[]
+}
+
+/**
  * User.pagePosts
  */
 export type User$pagePostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5826,6 +7388,54 @@ export type User$interestsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.UserInterestScalarFieldEnum | Prisma.UserInterestScalarFieldEnum[]
+}
+
+/**
+ * User.mentionsReceived
+ */
+export type User$mentionsReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Mention
+   */
+  select?: Prisma.MentionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Mention
+   */
+  omit?: Prisma.MentionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MentionInclude<ExtArgs> | null
+  where?: Prisma.MentionWhereInput
+  orderBy?: Prisma.MentionOrderByWithRelationInput | Prisma.MentionOrderByWithRelationInput[]
+  cursor?: Prisma.MentionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MentionScalarFieldEnum | Prisma.MentionScalarFieldEnum[]
+}
+
+/**
+ * User.mentionsGiven
+ */
+export type User$mentionsGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Mention
+   */
+  select?: Prisma.MentionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Mention
+   */
+  omit?: Prisma.MentionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MentionInclude<ExtArgs> | null
+  where?: Prisma.MentionWhereInput
+  orderBy?: Prisma.MentionOrderByWithRelationInput | Prisma.MentionOrderByWithRelationInput[]
+  cursor?: Prisma.MentionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MentionScalarFieldEnum | Prisma.MentionScalarFieldEnum[]
 }
 
 /**

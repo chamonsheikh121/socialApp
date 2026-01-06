@@ -16,9 +16,8 @@ export class BookmarkService {
     // Check if bookmark already exists
     const existingBookmark = await this.prisma.client.bookmark.findUnique({
       where: {
-        userId_PostType_contentId: {
+        userId_contentId: {
           userId,
-          PostType: createBookmarkDto.PostType,
           contentId: createBookmarkDto.contentId,
         },
       },
@@ -40,7 +39,6 @@ export class BookmarkService {
     return await this.prisma.client.bookmark.create({
       data: {
         userId,
-        PostType: createBookmarkDto.PostType,
         contentId: createBookmarkDto.contentId,
       },
       include: {
@@ -63,12 +61,11 @@ export class BookmarkService {
   }
 
   async findAll(userId: string, query: GetBookmarksDto) {
-    const { page = 1, limit = 20, PostType } = query;
+    const { page = 1, limit = 20 } = query;
     const skip = (page - 1) * limit;
 
     const where = {
       userId,
-      ...(PostType && { PostType }),
     };
 
     const [bookmarks, total] = await Promise.all([
@@ -142,13 +139,11 @@ export class BookmarkService {
     return bookmark;
   }
 
-  async checkBookmark(userId: string, PostType: string, contentId: string) {
+  async checkBookmark(userId: string, contentId: string) {
     const bookmark = await this.prisma.client.bookmark.findUnique({
       where: {
-        userId_PostType_contentId: {
+        userId_contentId: {
           userId,
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          PostType: PostType as any,
           contentId,
         },
       },
@@ -172,13 +167,11 @@ export class BookmarkService {
     };
   }
 
-  async removeByContent(userId: string, PostType: string, contentId: string) {
+  async removeByContent(userId: string, contentId: string) {
     const bookmark = await this.prisma.client.bookmark.findUnique({
       where: {
-        userId_PostType_contentId: {
+        userId_contentId: {
           userId,
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          PostType: PostType as any,
           contentId,
         },
       },

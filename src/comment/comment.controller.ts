@@ -39,12 +39,13 @@ export class CommentController {
     return this.commentService.create(userId, createCommentDto);
   }
 
-  //   @Get()
-  //   @ApiOperation({ summary: 'Get all comments' })
-  //   @ApiResponse({ status: 200, description: 'Comments retrieved successfully' })
-  //   findAll(@Query() query: GetCommentsDto) {
-  //     return this.commentService.findAll(query);
-  //   }
+  @Get('post/:postId')
+  @ApiOperation({ summary: 'Get all comments for a specific post' })
+  @ApiResponse({ status: 200, description: 'Comments retrieved successfully' })
+  @ApiResponse({ status: 404, description: 'Post not found' })
+  findAllByPost(@Param('postId') postId: string) {
+    return this.commentService.findAllByPost(postId);
+  }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get a single comment by ID with replies' })

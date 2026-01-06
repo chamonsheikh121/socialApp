@@ -13,6 +13,8 @@ model Page {
   owner        User       @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   pageAdmins   PageAdmin[]
   pagePosts    PagePost[]
+  pageInvitations PageInvitation[]
+  pagefollowers PageFollower[]
 
   @@index([ownerId])
 }

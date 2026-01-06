@@ -58,9 +58,8 @@ export class BookmarkController {
     return this.bookmarkService.findAll(userId, query);
   }
 
-  @Get('check/:PostType/:contentId')
+  @Get('check/:contentId')
   @ApiOperation({ summary: 'Check if content is bookmarked' })
-  @ApiParam({ name: 'PostType', description: 'Post type' })
   @ApiParam({ name: 'contentId', description: 'Content ID' })
   @ApiResponse({
     status: 200,
@@ -68,10 +67,9 @@ export class BookmarkController {
   })
   checkBookmark(
     @CurrentUser('userId') userId: string,
-    @Param('PostType') PostType: string,
     @Param('contentId') contentId: string,
   ) {
-    return this.bookmarkService.checkBookmark(userId, PostType, contentId);
+    return this.bookmarkService.checkBookmark(userId, contentId);
   }
 
   @Get(':id')
@@ -94,9 +92,8 @@ export class BookmarkController {
     return this.bookmarkService.remove(id, userId);
   }
 
-  @Delete(':PostType/:contentId')
-  @ApiOperation({ summary: 'Remove a bookmark by post type and content ID' })
-  @ApiParam({ name: 'PostType', description: 'Post type' })
+  @Delete('content/:contentId')
+  @ApiOperation({ summary: 'Remove a bookmark by content ID' })
   @ApiParam({ name: 'contentId', description: 'Content ID' })
   @ApiResponse({
     status: 200,
@@ -104,9 +101,8 @@ export class BookmarkController {
   })
   removeByContent(
     @CurrentUser('userId') userId: string,
-    @Param('PostType') PostType: string,
     @Param('contentId') contentId: string,
   ) {
-    return this.bookmarkService.removeByContent(userId, PostType, contentId);
+    return this.bookmarkService.removeByContent(userId, contentId);
   }
 }

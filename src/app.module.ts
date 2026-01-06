@@ -16,6 +16,14 @@ import { LoggerModule } from 'nestjs-pino';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 import { MetricsModule } from './metrics/metrics.module';
 import { MetricsMiddleware } from './metrics/metrics.middleware';
+import { BookmarkModule } from './bookmark/bookmark.module';
+import { CommentModule } from './comment/comment.module';
+import { PageModule } from './page/page.module';
+import { NotificationModule } from './notification/notification.module';
+import { LikeModule } from './like/like.module';
+import { MentionModule } from './mention/mention.module';
+import { PageInvitationModule } from './pageInvitation/page-invitation.module';
+import { PageFollowerModule } from './pageFollower/page-follower.module';
 
 @Module({
   imports: [
@@ -70,6 +78,14 @@ import { MetricsMiddleware } from './metrics/metrics.middleware';
     FollowModule,
     PrismaModule,
     BullMQModule,
+    BookmarkModule,
+    CommentModule,
+    PageModule,
+    NotificationModule,
+    LikeModule,
+    MentionModule,
+    PageInvitationModule,
+    PageFollowerModule,
   ],
   controllers: [AppController],
   providers: [AppService],
