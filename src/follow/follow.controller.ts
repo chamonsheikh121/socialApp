@@ -28,7 +28,7 @@ export class FollowController {
   @ApiOperation({ summary: 'Follow a user' })
   @ApiBearerAuth()
   @ApiParam({ name: 'userId', description: 'ID of the user to follow' })
-  async followUser(
+  followUser(
     @CurrentUser() currentUser: jwtPayloadDto,
     @Param('userId') followingId: string,
   ) {
