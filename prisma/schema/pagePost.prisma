@@ -1,14 +1,20 @@
 model PagePost {
   id        String   @id @default(uuid())
-  content   String?
   pageId    String
   postedBy  String
+  content   String?
+  isPublic  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
-  poster    User     @relation(fields: [postedBy], references: [id], onDelete: Cascade)
-  media     Media[]
+  page           Page           @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  poster         User           @relation(fields: [postedBy], references: [id], onDelete: Cascade)
+  postCategories PostCategory[]
+  postHashtags   PostHashtag[]
+  media          Media[]
+  comments       Comment[]
+  mentions       Mention[]
 
   @@index([pageId, createdAt])
+  @@index([createdAt])
 }

@@ -27,6 +27,7 @@ export type AggregatePostHashtag = {
 export type PostHashtagMinAggregateOutputType = {
   id: string | null
   postId: string | null
+  pagePostId: string | null
   hashtagId: string | null
   createdAt: Date | null
 }
@@ -34,6 +35,7 @@ export type PostHashtagMinAggregateOutputType = {
 export type PostHashtagMaxAggregateOutputType = {
   id: string | null
   postId: string | null
+  pagePostId: string | null
   hashtagId: string | null
   createdAt: Date | null
 }
@@ -41,6 +43,7 @@ export type PostHashtagMaxAggregateOutputType = {
 export type PostHashtagCountAggregateOutputType = {
   id: number
   postId: number
+  pagePostId: number
   hashtagId: number
   createdAt: number
   _all: number
@@ -50,6 +53,7 @@ export type PostHashtagCountAggregateOutputType = {
 export type PostHashtagMinAggregateInputType = {
   id?: true
   postId?: true
+  pagePostId?: true
   hashtagId?: true
   createdAt?: true
 }
@@ -57,6 +61,7 @@ export type PostHashtagMinAggregateInputType = {
 export type PostHashtagMaxAggregateInputType = {
   id?: true
   postId?: true
+  pagePostId?: true
   hashtagId?: true
   createdAt?: true
 }
@@ -64,6 +69,7 @@ export type PostHashtagMaxAggregateInputType = {
 export type PostHashtagCountAggregateInputType = {
   id?: true
   postId?: true
+  pagePostId?: true
   hashtagId?: true
   createdAt?: true
   _all?: true
@@ -143,7 +149,8 @@ export type PostHashtagGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type PostHashtagGroupByOutputType = {
   id: string
-  postId: string
+  postId: string | null
+  pagePostId: string | null
   hashtagId: string
   createdAt: Date
   _count: PostHashtagCountAggregateOutputType | null
@@ -171,20 +178,24 @@ export type PostHashtagWhereInput = {
   OR?: Prisma.PostHashtagWhereInput[]
   NOT?: Prisma.PostHashtagWhereInput | Prisma.PostHashtagWhereInput[]
   id?: Prisma.StringFilter<"PostHashtag"> | string
-  postId?: Prisma.StringFilter<"PostHashtag"> | string
+  postId?: Prisma.StringNullableFilter<"PostHashtag"> | string | null
+  pagePostId?: Prisma.StringNullableFilter<"PostHashtag"> | string | null
   hashtagId?: Prisma.StringFilter<"PostHashtag"> | string
   createdAt?: Prisma.DateTimeFilter<"PostHashtag"> | Date | string
-  post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>
+  post?: Prisma.XOR<Prisma.PostNullableScalarRelationFilter, Prisma.PostWhereInput> | null
   hashtag?: Prisma.XOR<Prisma.HashtagScalarRelationFilter, Prisma.HashtagWhereInput>
+  pagePost?: Prisma.XOR<Prisma.PagePostNullableScalarRelationFilter, Prisma.PagePostWhereInput> | null
 }
 
 export type PostHashtagOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  postId?: Prisma.SortOrder
+  postId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagePostId?: Prisma.SortOrderInput | Prisma.SortOrder
   hashtagId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   post?: Prisma.PostOrderByWithRelationInput
   hashtag?: Prisma.HashtagOrderByWithRelationInput
+  pagePost?: Prisma.PagePostOrderByWithRelationInput
 }
 
 export type PostHashtagWhereUniqueInput = Prisma.AtLeast<{
@@ -193,16 +204,19 @@ export type PostHashtagWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.PostHashtagWhereInput | Prisma.PostHashtagWhereInput[]
   OR?: Prisma.PostHashtagWhereInput[]
   NOT?: Prisma.PostHashtagWhereInput | Prisma.PostHashtagWhereInput[]
-  postId?: Prisma.StringFilter<"PostHashtag"> | string
+  postId?: Prisma.StringNullableFilter<"PostHashtag"> | string | null
+  pagePostId?: Prisma.StringNullableFilter<"PostHashtag"> | string | null
   hashtagId?: Prisma.StringFilter<"PostHashtag"> | string
   createdAt?: Prisma.DateTimeFilter<"PostHashtag"> | Date | string
-  post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>
+  post?: Prisma.XOR<Prisma.PostNullableScalarRelationFilter, Prisma.PostWhereInput> | null
   hashtag?: Prisma.XOR<Prisma.HashtagScalarRelationFilter, Prisma.HashtagWhereInput>
+  pagePost?: Prisma.XOR<Prisma.PagePostNullableScalarRelationFilter, Prisma.PagePostWhereInput> | null
 }, "id" | "postId_hashtagId">
 
 export type PostHashtagOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  postId?: Prisma.SortOrder
+  postId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pagePostId?: Prisma.SortOrderInput | Prisma.SortOrder
   hashtagId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.PostHashtagCountOrderByAggregateInput
@@ -215,7 +229,8 @@ export type PostHashtagScalarWhereWithAggregatesInput = {
   OR?: Prisma.PostHashtagScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PostHashtagScalarWhereWithAggregatesInput | Prisma.PostHashtagScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"PostHashtag"> | string
-  postId?: Prisma.StringWithAggregatesFilter<"PostHashtag"> | string
+  postId?: Prisma.StringNullableWithAggregatesFilter<"PostHashtag"> | string | null
+  pagePostId?: Prisma.StringNullableWithAggregatesFilter<"PostHashtag"> | string | null
   hashtagId?: Prisma.StringWithAggregatesFilter<"PostHashtag"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PostHashtag"> | Date | string
 }
@@ -223,13 +238,15 @@ export type PostHashtagScalarWhereWithAggregatesInput = {
 export type PostHashtagCreateInput = {
   id?: string
   createdAt?: Date | string
-  post: Prisma.PostCreateNestedOneWithoutPostHashtagsInput
+  post?: Prisma.PostCreateNestedOneWithoutPostHashtagsInput
   hashtag: Prisma.HashtagCreateNestedOneWithoutPostHashtagsInput
+  pagePost?: Prisma.PagePostCreateNestedOneWithoutPostHashtagsInput
 }
 
 export type PostHashtagUncheckedCreateInput = {
   id?: string
-  postId: string
+  postId?: string | null
+  pagePostId?: string | null
   hashtagId: string
   createdAt?: Date | string
 }
@@ -237,20 +254,23 @@ export type PostHashtagUncheckedCreateInput = {
 export type PostHashtagUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  post?: Prisma.PostUpdateOneRequiredWithoutPostHashtagsNestedInput
+  post?: Prisma.PostUpdateOneWithoutPostHashtagsNestedInput
   hashtag?: Prisma.HashtagUpdateOneRequiredWithoutPostHashtagsNestedInput
+  pagePost?: Prisma.PagePostUpdateOneWithoutPostHashtagsNestedInput
 }
 
 export type PostHashtagUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  postId?: Prisma.StringFieldUpdateOperationsInput | string
+  postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hashtagId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostHashtagCreateManyInput = {
   id?: string
-  postId: string
+  postId?: string | null
+  pagePostId?: string | null
   hashtagId: string
   createdAt?: Date | string
 }
@@ -262,7 +282,8 @@ export type PostHashtagUpdateManyMutationInput = {
 
 export type PostHashtagUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  postId?: Prisma.StringFieldUpdateOperationsInput | string
+  postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hashtagId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -285,6 +306,7 @@ export type PostHashtagPostIdHashtagIdCompoundUniqueInput = {
 export type PostHashtagCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   postId?: Prisma.SortOrder
+  pagePostId?: Prisma.SortOrder
   hashtagId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -292,6 +314,7 @@ export type PostHashtagCountOrderByAggregateInput = {
 export type PostHashtagMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   postId?: Prisma.SortOrder
+  pagePostId?: Prisma.SortOrder
   hashtagId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -299,6 +322,7 @@ export type PostHashtagMaxOrderByAggregateInput = {
 export type PostHashtagMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   postId?: Prisma.SortOrder
+  pagePostId?: Prisma.SortOrder
   hashtagId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -342,6 +366,48 @@ export type PostHashtagUncheckedUpdateManyWithoutHashtagNestedInput = {
   connect?: Prisma.PostHashtagWhereUniqueInput | Prisma.PostHashtagWhereUniqueInput[]
   update?: Prisma.PostHashtagUpdateWithWhereUniqueWithoutHashtagInput | Prisma.PostHashtagUpdateWithWhereUniqueWithoutHashtagInput[]
   updateMany?: Prisma.PostHashtagUpdateManyWithWhereWithoutHashtagInput | Prisma.PostHashtagUpdateManyWithWhereWithoutHashtagInput[]
+  deleteMany?: Prisma.PostHashtagScalarWhereInput | Prisma.PostHashtagScalarWhereInput[]
+}
+
+export type PostHashtagCreateNestedManyWithoutPagePostInput = {
+  create?: Prisma.XOR<Prisma.PostHashtagCreateWithoutPagePostInput, Prisma.PostHashtagUncheckedCreateWithoutPagePostInput> | Prisma.PostHashtagCreateWithoutPagePostInput[] | Prisma.PostHashtagUncheckedCreateWithoutPagePostInput[]
+  connectOrCreate?: Prisma.PostHashtagCreateOrConnectWithoutPagePostInput | Prisma.PostHashtagCreateOrConnectWithoutPagePostInput[]
+  createMany?: Prisma.PostHashtagCreateManyPagePostInputEnvelope
+  connect?: Prisma.PostHashtagWhereUniqueInput | Prisma.PostHashtagWhereUniqueInput[]
+}
+
+export type PostHashtagUncheckedCreateNestedManyWithoutPagePostInput = {
+  create?: Prisma.XOR<Prisma.PostHashtagCreateWithoutPagePostInput, Prisma.PostHashtagUncheckedCreateWithoutPagePostInput> | Prisma.PostHashtagCreateWithoutPagePostInput[] | Prisma.PostHashtagUncheckedCreateWithoutPagePostInput[]
+  connectOrCreate?: Prisma.PostHashtagCreateOrConnectWithoutPagePostInput | Prisma.PostHashtagCreateOrConnectWithoutPagePostInput[]
+  createMany?: Prisma.PostHashtagCreateManyPagePostInputEnvelope
+  connect?: Prisma.PostHashtagWhereUniqueInput | Prisma.PostHashtagWhereUniqueInput[]
+}
+
+export type PostHashtagUpdateManyWithoutPagePostNestedInput = {
+  create?: Prisma.XOR<Prisma.PostHashtagCreateWithoutPagePostInput, Prisma.PostHashtagUncheckedCreateWithoutPagePostInput> | Prisma.PostHashtagCreateWithoutPagePostInput[] | Prisma.PostHashtagUncheckedCreateWithoutPagePostInput[]
+  connectOrCreate?: Prisma.PostHashtagCreateOrConnectWithoutPagePostInput | Prisma.PostHashtagCreateOrConnectWithoutPagePostInput[]
+  upsert?: Prisma.PostHashtagUpsertWithWhereUniqueWithoutPagePostInput | Prisma.PostHashtagUpsertWithWhereUniqueWithoutPagePostInput[]
+  createMany?: Prisma.PostHashtagCreateManyPagePostInputEnvelope
+  set?: Prisma.PostHashtagWhereUniqueInput | Prisma.PostHashtagWhereUniqueInput[]
+  disconnect?: Prisma.PostHashtagWhereUniqueInput | Prisma.PostHashtagWhereUniqueInput[]
+  delete?: Prisma.PostHashtagWhereUniqueInput | Prisma.PostHashtagWhereUniqueInput[]
+  connect?: Prisma.PostHashtagWhereUniqueInput | Prisma.PostHashtagWhereUniqueInput[]
+  update?: Prisma.PostHashtagUpdateWithWhereUniqueWithoutPagePostInput | Prisma.PostHashtagUpdateWithWhereUniqueWithoutPagePostInput[]
+  updateMany?: Prisma.PostHashtagUpdateManyWithWhereWithoutPagePostInput | Prisma.PostHashtagUpdateManyWithWhereWithoutPagePostInput[]
+  deleteMany?: Prisma.PostHashtagScalarWhereInput | Prisma.PostHashtagScalarWhereInput[]
+}
+
+export type PostHashtagUncheckedUpdateManyWithoutPagePostNestedInput = {
+  create?: Prisma.XOR<Prisma.PostHashtagCreateWithoutPagePostInput, Prisma.PostHashtagUncheckedCreateWithoutPagePostInput> | Prisma.PostHashtagCreateWithoutPagePostInput[] | Prisma.PostHashtagUncheckedCreateWithoutPagePostInput[]
+  connectOrCreate?: Prisma.PostHashtagCreateOrConnectWithoutPagePostInput | Prisma.PostHashtagCreateOrConnectWithoutPagePostInput[]
+  upsert?: Prisma.PostHashtagUpsertWithWhereUniqueWithoutPagePostInput | Prisma.PostHashtagUpsertWithWhereUniqueWithoutPagePostInput[]
+  createMany?: Prisma.PostHashtagCreateManyPagePostInputEnvelope
+  set?: Prisma.PostHashtagWhereUniqueInput | Prisma.PostHashtagWhereUniqueInput[]
+  disconnect?: Prisma.PostHashtagWhereUniqueInput | Prisma.PostHashtagWhereUniqueInput[]
+  delete?: Prisma.PostHashtagWhereUniqueInput | Prisma.PostHashtagWhereUniqueInput[]
+  connect?: Prisma.PostHashtagWhereUniqueInput | Prisma.PostHashtagWhereUniqueInput[]
+  update?: Prisma.PostHashtagUpdateWithWhereUniqueWithoutPagePostInput | Prisma.PostHashtagUpdateWithWhereUniqueWithoutPagePostInput[]
+  updateMany?: Prisma.PostHashtagUpdateManyWithWhereWithoutPagePostInput | Prisma.PostHashtagUpdateManyWithWhereWithoutPagePostInput[]
   deleteMany?: Prisma.PostHashtagScalarWhereInput | Prisma.PostHashtagScalarWhereInput[]
 }
 
@@ -390,12 +456,14 @@ export type PostHashtagUncheckedUpdateManyWithoutPostNestedInput = {
 export type PostHashtagCreateWithoutHashtagInput = {
   id?: string
   createdAt?: Date | string
-  post: Prisma.PostCreateNestedOneWithoutPostHashtagsInput
+  post?: Prisma.PostCreateNestedOneWithoutPostHashtagsInput
+  pagePost?: Prisma.PagePostCreateNestedOneWithoutPostHashtagsInput
 }
 
 export type PostHashtagUncheckedCreateWithoutHashtagInput = {
   id?: string
-  postId: string
+  postId?: string | null
+  pagePostId?: string | null
   createdAt?: Date | string
 }
 
@@ -430,19 +498,62 @@ export type PostHashtagScalarWhereInput = {
   OR?: Prisma.PostHashtagScalarWhereInput[]
   NOT?: Prisma.PostHashtagScalarWhereInput | Prisma.PostHashtagScalarWhereInput[]
   id?: Prisma.StringFilter<"PostHashtag"> | string
-  postId?: Prisma.StringFilter<"PostHashtag"> | string
+  postId?: Prisma.StringNullableFilter<"PostHashtag"> | string | null
+  pagePostId?: Prisma.StringNullableFilter<"PostHashtag"> | string | null
   hashtagId?: Prisma.StringFilter<"PostHashtag"> | string
   createdAt?: Prisma.DateTimeFilter<"PostHashtag"> | Date | string
+}
+
+export type PostHashtagCreateWithoutPagePostInput = {
+  id?: string
+  createdAt?: Date | string
+  post?: Prisma.PostCreateNestedOneWithoutPostHashtagsInput
+  hashtag: Prisma.HashtagCreateNestedOneWithoutPostHashtagsInput
+}
+
+export type PostHashtagUncheckedCreateWithoutPagePostInput = {
+  id?: string
+  postId?: string | null
+  hashtagId: string
+  createdAt?: Date | string
+}
+
+export type PostHashtagCreateOrConnectWithoutPagePostInput = {
+  where: Prisma.PostHashtagWhereUniqueInput
+  create: Prisma.XOR<Prisma.PostHashtagCreateWithoutPagePostInput, Prisma.PostHashtagUncheckedCreateWithoutPagePostInput>
+}
+
+export type PostHashtagCreateManyPagePostInputEnvelope = {
+  data: Prisma.PostHashtagCreateManyPagePostInput | Prisma.PostHashtagCreateManyPagePostInput[]
+  skipDuplicates?: boolean
+}
+
+export type PostHashtagUpsertWithWhereUniqueWithoutPagePostInput = {
+  where: Prisma.PostHashtagWhereUniqueInput
+  update: Prisma.XOR<Prisma.PostHashtagUpdateWithoutPagePostInput, Prisma.PostHashtagUncheckedUpdateWithoutPagePostInput>
+  create: Prisma.XOR<Prisma.PostHashtagCreateWithoutPagePostInput, Prisma.PostHashtagUncheckedCreateWithoutPagePostInput>
+}
+
+export type PostHashtagUpdateWithWhereUniqueWithoutPagePostInput = {
+  where: Prisma.PostHashtagWhereUniqueInput
+  data: Prisma.XOR<Prisma.PostHashtagUpdateWithoutPagePostInput, Prisma.PostHashtagUncheckedUpdateWithoutPagePostInput>
+}
+
+export type PostHashtagUpdateManyWithWhereWithoutPagePostInput = {
+  where: Prisma.PostHashtagScalarWhereInput
+  data: Prisma.XOR<Prisma.PostHashtagUpdateManyMutationInput, Prisma.PostHashtagUncheckedUpdateManyWithoutPagePostInput>
 }
 
 export type PostHashtagCreateWithoutPostInput = {
   id?: string
   createdAt?: Date | string
   hashtag: Prisma.HashtagCreateNestedOneWithoutPostHashtagsInput
+  pagePost?: Prisma.PagePostCreateNestedOneWithoutPostHashtagsInput
 }
 
 export type PostHashtagUncheckedCreateWithoutPostInput = {
   id?: string
+  pagePostId?: string | null
   hashtagId: string
   createdAt?: Date | string
 }
@@ -475,30 +586,63 @@ export type PostHashtagUpdateManyWithWhereWithoutPostInput = {
 
 export type PostHashtagCreateManyHashtagInput = {
   id?: string
-  postId: string
+  postId?: string | null
+  pagePostId?: string | null
   createdAt?: Date | string
 }
 
 export type PostHashtagUpdateWithoutHashtagInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  post?: Prisma.PostUpdateOneRequiredWithoutPostHashtagsNestedInput
+  post?: Prisma.PostUpdateOneWithoutPostHashtagsNestedInput
+  pagePost?: Prisma.PagePostUpdateOneWithoutPostHashtagsNestedInput
 }
 
 export type PostHashtagUncheckedUpdateWithoutHashtagInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  postId?: Prisma.StringFieldUpdateOperationsInput | string
+  postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostHashtagUncheckedUpdateManyWithoutHashtagInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  postId?: Prisma.StringFieldUpdateOperationsInput | string
+  postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pagePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PostHashtagCreateManyPagePostInput = {
+  id?: string
+  postId?: string | null
+  hashtagId: string
+  createdAt?: Date | string
+}
+
+export type PostHashtagUpdateWithoutPagePostInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  post?: Prisma.PostUpdateOneWithoutPostHashtagsNestedInput
+  hashtag?: Prisma.HashtagUpdateOneRequiredWithoutPostHashtagsNestedInput
+}
+
+export type PostHashtagUncheckedUpdateWithoutPagePostInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hashtagId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PostHashtagUncheckedUpdateManyWithoutPagePostInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hashtagId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostHashtagCreateManyPostInput = {
   id?: string
+  pagePostId?: string | null
   hashtagId: string
   createdAt?: Date | string
 }
@@ -507,16 +651,19 @@ export type PostHashtagUpdateWithoutPostInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hashtag?: Prisma.HashtagUpdateOneRequiredWithoutPostHashtagsNestedInput
+  pagePost?: Prisma.PagePostUpdateOneWithoutPostHashtagsNestedInput
 }
 
 export type PostHashtagUncheckedUpdateWithoutPostInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  pagePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hashtagId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostHashtagUncheckedUpdateManyWithoutPostInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  pagePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hashtagId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -526,60 +673,72 @@ export type PostHashtagUncheckedUpdateManyWithoutPostInput = {
 export type PostHashtagSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   postId?: boolean
+  pagePostId?: boolean
   hashtagId?: boolean
   createdAt?: boolean
-  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  post?: boolean | Prisma.PostHashtag$postArgs<ExtArgs>
   hashtag?: boolean | Prisma.HashtagDefaultArgs<ExtArgs>
+  pagePost?: boolean | Prisma.PostHashtag$pagePostArgs<ExtArgs>
 }, ExtArgs["result"]["postHashtag"]>
 
 export type PostHashtagSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   postId?: boolean
+  pagePostId?: boolean
   hashtagId?: boolean
   createdAt?: boolean
-  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  post?: boolean | Prisma.PostHashtag$postArgs<ExtArgs>
   hashtag?: boolean | Prisma.HashtagDefaultArgs<ExtArgs>
+  pagePost?: boolean | Prisma.PostHashtag$pagePostArgs<ExtArgs>
 }, ExtArgs["result"]["postHashtag"]>
 
 export type PostHashtagSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   postId?: boolean
+  pagePostId?: boolean
   hashtagId?: boolean
   createdAt?: boolean
-  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  post?: boolean | Prisma.PostHashtag$postArgs<ExtArgs>
   hashtag?: boolean | Prisma.HashtagDefaultArgs<ExtArgs>
+  pagePost?: boolean | Prisma.PostHashtag$pagePostArgs<ExtArgs>
 }, ExtArgs["result"]["postHashtag"]>
 
 export type PostHashtagSelectScalar = {
   id?: boolean
   postId?: boolean
+  pagePostId?: boolean
   hashtagId?: boolean
   createdAt?: boolean
 }
 
-export type PostHashtagOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "postId" | "hashtagId" | "createdAt", ExtArgs["result"]["postHashtag"]>
+export type PostHashtagOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "postId" | "pagePostId" | "hashtagId" | "createdAt", ExtArgs["result"]["postHashtag"]>
 export type PostHashtagInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  post?: boolean | Prisma.PostHashtag$postArgs<ExtArgs>
   hashtag?: boolean | Prisma.HashtagDefaultArgs<ExtArgs>
+  pagePost?: boolean | Prisma.PostHashtag$pagePostArgs<ExtArgs>
 }
 export type PostHashtagIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  post?: boolean | Prisma.PostHashtag$postArgs<ExtArgs>
   hashtag?: boolean | Prisma.HashtagDefaultArgs<ExtArgs>
+  pagePost?: boolean | Prisma.PostHashtag$pagePostArgs<ExtArgs>
 }
 export type PostHashtagIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+  post?: boolean | Prisma.PostHashtag$postArgs<ExtArgs>
   hashtag?: boolean | Prisma.HashtagDefaultArgs<ExtArgs>
+  pagePost?: boolean | Prisma.PostHashtag$pagePostArgs<ExtArgs>
 }
 
 export type $PostHashtagPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PostHashtag"
   objects: {
-    post: Prisma.$PostPayload<ExtArgs>
+    post: Prisma.$PostPayload<ExtArgs> | null
     hashtag: Prisma.$HashtagPayload<ExtArgs>
+    pagePost: Prisma.$PagePostPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    postId: string
+    postId: string | null
+    pagePostId: string | null
     hashtagId: string
     createdAt: Date
   }, ExtArgs["result"]["postHashtag"]>
@@ -976,8 +1135,9 @@ readonly fields: PostHashtagFieldRefs;
  */
 export interface Prisma__PostHashtagClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  post<T extends Prisma.PostDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PostDefaultArgs<ExtArgs>>): Prisma.Prisma__PostClient<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  post<T extends Prisma.PostHashtag$postArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PostHashtag$postArgs<ExtArgs>>): Prisma.Prisma__PostClient<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   hashtag<T extends Prisma.HashtagDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HashtagDefaultArgs<ExtArgs>>): Prisma.Prisma__HashtagClient<runtime.Types.Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  pagePost<T extends Prisma.PostHashtag$pagePostArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PostHashtag$pagePostArgs<ExtArgs>>): Prisma.Prisma__PagePostClient<runtime.Types.Result.GetResult<Prisma.$PagePostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1009,6 +1169,7 @@ export interface Prisma__PostHashtagClient<T, Null = never, ExtArgs extends runt
 export interface PostHashtagFieldRefs {
   readonly id: Prisma.FieldRef<"PostHashtag", 'String'>
   readonly postId: Prisma.FieldRef<"PostHashtag", 'String'>
+  readonly pagePostId: Prisma.FieldRef<"PostHashtag", 'String'>
   readonly hashtagId: Prisma.FieldRef<"PostHashtag", 'String'>
   readonly createdAt: Prisma.FieldRef<"PostHashtag", 'DateTime'>
 }
@@ -1404,6 +1565,44 @@ export type PostHashtagDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many PostHashtags to delete.
    */
   limit?: number
+}
+
+/**
+ * PostHashtag.post
+ */
+export type PostHashtag$postArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Post
+   */
+  select?: Prisma.PostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Post
+   */
+  omit?: Prisma.PostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostInclude<ExtArgs> | null
+  where?: Prisma.PostWhereInput
+}
+
+/**
+ * PostHashtag.pagePost
+ */
+export type PostHashtag$pagePostArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PagePost
+   */
+  select?: Prisma.PagePostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PagePost
+   */
+  omit?: Prisma.PagePostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PagePostInclude<ExtArgs> | null
+  where?: Prisma.PagePostWhereInput
 }
 
 /**

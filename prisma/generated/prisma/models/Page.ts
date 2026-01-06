@@ -217,6 +217,8 @@ export type PageWhereInput = {
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   pageAdmins?: Prisma.PageAdminListRelationFilter
   pagePosts?: Prisma.PagePostListRelationFilter
+  pageInvitations?: Prisma.PageInvitationListRelationFilter
+  pagefollowers?: Prisma.PageFollowerListRelationFilter
 }
 
 export type PageOrderByWithRelationInput = {
@@ -232,6 +234,8 @@ export type PageOrderByWithRelationInput = {
   owner?: Prisma.UserOrderByWithRelationInput
   pageAdmins?: Prisma.PageAdminOrderByRelationAggregateInput
   pagePosts?: Prisma.PagePostOrderByRelationAggregateInput
+  pageInvitations?: Prisma.PageInvitationOrderByRelationAggregateInput
+  pagefollowers?: Prisma.PageFollowerOrderByRelationAggregateInput
 }
 
 export type PageWhereUniqueInput = Prisma.AtLeast<{
@@ -250,6 +254,8 @@ export type PageWhereUniqueInput = Prisma.AtLeast<{
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   pageAdmins?: Prisma.PageAdminListRelationFilter
   pagePosts?: Prisma.PagePostListRelationFilter
+  pageInvitations?: Prisma.PageInvitationListRelationFilter
+  pagefollowers?: Prisma.PageFollowerListRelationFilter
 }, "id" | "username">
 
 export type PageOrderByWithAggregationInput = {
@@ -294,6 +300,8 @@ export type PageCreateInput = {
   owner: Prisma.UserCreateNestedOneWithoutPagesOwnedInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutPageInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPageInput
+  pageInvitations?: Prisma.PageInvitationCreateNestedManyWithoutPageInput
+  pagefollowers?: Prisma.PageFollowerCreateNestedManyWithoutPageInput
 }
 
 export type PageUncheckedCreateInput = {
@@ -308,6 +316,8 @@ export type PageUncheckedCreateInput = {
   updatedAt?: Date | string
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutPageInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPageInput
+  pageInvitations?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutPageInput
+  pagefollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutPageInput
 }
 
 export type PageUpdateInput = {
@@ -322,6 +332,8 @@ export type PageUpdateInput = {
   owner?: Prisma.UserUpdateOneRequiredWithoutPagesOwnedNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutPageNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPageNestedInput
+  pageInvitations?: Prisma.PageInvitationUpdateManyWithoutPageNestedInput
+  pagefollowers?: Prisma.PageFollowerUpdateManyWithoutPageNestedInput
 }
 
 export type PageUncheckedUpdateInput = {
@@ -336,6 +348,8 @@ export type PageUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutPageNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPageNestedInput
+  pageInvitations?: Prisma.PageInvitationUncheckedUpdateManyWithoutPageNestedInput
+  pagefollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutPageNestedInput
 }
 
 export type PageCreateManyInput = {
@@ -438,6 +452,34 @@ export type PageUpdateOneRequiredWithoutPageAdminsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PageUpdateToOneWithWhereWithoutPageAdminsInput, Prisma.PageUpdateWithoutPageAdminsInput>, Prisma.PageUncheckedUpdateWithoutPageAdminsInput>
 }
 
+export type PageCreateNestedOneWithoutPagefollowersInput = {
+  create?: Prisma.XOR<Prisma.PageCreateWithoutPagefollowersInput, Prisma.PageUncheckedCreateWithoutPagefollowersInput>
+  connectOrCreate?: Prisma.PageCreateOrConnectWithoutPagefollowersInput
+  connect?: Prisma.PageWhereUniqueInput
+}
+
+export type PageUpdateOneRequiredWithoutPagefollowersNestedInput = {
+  create?: Prisma.XOR<Prisma.PageCreateWithoutPagefollowersInput, Prisma.PageUncheckedCreateWithoutPagefollowersInput>
+  connectOrCreate?: Prisma.PageCreateOrConnectWithoutPagefollowersInput
+  upsert?: Prisma.PageUpsertWithoutPagefollowersInput
+  connect?: Prisma.PageWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PageUpdateToOneWithWhereWithoutPagefollowersInput, Prisma.PageUpdateWithoutPagefollowersInput>, Prisma.PageUncheckedUpdateWithoutPagefollowersInput>
+}
+
+export type PageCreateNestedOneWithoutPageInvitationsInput = {
+  create?: Prisma.XOR<Prisma.PageCreateWithoutPageInvitationsInput, Prisma.PageUncheckedCreateWithoutPageInvitationsInput>
+  connectOrCreate?: Prisma.PageCreateOrConnectWithoutPageInvitationsInput
+  connect?: Prisma.PageWhereUniqueInput
+}
+
+export type PageUpdateOneRequiredWithoutPageInvitationsNestedInput = {
+  create?: Prisma.XOR<Prisma.PageCreateWithoutPageInvitationsInput, Prisma.PageUncheckedCreateWithoutPageInvitationsInput>
+  connectOrCreate?: Prisma.PageCreateOrConnectWithoutPageInvitationsInput
+  upsert?: Prisma.PageUpsertWithoutPageInvitationsInput
+  connect?: Prisma.PageWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PageUpdateToOneWithWhereWithoutPageInvitationsInput, Prisma.PageUpdateWithoutPageInvitationsInput>, Prisma.PageUncheckedUpdateWithoutPageInvitationsInput>
+}
+
 export type PageCreateNestedOneWithoutPagePostsInput = {
   create?: Prisma.XOR<Prisma.PageCreateWithoutPagePostsInput, Prisma.PageUncheckedCreateWithoutPagePostsInput>
   connectOrCreate?: Prisma.PageCreateOrConnectWithoutPagePostsInput
@@ -505,6 +547,8 @@ export type PageCreateWithoutPageAdminsInput = {
   updatedAt?: Date | string
   owner: Prisma.UserCreateNestedOneWithoutPagesOwnedInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPageInput
+  pageInvitations?: Prisma.PageInvitationCreateNestedManyWithoutPageInput
+  pagefollowers?: Prisma.PageFollowerCreateNestedManyWithoutPageInput
 }
 
 export type PageUncheckedCreateWithoutPageAdminsInput = {
@@ -518,6 +562,8 @@ export type PageUncheckedCreateWithoutPageAdminsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPageInput
+  pageInvitations?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutPageInput
+  pagefollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutPageInput
 }
 
 export type PageCreateOrConnectWithoutPageAdminsInput = {
@@ -547,6 +593,8 @@ export type PageUpdateWithoutPageAdminsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.UserUpdateOneRequiredWithoutPagesOwnedNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPageNestedInput
+  pageInvitations?: Prisma.PageInvitationUpdateManyWithoutPageNestedInput
+  pagefollowers?: Prisma.PageFollowerUpdateManyWithoutPageNestedInput
 }
 
 export type PageUncheckedUpdateWithoutPageAdminsInput = {
@@ -560,6 +608,160 @@ export type PageUncheckedUpdateWithoutPageAdminsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPageNestedInput
+  pageInvitations?: Prisma.PageInvitationUncheckedUpdateManyWithoutPageNestedInput
+  pagefollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutPageNestedInput
+}
+
+export type PageCreateWithoutPagefollowersInput = {
+  id?: string
+  name: string
+  username: string
+  description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutPagesOwnedInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutPageInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPageInput
+  pageInvitations?: Prisma.PageInvitationCreateNestedManyWithoutPageInput
+}
+
+export type PageUncheckedCreateWithoutPagefollowersInput = {
+  id?: string
+  name: string
+  username: string
+  description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  ownerId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutPageInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPageInput
+  pageInvitations?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutPageInput
+}
+
+export type PageCreateOrConnectWithoutPagefollowersInput = {
+  where: Prisma.PageWhereUniqueInput
+  create: Prisma.XOR<Prisma.PageCreateWithoutPagefollowersInput, Prisma.PageUncheckedCreateWithoutPagefollowersInput>
+}
+
+export type PageUpsertWithoutPagefollowersInput = {
+  update: Prisma.XOR<Prisma.PageUpdateWithoutPagefollowersInput, Prisma.PageUncheckedUpdateWithoutPagefollowersInput>
+  create: Prisma.XOR<Prisma.PageCreateWithoutPagefollowersInput, Prisma.PageUncheckedCreateWithoutPagefollowersInput>
+  where?: Prisma.PageWhereInput
+}
+
+export type PageUpdateToOneWithWhereWithoutPagefollowersInput = {
+  where?: Prisma.PageWhereInput
+  data: Prisma.XOR<Prisma.PageUpdateWithoutPagefollowersInput, Prisma.PageUncheckedUpdateWithoutPagefollowersInput>
+}
+
+export type PageUpdateWithoutPagefollowersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutPagesOwnedNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutPageNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPageNestedInput
+  pageInvitations?: Prisma.PageInvitationUpdateManyWithoutPageNestedInput
+}
+
+export type PageUncheckedUpdateWithoutPagefollowersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutPageNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPageNestedInput
+  pageInvitations?: Prisma.PageInvitationUncheckedUpdateManyWithoutPageNestedInput
+}
+
+export type PageCreateWithoutPageInvitationsInput = {
+  id?: string
+  name: string
+  username: string
+  description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutPagesOwnedInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutPageInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPageInput
+  pagefollowers?: Prisma.PageFollowerCreateNestedManyWithoutPageInput
+}
+
+export type PageUncheckedCreateWithoutPageInvitationsInput = {
+  id?: string
+  name: string
+  username: string
+  description?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  ownerId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutPageInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPageInput
+  pagefollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutPageInput
+}
+
+export type PageCreateOrConnectWithoutPageInvitationsInput = {
+  where: Prisma.PageWhereUniqueInput
+  create: Prisma.XOR<Prisma.PageCreateWithoutPageInvitationsInput, Prisma.PageUncheckedCreateWithoutPageInvitationsInput>
+}
+
+export type PageUpsertWithoutPageInvitationsInput = {
+  update: Prisma.XOR<Prisma.PageUpdateWithoutPageInvitationsInput, Prisma.PageUncheckedUpdateWithoutPageInvitationsInput>
+  create: Prisma.XOR<Prisma.PageCreateWithoutPageInvitationsInput, Prisma.PageUncheckedCreateWithoutPageInvitationsInput>
+  where?: Prisma.PageWhereInput
+}
+
+export type PageUpdateToOneWithWhereWithoutPageInvitationsInput = {
+  where?: Prisma.PageWhereInput
+  data: Prisma.XOR<Prisma.PageUpdateWithoutPageInvitationsInput, Prisma.PageUncheckedUpdateWithoutPageInvitationsInput>
+}
+
+export type PageUpdateWithoutPageInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutPagesOwnedNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutPageNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPageNestedInput
+  pagefollowers?: Prisma.PageFollowerUpdateManyWithoutPageNestedInput
+}
+
+export type PageUncheckedUpdateWithoutPageInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutPageNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPageNestedInput
+  pagefollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutPageNestedInput
 }
 
 export type PageCreateWithoutPagePostsInput = {
@@ -573,6 +775,8 @@ export type PageCreateWithoutPagePostsInput = {
   updatedAt?: Date | string
   owner: Prisma.UserCreateNestedOneWithoutPagesOwnedInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutPageInput
+  pageInvitations?: Prisma.PageInvitationCreateNestedManyWithoutPageInput
+  pagefollowers?: Prisma.PageFollowerCreateNestedManyWithoutPageInput
 }
 
 export type PageUncheckedCreateWithoutPagePostsInput = {
@@ -586,6 +790,8 @@ export type PageUncheckedCreateWithoutPagePostsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutPageInput
+  pageInvitations?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutPageInput
+  pagefollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutPageInput
 }
 
 export type PageCreateOrConnectWithoutPagePostsInput = {
@@ -615,6 +821,8 @@ export type PageUpdateWithoutPagePostsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.UserUpdateOneRequiredWithoutPagesOwnedNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutPageNestedInput
+  pageInvitations?: Prisma.PageInvitationUpdateManyWithoutPageNestedInput
+  pagefollowers?: Prisma.PageFollowerUpdateManyWithoutPageNestedInput
 }
 
 export type PageUncheckedUpdateWithoutPagePostsInput = {
@@ -628,6 +836,8 @@ export type PageUncheckedUpdateWithoutPagePostsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutPageNestedInput
+  pageInvitations?: Prisma.PageInvitationUncheckedUpdateManyWithoutPageNestedInput
+  pagefollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutPageNestedInput
 }
 
 export type PageCreateWithoutOwnerInput = {
@@ -641,6 +851,8 @@ export type PageCreateWithoutOwnerInput = {
   updatedAt?: Date | string
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutPageInput
   pagePosts?: Prisma.PagePostCreateNestedManyWithoutPageInput
+  pageInvitations?: Prisma.PageInvitationCreateNestedManyWithoutPageInput
+  pagefollowers?: Prisma.PageFollowerCreateNestedManyWithoutPageInput
 }
 
 export type PageUncheckedCreateWithoutOwnerInput = {
@@ -654,6 +866,8 @@ export type PageUncheckedCreateWithoutOwnerInput = {
   updatedAt?: Date | string
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutPageInput
   pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPageInput
+  pageInvitations?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutPageInput
+  pagefollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutPageInput
 }
 
 export type PageCreateOrConnectWithoutOwnerInput = {
@@ -719,6 +933,8 @@ export type PageUpdateWithoutOwnerInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutPageNestedInput
   pagePosts?: Prisma.PagePostUpdateManyWithoutPageNestedInput
+  pageInvitations?: Prisma.PageInvitationUpdateManyWithoutPageNestedInput
+  pagefollowers?: Prisma.PageFollowerUpdateManyWithoutPageNestedInput
 }
 
 export type PageUncheckedUpdateWithoutOwnerInput = {
@@ -732,6 +948,8 @@ export type PageUncheckedUpdateWithoutOwnerInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutPageNestedInput
   pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPageNestedInput
+  pageInvitations?: Prisma.PageInvitationUncheckedUpdateManyWithoutPageNestedInput
+  pagefollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutPageNestedInput
 }
 
 export type PageUncheckedUpdateManyWithoutOwnerInput = {
@@ -753,11 +971,15 @@ export type PageUncheckedUpdateManyWithoutOwnerInput = {
 export type PageCountOutputType = {
   pageAdmins: number
   pagePosts: number
+  pageInvitations: number
+  pagefollowers: number
 }
 
 export type PageCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   pageAdmins?: boolean | PageCountOutputTypeCountPageAdminsArgs
   pagePosts?: boolean | PageCountOutputTypeCountPagePostsArgs
+  pageInvitations?: boolean | PageCountOutputTypeCountPageInvitationsArgs
+  pagefollowers?: boolean | PageCountOutputTypeCountPagefollowersArgs
 }
 
 /**
@@ -784,6 +1006,20 @@ export type PageCountOutputTypeCountPagePostsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.PagePostWhereInput
 }
 
+/**
+ * PageCountOutputType without action
+ */
+export type PageCountOutputTypeCountPageInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PageInvitationWhereInput
+}
+
+/**
+ * PageCountOutputType without action
+ */
+export type PageCountOutputTypeCountPagefollowersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PageFollowerWhereInput
+}
+
 
 export type PageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -798,6 +1034,8 @@ export type PageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   pageAdmins?: boolean | Prisma.Page$pageAdminsArgs<ExtArgs>
   pagePosts?: boolean | Prisma.Page$pagePostsArgs<ExtArgs>
+  pageInvitations?: boolean | Prisma.Page$pageInvitationsArgs<ExtArgs>
+  pagefollowers?: boolean | Prisma.Page$pagefollowersArgs<ExtArgs>
   _count?: boolean | Prisma.PageCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["page"]>
 
@@ -844,6 +1082,8 @@ export type PageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   pageAdmins?: boolean | Prisma.Page$pageAdminsArgs<ExtArgs>
   pagePosts?: boolean | Prisma.Page$pagePostsArgs<ExtArgs>
+  pageInvitations?: boolean | Prisma.Page$pageInvitationsArgs<ExtArgs>
+  pagefollowers?: boolean | Prisma.Page$pagefollowersArgs<ExtArgs>
   _count?: boolean | Prisma.PageCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -859,6 +1099,8 @@ export type $PagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     owner: Prisma.$UserPayload<ExtArgs>
     pageAdmins: Prisma.$PageAdminPayload<ExtArgs>[]
     pagePosts: Prisma.$PagePostPayload<ExtArgs>[]
+    pageInvitations: Prisma.$PageInvitationPayload<ExtArgs>[]
+    pagefollowers: Prisma.$PageFollowerPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1267,6 +1509,8 @@ export interface Prisma__PageClient<T, Null = never, ExtArgs extends runtime.Typ
   owner<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   pageAdmins<T extends Prisma.Page$pageAdminsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Page$pageAdminsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PageAdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagePosts<T extends Prisma.Page$pagePostsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Page$pagePostsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagePostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pageInvitations<T extends Prisma.Page$pageInvitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Page$pageInvitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PageInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pagefollowers<T extends Prisma.Page$pagefollowersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Page$pagefollowersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PageFollowerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1746,6 +1990,54 @@ export type Page$pagePostsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.PagePostScalarFieldEnum | Prisma.PagePostScalarFieldEnum[]
+}
+
+/**
+ * Page.pageInvitations
+ */
+export type Page$pageInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PageInvitation
+   */
+  select?: Prisma.PageInvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PageInvitation
+   */
+  omit?: Prisma.PageInvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PageInvitationInclude<ExtArgs> | null
+  where?: Prisma.PageInvitationWhereInput
+  orderBy?: Prisma.PageInvitationOrderByWithRelationInput | Prisma.PageInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.PageInvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PageInvitationScalarFieldEnum | Prisma.PageInvitationScalarFieldEnum[]
+}
+
+/**
+ * Page.pagefollowers
+ */
+export type Page$pagefollowersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PageFollower
+   */
+  select?: Prisma.PageFollowerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PageFollower
+   */
+  omit?: Prisma.PageFollowerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PageFollowerInclude<ExtArgs> | null
+  where?: Prisma.PageFollowerWhereInput
+  orderBy?: Prisma.PageFollowerOrderByWithRelationInput | Prisma.PageFollowerOrderByWithRelationInput[]
+  cursor?: Prisma.PageFollowerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PageFollowerScalarFieldEnum | Prisma.PageFollowerScalarFieldEnum[]
 }
 
 /**

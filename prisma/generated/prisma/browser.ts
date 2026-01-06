@@ -63,6 +63,11 @@ export type Like = Prisma.LikeModel
  */
 export type Media = Prisma.MediaModel
 /**
+ * Model Mention
+ * 
+ */
+export type Mention = Prisma.MentionModel
+/**
  * Model Message
  * 
  */
@@ -82,6 +87,16 @@ export type Page = Prisma.PageModel
  * 
  */
 export type PageAdmin = Prisma.PageAdminModel
+/**
+ * Model PageFollower
+ * 
+ */
+export type PageFollower = Prisma.PageFollowerModel
+/**
+ * Model PageInvitation
+ * 
+ */
+export type PageInvitation = Prisma.PageInvitationModel
 /**
  * Model PagePost
  * 

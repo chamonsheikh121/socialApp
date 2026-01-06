@@ -91,7 +91,6 @@ export class PostService {
       data: {
         userId,
         content: dto.content,
-        postType: dto.postType,
         isPublic: dto.isPublic,
         postCategories: dto.categoryIds
           ? {
@@ -350,7 +349,6 @@ export class PostService {
       where: { id },
       data: {
         content: dto.content,
-        postType: dto.postType,
         isPublic: dto.isPublic,
         postCategories: dto.categoryIds
           ? {

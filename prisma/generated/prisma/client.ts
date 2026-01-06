@@ -31,7 +31,7 @@ export * from "./enums"
  * const blockUsers = await prisma.blockUser.findMany()
  * ```
  * 
- * Read more in our [docs](https://pris.ly/d/client).
+ * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
  */
 export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
@@ -83,6 +83,11 @@ export type Like = Prisma.LikeModel
  */
 export type Media = Prisma.MediaModel
 /**
+ * Model Mention
+ * 
+ */
+export type Mention = Prisma.MentionModel
+/**
  * Model Message
  * 
  */
@@ -102,6 +107,16 @@ export type Page = Prisma.PageModel
  * 
  */
 export type PageAdmin = Prisma.PageAdminModel
+/**
+ * Model PageFollower
+ * 
+ */
+export type PageFollower = Prisma.PageFollowerModel
+/**
+ * Model PageInvitation
+ * 
+ */
+export type PageInvitation = Prisma.PageInvitationModel
 /**
  * Model PagePost
  * 

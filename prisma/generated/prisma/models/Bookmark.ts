@@ -27,7 +27,6 @@ export type AggregateBookmark = {
 export type BookmarkMinAggregateOutputType = {
   id: string | null
   userId: string | null
-  PostType: $Enums.PostType | null
   contentId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -36,7 +35,6 @@ export type BookmarkMinAggregateOutputType = {
 export type BookmarkMaxAggregateOutputType = {
   id: string | null
   userId: string | null
-  PostType: $Enums.PostType | null
   contentId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -45,7 +43,6 @@ export type BookmarkMaxAggregateOutputType = {
 export type BookmarkCountAggregateOutputType = {
   id: number
   userId: number
-  PostType: number
   contentId: number
   createdAt: number
   updatedAt: number
@@ -56,7 +53,6 @@ export type BookmarkCountAggregateOutputType = {
 export type BookmarkMinAggregateInputType = {
   id?: true
   userId?: true
-  PostType?: true
   contentId?: true
   createdAt?: true
   updatedAt?: true
@@ -65,7 +61,6 @@ export type BookmarkMinAggregateInputType = {
 export type BookmarkMaxAggregateInputType = {
   id?: true
   userId?: true
-  PostType?: true
   contentId?: true
   createdAt?: true
   updatedAt?: true
@@ -74,7 +69,6 @@ export type BookmarkMaxAggregateInputType = {
 export type BookmarkCountAggregateInputType = {
   id?: true
   userId?: true
-  PostType?: true
   contentId?: true
   createdAt?: true
   updatedAt?: true
@@ -156,7 +150,6 @@ export type BookmarkGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type BookmarkGroupByOutputType = {
   id: string
   userId: string
-  PostType: $Enums.PostType
   contentId: string
   createdAt: Date
   updatedAt: Date
@@ -186,7 +179,6 @@ export type BookmarkWhereInput = {
   NOT?: Prisma.BookmarkWhereInput | Prisma.BookmarkWhereInput[]
   id?: Prisma.StringFilter<"Bookmark"> | string
   userId?: Prisma.StringFilter<"Bookmark"> | string
-  PostType?: Prisma.EnumPostTypeFilter<"Bookmark"> | $Enums.PostType
   contentId?: Prisma.StringFilter<"Bookmark"> | string
   createdAt?: Prisma.DateTimeFilter<"Bookmark"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Bookmark"> | Date | string
@@ -197,7 +189,6 @@ export type BookmarkWhereInput = {
 export type BookmarkOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  PostType?: Prisma.SortOrder
   contentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -207,23 +198,21 @@ export type BookmarkOrderByWithRelationInput = {
 
 export type BookmarkWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  userId_PostType_contentId?: Prisma.BookmarkUserIdPostTypeContentIdCompoundUniqueInput
+  userId_contentId?: Prisma.BookmarkUserIdContentIdCompoundUniqueInput
   AND?: Prisma.BookmarkWhereInput | Prisma.BookmarkWhereInput[]
   OR?: Prisma.BookmarkWhereInput[]
   NOT?: Prisma.BookmarkWhereInput | Prisma.BookmarkWhereInput[]
   userId?: Prisma.StringFilter<"Bookmark"> | string
-  PostType?: Prisma.EnumPostTypeFilter<"Bookmark"> | $Enums.PostType
   contentId?: Prisma.StringFilter<"Bookmark"> | string
   createdAt?: Prisma.DateTimeFilter<"Bookmark"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Bookmark"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   post?: Prisma.XOR<Prisma.PostNullableScalarRelationFilter, Prisma.PostWhereInput> | null
-}, "id" | "userId_PostType_contentId">
+}, "id" | "userId_contentId">
 
 export type BookmarkOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  PostType?: Prisma.SortOrder
   contentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -238,7 +227,6 @@ export type BookmarkScalarWhereWithAggregatesInput = {
   NOT?: Prisma.BookmarkScalarWhereWithAggregatesInput | Prisma.BookmarkScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Bookmark"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Bookmark"> | string
-  PostType?: Prisma.EnumPostTypeWithAggregatesFilter<"Bookmark"> | $Enums.PostType
   contentId?: Prisma.StringWithAggregatesFilter<"Bookmark"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Bookmark"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Bookmark"> | Date | string
@@ -246,7 +234,6 @@ export type BookmarkScalarWhereWithAggregatesInput = {
 
 export type BookmarkCreateInput = {
   id?: string
-  PostType: $Enums.PostType
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutBookmarksInput
@@ -256,7 +243,6 @@ export type BookmarkCreateInput = {
 export type BookmarkUncheckedCreateInput = {
   id?: string
   userId: string
-  PostType: $Enums.PostType
   contentId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -264,7 +250,6 @@ export type BookmarkUncheckedCreateInput = {
 
 export type BookmarkUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  PostType?: Prisma.EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutBookmarksNestedInput
@@ -274,7 +259,6 @@ export type BookmarkUpdateInput = {
 export type BookmarkUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  PostType?: Prisma.EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
   contentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -283,7 +267,6 @@ export type BookmarkUncheckedUpdateInput = {
 export type BookmarkCreateManyInput = {
   id?: string
   userId: string
-  PostType: $Enums.PostType
   contentId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -291,7 +274,6 @@ export type BookmarkCreateManyInput = {
 
 export type BookmarkUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  PostType?: Prisma.EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -299,22 +281,19 @@ export type BookmarkUpdateManyMutationInput = {
 export type BookmarkUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  PostType?: Prisma.EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
   contentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type BookmarkUserIdPostTypeContentIdCompoundUniqueInput = {
+export type BookmarkUserIdContentIdCompoundUniqueInput = {
   userId: string
-  PostType: $Enums.PostType
   contentId: string
 }
 
 export type BookmarkCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  PostType?: Prisma.SortOrder
   contentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -323,7 +302,6 @@ export type BookmarkCountOrderByAggregateInput = {
 export type BookmarkMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  PostType?: Prisma.SortOrder
   contentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -332,7 +310,6 @@ export type BookmarkMaxOrderByAggregateInput = {
 export type BookmarkMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  PostType?: Prisma.SortOrder
   contentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -346,10 +323,6 @@ export type BookmarkListRelationFilter = {
 
 export type BookmarkOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type EnumPostTypeFieldUpdateOperationsInput = {
-  set?: $Enums.PostType
 }
 
 export type BookmarkCreateNestedManyWithoutPostInput = {
@@ -438,7 +411,6 @@ export type BookmarkUncheckedUpdateManyWithoutUserNestedInput = {
 
 export type BookmarkCreateWithoutPostInput = {
   id?: string
-  PostType: $Enums.PostType
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutBookmarksInput
@@ -447,7 +419,6 @@ export type BookmarkCreateWithoutPostInput = {
 export type BookmarkUncheckedCreateWithoutPostInput = {
   id?: string
   userId: string
-  PostType: $Enums.PostType
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -484,7 +455,6 @@ export type BookmarkScalarWhereInput = {
   NOT?: Prisma.BookmarkScalarWhereInput | Prisma.BookmarkScalarWhereInput[]
   id?: Prisma.StringFilter<"Bookmark"> | string
   userId?: Prisma.StringFilter<"Bookmark"> | string
-  PostType?: Prisma.EnumPostTypeFilter<"Bookmark"> | $Enums.PostType
   contentId?: Prisma.StringFilter<"Bookmark"> | string
   createdAt?: Prisma.DateTimeFilter<"Bookmark"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Bookmark"> | Date | string
@@ -492,7 +462,6 @@ export type BookmarkScalarWhereInput = {
 
 export type BookmarkCreateWithoutUserInput = {
   id?: string
-  PostType: $Enums.PostType
   createdAt?: Date | string
   updatedAt?: Date | string
   post?: Prisma.PostCreateNestedOneWithoutBookmarksInput
@@ -500,7 +469,6 @@ export type BookmarkCreateWithoutUserInput = {
 
 export type BookmarkUncheckedCreateWithoutUserInput = {
   id?: string
-  PostType: $Enums.PostType
   contentId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -535,14 +503,12 @@ export type BookmarkUpdateManyWithWhereWithoutUserInput = {
 export type BookmarkCreateManyPostInput = {
   id?: string
   userId: string
-  PostType: $Enums.PostType
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type BookmarkUpdateWithoutPostInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  PostType?: Prisma.EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutBookmarksNestedInput
@@ -551,7 +517,6 @@ export type BookmarkUpdateWithoutPostInput = {
 export type BookmarkUncheckedUpdateWithoutPostInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  PostType?: Prisma.EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -559,14 +524,12 @@ export type BookmarkUncheckedUpdateWithoutPostInput = {
 export type BookmarkUncheckedUpdateManyWithoutPostInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  PostType?: Prisma.EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BookmarkCreateManyUserInput = {
   id?: string
-  PostType: $Enums.PostType
   contentId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -574,7 +537,6 @@ export type BookmarkCreateManyUserInput = {
 
 export type BookmarkUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  PostType?: Prisma.EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   post?: Prisma.PostUpdateOneWithoutBookmarksNestedInput
@@ -582,7 +544,6 @@ export type BookmarkUpdateWithoutUserInput = {
 
 export type BookmarkUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  PostType?: Prisma.EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
   contentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -590,7 +551,6 @@ export type BookmarkUncheckedUpdateWithoutUserInput = {
 
 export type BookmarkUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  PostType?: Prisma.EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
   contentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -601,7 +561,6 @@ export type BookmarkUncheckedUpdateManyWithoutUserInput = {
 export type BookmarkSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  PostType?: boolean
   contentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -612,7 +571,6 @@ export type BookmarkSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type BookmarkSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  PostType?: boolean
   contentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -623,7 +581,6 @@ export type BookmarkSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type BookmarkSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  PostType?: boolean
   contentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -634,13 +591,12 @@ export type BookmarkSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type BookmarkSelectScalar = {
   id?: boolean
   userId?: boolean
-  PostType?: boolean
   contentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type BookmarkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "PostType" | "contentId" | "createdAt" | "updatedAt", ExtArgs["result"]["bookmark"]>
+export type BookmarkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "contentId" | "createdAt" | "updatedAt", ExtArgs["result"]["bookmark"]>
 export type BookmarkInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   post?: boolean | Prisma.Bookmark$postArgs<ExtArgs>
@@ -663,7 +619,6 @@ export type $BookmarkPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    PostType: $Enums.PostType
     contentId: string
     createdAt: Date
     updatedAt: Date
@@ -1094,7 +1049,6 @@ export interface Prisma__BookmarkClient<T, Null = never, ExtArgs extends runtime
 export interface BookmarkFieldRefs {
   readonly id: Prisma.FieldRef<"Bookmark", 'String'>
   readonly userId: Prisma.FieldRef<"Bookmark", 'String'>
-  readonly PostType: Prisma.FieldRef<"Bookmark", 'PostType'>
   readonly contentId: Prisma.FieldRef<"Bookmark", 'String'>
   readonly createdAt: Prisma.FieldRef<"Bookmark", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Bookmark", 'DateTime'>

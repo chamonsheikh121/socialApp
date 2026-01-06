@@ -68,60 +68,64 @@ export class CommentService {
     return comment;
   }
 
-  //   async findAll(dto: GetCommentsDto) {
-  //     const { page = 1, limit = 10, postId, parentCommentId } = dto;
-  //     const skip = (page - 1) * limit;
+  async findAllByPost(postId: string) {
+    // Verify post exists
+    const post = await this.prisma.client.post.findUnique({
+      where: { id: postId },
+    });
 
-  //     const where: any = {};
+    if (!post) {
+      throw new NotFoundException('Post not found');
+    }
 
-  //     if (postId) {
-  //       where.postId = postId;
-  //     }
+    // Get only top-level comments (not replies)
+    const comments = await this.prisma.client.comment.findMany({
+      where: {
+        postId,
+        parentCommentId: null,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            fullName: true,
+            username: true,
+            avatarUrl: true,
+          },
+        },
+        childComments: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                fullName: true,
+                username: true,
+                avatarUrl: true,
+              },
+            },
+            _count: {
+              select: {
+                childComments: true,
+              },
+            },
+          },
+          orderBy: {
+            createdAt: 'desc',
+          },
+        },
+        _count: {
+          select: {
+            childComments: true,
+          },
+        },
+      },
+    });
 
-  //     if (parentCommentId !== undefined) {
-  //       where.parentCommentId = parentCommentId;
-  //     } else {
-  //       // By default, only get top-level comments (not replies)
-  //       where.parentCommentId = null;
-  //     }
-
-  //     const [comments, total] = await Promise.all([
-  //       this.prisma.client.comment.findMany({
-  //         where,
-  //         skip,
-  //         take: limit,
-  //         orderBy: {
-  //           createdAt: 'desc',
-  //         },
-  //         include: {
-  //           user: {
-  //             select: {
-  //               id: true,
-  //               fullName: true,
-  //               username: true,
-  //               avatarUrl: true,
-  //             },
-  //           },
-  //           _count: {
-  //             select: {
-  //               childComments: true,
-  //             },
-  //           },
-  //         },
-  //       }),
-  //       this.prisma.client.comment.count({ where }),
-  //     ]);
-
-  //     return {
-  //       data: comments,
-  //       meta: {
-  //         total,
-  //         page,
-  //         limit,
-  //         totalPages: Math.ceil(total / limit),
-  //       },
-  //     };
-  //   }
+    return comments;
+  }
 
   async findOne(id: string) {
     const comment = await this.prisma.client.comment.findUnique({

@@ -1,9 +1,11 @@
+
+
 // Posts
 model Post {
   id            String   @id @default(uuid())
   userId        String
+
   content       String?
-  postType      PostType @default(USER_POST)
   isPublic      Boolean  @default(true)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -15,20 +17,15 @@ model Post {
   likes          Like[]
   bookmarks      Bookmark[]        @relation("PostBookmarks")
   media          Media[]
+  mentions       Mention[]         @relation("PostMentions")
 
   @@index([userId, createdAt])
-  @@index([postType])
   @@index([createdAt])
 }
 
 
 
-// Enums
-enum PostType {
-  USER_POST
-  PAGE_POST
-  USER_REEL
-  PAGE_REEL
-  USER_VIDEO
-  PAGE_VIDEO
-}
+
+
+
+

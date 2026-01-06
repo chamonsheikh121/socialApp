@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.2.0
- * Query Engine version: 0c8ef2ce45c83248ab3df073180d5eda9e8be7a3
+ * Prisma Client JS version: 7.0.1
+ * Query Engine version: f09f2815f091dbba658cdcd2264306d88bb5bda6
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.2.0",
-  engine: "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3"
+  client: "7.0.1",
+  engine: "f09f2815f091dbba658cdcd2264306d88bb5bda6"
 }
 
 /**
@@ -393,10 +393,13 @@ export const ModelName = {
   Interest: 'Interest',
   Like: 'Like',
   Media: 'Media',
+  Mention: 'Mention',
   Message: 'Message',
   Notification: 'Notification',
   Page: 'Page',
   PageAdmin: 'PageAdmin',
+  PageFollower: 'PageFollower',
+  PageInvitation: 'PageInvitation',
   PagePost: 'PagePost',
   Post: 'Post',
   PostCategory: 'PostCategory',
@@ -421,7 +424,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "blockUser" | "bookmark" | "pCategory" | "comment" | "follow" | "hashtag" | "interest" | "like" | "media" | "message" | "notification" | "page" | "pageAdmin" | "pagePost" | "post" | "postCategory" | "postHashtag" | "refreshToken" | "userSocialLink" | "user" | "userInterest" | "userSettings"
+    modelProps: "blockUser" | "bookmark" | "pCategory" | "comment" | "follow" | "hashtag" | "interest" | "like" | "media" | "mention" | "message" | "notification" | "page" | "pageAdmin" | "pageFollower" | "pageInvitation" | "pagePost" | "post" | "postCategory" | "postHashtag" | "refreshToken" | "userSocialLink" | "user" | "userInterest" | "userSettings"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1091,6 +1094,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Mention: {
+      payload: Prisma.$MentionPayload<ExtArgs>
+      fields: Prisma.MentionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MentionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MentionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentionPayload>
+        }
+        findFirst: {
+          args: Prisma.MentionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MentionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentionPayload>
+        }
+        findMany: {
+          args: Prisma.MentionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentionPayload>[]
+        }
+        create: {
+          args: Prisma.MentionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentionPayload>
+        }
+        createMany: {
+          args: Prisma.MentionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MentionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentionPayload>[]
+        }
+        delete: {
+          args: Prisma.MentionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentionPayload>
+        }
+        update: {
+          args: Prisma.MentionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentionPayload>
+        }
+        deleteMany: {
+          args: Prisma.MentionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MentionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MentionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentionPayload>[]
+        }
+        upsert: {
+          args: Prisma.MentionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentionPayload>
+        }
+        aggregate: {
+          args: Prisma.MentionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMention>
+        }
+        groupBy: {
+          args: Prisma.MentionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MentionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MentionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MentionCountAggregateOutputType> | number
+        }
+      }
+    }
     Message: {
       payload: Prisma.$MessagePayload<ExtArgs>
       fields: Prisma.MessageFieldRefs
@@ -1384,6 +1461,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.PageAdminCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.PageAdminCountAggregateOutputType> | number
+        }
+      }
+    }
+    PageFollower: {
+      payload: Prisma.$PageFollowerPayload<ExtArgs>
+      fields: Prisma.PageFollowerFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PageFollowerFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageFollowerPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PageFollowerFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageFollowerPayload>
+        }
+        findFirst: {
+          args: Prisma.PageFollowerFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageFollowerPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PageFollowerFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageFollowerPayload>
+        }
+        findMany: {
+          args: Prisma.PageFollowerFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageFollowerPayload>[]
+        }
+        create: {
+          args: Prisma.PageFollowerCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageFollowerPayload>
+        }
+        createMany: {
+          args: Prisma.PageFollowerCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PageFollowerCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageFollowerPayload>[]
+        }
+        delete: {
+          args: Prisma.PageFollowerDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageFollowerPayload>
+        }
+        update: {
+          args: Prisma.PageFollowerUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageFollowerPayload>
+        }
+        deleteMany: {
+          args: Prisma.PageFollowerDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PageFollowerUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PageFollowerUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageFollowerPayload>[]
+        }
+        upsert: {
+          args: Prisma.PageFollowerUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageFollowerPayload>
+        }
+        aggregate: {
+          args: Prisma.PageFollowerAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePageFollower>
+        }
+        groupBy: {
+          args: Prisma.PageFollowerGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PageFollowerGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PageFollowerCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PageFollowerCountAggregateOutputType> | number
+        }
+      }
+    }
+    PageInvitation: {
+      payload: Prisma.$PageInvitationPayload<ExtArgs>
+      fields: Prisma.PageInvitationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PageInvitationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageInvitationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PageInvitationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageInvitationPayload>
+        }
+        findFirst: {
+          args: Prisma.PageInvitationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageInvitationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PageInvitationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageInvitationPayload>
+        }
+        findMany: {
+          args: Prisma.PageInvitationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageInvitationPayload>[]
+        }
+        create: {
+          args: Prisma.PageInvitationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageInvitationPayload>
+        }
+        createMany: {
+          args: Prisma.PageInvitationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PageInvitationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageInvitationPayload>[]
+        }
+        delete: {
+          args: Prisma.PageInvitationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageInvitationPayload>
+        }
+        update: {
+          args: Prisma.PageInvitationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageInvitationPayload>
+        }
+        deleteMany: {
+          args: Prisma.PageInvitationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PageInvitationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PageInvitationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageInvitationPayload>[]
+        }
+        upsert: {
+          args: Prisma.PageInvitationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PageInvitationPayload>
+        }
+        aggregate: {
+          args: Prisma.PageInvitationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePageInvitation>
+        }
+        groupBy: {
+          args: Prisma.PageInvitationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PageInvitationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PageInvitationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PageInvitationCountAggregateOutputType> | number
         }
       }
     }
@@ -2105,7 +2330,6 @@ export type BlockUserScalarFieldEnum = (typeof BlockUserScalarFieldEnum)[keyof t
 export const BookmarkScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  PostType: 'PostType',
   contentId: 'contentId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -2135,6 +2359,7 @@ export const CommentScalarFieldEnum = {
   commentText: 'commentText',
   userId: 'userId',
   postId: 'postId',
+  pagePostId: 'pagePostId',
   parentCommentId: 'parentCommentId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -2201,6 +2426,19 @@ export const MediaScalarFieldEnum = {
 export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof MediaScalarFieldEnum]
 
 
+export const MentionScalarFieldEnum = {
+  id: 'id',
+  mentionedUserId: 'mentionedUserId',
+  mentionedBy: 'mentionedBy',
+  postId: 'postId',
+  pagePostId: 'pagePostId',
+  commentId: 'commentId',
+  createdAt: 'createdAt'
+} as const
+
+export type MentionScalarFieldEnum = (typeof MentionScalarFieldEnum)[keyof typeof MentionScalarFieldEnum]
+
+
 export const MessageScalarFieldEnum = {
   id: 'id',
   content: 'content',
@@ -2253,11 +2491,35 @@ export const PageAdminScalarFieldEnum = {
 export type PageAdminScalarFieldEnum = (typeof PageAdminScalarFieldEnum)[keyof typeof PageAdminScalarFieldEnum]
 
 
+export const PageFollowerScalarFieldEnum = {
+  id: 'id',
+  pageId: 'pageId',
+  userId: 'userId',
+  followedAt: 'followedAt'
+} as const
+
+export type PageFollowerScalarFieldEnum = (typeof PageFollowerScalarFieldEnum)[keyof typeof PageFollowerScalarFieldEnum]
+
+
+export const PageInvitationScalarFieldEnum = {
+  id: 'id',
+  pageId: 'pageId',
+  senderId: 'senderId',
+  receiverId: 'receiverId',
+  isAccepted: 'isAccepted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PageInvitationScalarFieldEnum = (typeof PageInvitationScalarFieldEnum)[keyof typeof PageInvitationScalarFieldEnum]
+
+
 export const PagePostScalarFieldEnum = {
   id: 'id',
-  content: 'content',
   pageId: 'pageId',
   postedBy: 'postedBy',
+  content: 'content',
+  isPublic: 'isPublic',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -2269,7 +2531,6 @@ export const PostScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   content: 'content',
-  postType: 'postType',
   isPublic: 'isPublic',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -2280,7 +2541,9 @@ export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof Post
 
 export const PostCategoryScalarFieldEnum = {
   id: 'id',
+  postType: 'postType',
   postId: 'postId',
+  pagePostId: 'pagePostId',
   categoryId: 'categoryId',
   createdAt: 'createdAt'
 } as const
@@ -2291,6 +2554,7 @@ export type PostCategoryScalarFieldEnum = (typeof PostCategoryScalarFieldEnum)[k
 export const PostHashtagScalarFieldEnum = {
   id: 'id',
   postId: 'postId',
+  pagePostId: 'pagePostId',
   hashtagId: 'hashtagId',
   createdAt: 'createdAt'
 } as const
@@ -2442,20 +2706,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'PostType'
- */
-export type EnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType'>
-    
-
-
-/**
- * Reference to a field of type 'PostType[]'
- */
-export type ListEnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType[]'>
-    
-
-
-/**
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -2529,6 +2779,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'PostType'
+ */
+export type EnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType'>
+    
+
+
+/**
+ * Reference to a field of type 'PostType[]'
+ */
+export type ListEnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType[]'>
     
 
 
@@ -2622,7 +2886,7 @@ export type PrismaClientOptions = ({
    *  { emit: 'stdout', level: 'error' }
    * 
    * ```
-   * Read more in our [docs](https://pris.ly/d/logging).
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
    */
   log?: (LogLevel | LogDefinition)[]
   /**
@@ -2650,22 +2914,6 @@ export type PrismaClientOptions = ({
    * ```
    */
   omit?: GlobalOmitConfig
-  /**
-   * SQL commenter plugins that add metadata to SQL queries as comments.
-   * Comments follow the sqlcommenter format: https://google.github.io/sqlcommenter/
-   * 
-   * @example
-   * ```
-   * const prisma = new PrismaClient({
-   *   adapter,
-   *   comments: [
-   *     traceContext(),
-   *     queryInsights(),
-   *   ],
-   * })
-   * ```
-   */
-  comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
   blockUser?: Prisma.BlockUserOmit
@@ -2677,10 +2925,13 @@ export type GlobalOmitConfig = {
   interest?: Prisma.InterestOmit
   like?: Prisma.LikeOmit
   media?: Prisma.MediaOmit
+  mention?: Prisma.MentionOmit
   message?: Prisma.MessageOmit
   notification?: Prisma.NotificationOmit
   page?: Prisma.PageOmit
   pageAdmin?: Prisma.PageAdminOmit
+  pageFollower?: Prisma.PageFollowerOmit
+  pageInvitation?: Prisma.PageInvitationOmit
   pagePost?: Prisma.PagePostOmit
   post?: Prisma.PostOmit
   postCategory?: Prisma.PostCategoryOmit

@@ -26,27 +26,30 @@ export type AggregatePagePost = {
 
 export type PagePostMinAggregateOutputType = {
   id: string | null
-  content: string | null
   pageId: string | null
   postedBy: string | null
+  content: string | null
+  isPublic: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type PagePostMaxAggregateOutputType = {
   id: string | null
-  content: string | null
   pageId: string | null
   postedBy: string | null
+  content: string | null
+  isPublic: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type PagePostCountAggregateOutputType = {
   id: number
-  content: number
   pageId: number
   postedBy: number
+  content: number
+  isPublic: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -55,27 +58,30 @@ export type PagePostCountAggregateOutputType = {
 
 export type PagePostMinAggregateInputType = {
   id?: true
-  content?: true
   pageId?: true
   postedBy?: true
+  content?: true
+  isPublic?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type PagePostMaxAggregateInputType = {
   id?: true
-  content?: true
   pageId?: true
   postedBy?: true
+  content?: true
+  isPublic?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type PagePostCountAggregateInputType = {
   id?: true
-  content?: true
   pageId?: true
   postedBy?: true
+  content?: true
+  isPublic?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -155,9 +161,10 @@ export type PagePostGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type PagePostGroupByOutputType = {
   id: string
-  content: string | null
   pageId: string
   postedBy: string
+  content: string | null
+  isPublic: boolean
   createdAt: Date
   updatedAt: Date
   _count: PagePostCountAggregateOutputType | null
@@ -185,26 +192,36 @@ export type PagePostWhereInput = {
   OR?: Prisma.PagePostWhereInput[]
   NOT?: Prisma.PagePostWhereInput | Prisma.PagePostWhereInput[]
   id?: Prisma.StringFilter<"PagePost"> | string
-  content?: Prisma.StringNullableFilter<"PagePost"> | string | null
   pageId?: Prisma.StringFilter<"PagePost"> | string
   postedBy?: Prisma.StringFilter<"PagePost"> | string
+  content?: Prisma.StringNullableFilter<"PagePost"> | string | null
+  isPublic?: Prisma.BoolFilter<"PagePost"> | boolean
   createdAt?: Prisma.DateTimeFilter<"PagePost"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PagePost"> | Date | string
   page?: Prisma.XOR<Prisma.PageScalarRelationFilter, Prisma.PageWhereInput>
   poster?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  postCategories?: Prisma.PostCategoryListRelationFilter
+  postHashtags?: Prisma.PostHashtagListRelationFilter
   media?: Prisma.MediaListRelationFilter
+  comments?: Prisma.CommentListRelationFilter
+  mentions?: Prisma.MentionListRelationFilter
 }
 
 export type PagePostOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  content?: Prisma.SortOrderInput | Prisma.SortOrder
   pageId?: Prisma.SortOrder
   postedBy?: Prisma.SortOrder
+  content?: Prisma.SortOrderInput | Prisma.SortOrder
+  isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   page?: Prisma.PageOrderByWithRelationInput
   poster?: Prisma.UserOrderByWithRelationInput
+  postCategories?: Prisma.PostCategoryOrderByRelationAggregateInput
+  postHashtags?: Prisma.PostHashtagOrderByRelationAggregateInput
   media?: Prisma.MediaOrderByRelationAggregateInput
+  comments?: Prisma.CommentOrderByRelationAggregateInput
+  mentions?: Prisma.MentionOrderByRelationAggregateInput
 }
 
 export type PagePostWhereUniqueInput = Prisma.AtLeast<{
@@ -212,21 +229,27 @@ export type PagePostWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.PagePostWhereInput | Prisma.PagePostWhereInput[]
   OR?: Prisma.PagePostWhereInput[]
   NOT?: Prisma.PagePostWhereInput | Prisma.PagePostWhereInput[]
-  content?: Prisma.StringNullableFilter<"PagePost"> | string | null
   pageId?: Prisma.StringFilter<"PagePost"> | string
   postedBy?: Prisma.StringFilter<"PagePost"> | string
+  content?: Prisma.StringNullableFilter<"PagePost"> | string | null
+  isPublic?: Prisma.BoolFilter<"PagePost"> | boolean
   createdAt?: Prisma.DateTimeFilter<"PagePost"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PagePost"> | Date | string
   page?: Prisma.XOR<Prisma.PageScalarRelationFilter, Prisma.PageWhereInput>
   poster?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  postCategories?: Prisma.PostCategoryListRelationFilter
+  postHashtags?: Prisma.PostHashtagListRelationFilter
   media?: Prisma.MediaListRelationFilter
+  comments?: Prisma.CommentListRelationFilter
+  mentions?: Prisma.MentionListRelationFilter
 }, "id">
 
 export type PagePostOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  content?: Prisma.SortOrderInput | Prisma.SortOrder
   pageId?: Prisma.SortOrder
   postedBy?: Prisma.SortOrder
+  content?: Prisma.SortOrderInput | Prisma.SortOrder
+  isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PagePostCountOrderByAggregateInput
@@ -239,9 +262,10 @@ export type PagePostScalarWhereWithAggregatesInput = {
   OR?: Prisma.PagePostScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PagePostScalarWhereWithAggregatesInput | Prisma.PagePostScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"PagePost"> | string
-  content?: Prisma.StringNullableWithAggregatesFilter<"PagePost"> | string | null
   pageId?: Prisma.StringWithAggregatesFilter<"PagePost"> | string
   postedBy?: Prisma.StringWithAggregatesFilter<"PagePost"> | string
+  content?: Prisma.StringNullableWithAggregatesFilter<"PagePost"> | string | null
+  isPublic?: Prisma.BoolWithAggregatesFilter<"PagePost"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PagePost"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PagePost"> | Date | string
 }
@@ -249,48 +273,69 @@ export type PagePostScalarWhereWithAggregatesInput = {
 export type PagePostCreateInput = {
   id?: string
   content?: string | null
+  isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   page: Prisma.PageCreateNestedOneWithoutPagePostsInput
   poster: Prisma.UserCreateNestedOneWithoutPagePostsInput
+  postCategories?: Prisma.PostCategoryCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagCreateNestedManyWithoutPagePostInput
   media?: Prisma.MediaCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionCreateNestedManyWithoutPagePostInput
 }
 
 export type PagePostUncheckedCreateInput = {
   id?: string
-  content?: string | null
   pageId: string
   postedBy: string
+  content?: string | null
+  isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  postCategories?: Prisma.PostCategoryUncheckedCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagUncheckedCreateNestedManyWithoutPagePostInput
   media?: Prisma.MediaUncheckedCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionUncheckedCreateNestedManyWithoutPagePostInput
 }
 
 export type PagePostUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   page?: Prisma.PageUpdateOneRequiredWithoutPagePostsNestedInput
   poster?: Prisma.UserUpdateOneRequiredWithoutPagePostsNestedInput
+  postCategories?: Prisma.PostCategoryUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUpdateManyWithoutPagePostNestedInput
   media?: Prisma.MediaUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUpdateManyWithoutPagePostNestedInput
 }
 
 export type PagePostUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pageId?: Prisma.StringFieldUpdateOperationsInput | string
   postedBy?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postCategories?: Prisma.PostCategoryUncheckedUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUncheckedUpdateManyWithoutPagePostNestedInput
   media?: Prisma.MediaUncheckedUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUncheckedUpdateManyWithoutPagePostNestedInput
 }
 
 export type PagePostCreateManyInput = {
   id?: string
-  content?: string | null
   pageId: string
   postedBy: string
+  content?: string | null
+  isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -298,15 +343,17 @@ export type PagePostCreateManyInput = {
 export type PagePostUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PagePostUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pageId?: Prisma.StringFieldUpdateOperationsInput | string
   postedBy?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -328,29 +375,48 @@ export type PagePostOrderByRelationAggregateInput = {
 
 export type PagePostCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  content?: Prisma.SortOrder
   pageId?: Prisma.SortOrder
   postedBy?: Prisma.SortOrder
+  content?: Prisma.SortOrder
+  isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type PagePostMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  content?: Prisma.SortOrder
   pageId?: Prisma.SortOrder
   postedBy?: Prisma.SortOrder
+  content?: Prisma.SortOrder
+  isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type PagePostMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  content?: Prisma.SortOrder
   pageId?: Prisma.SortOrder
   postedBy?: Prisma.SortOrder
+  content?: Prisma.SortOrder
+  isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type PagePostCreateNestedOneWithoutCommentsInput = {
+  create?: Prisma.XOR<Prisma.PagePostCreateWithoutCommentsInput, Prisma.PagePostUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.PagePostCreateOrConnectWithoutCommentsInput
+  connect?: Prisma.PagePostWhereUniqueInput
+}
+
+export type PagePostUpdateOneWithoutCommentsNestedInput = {
+  create?: Prisma.XOR<Prisma.PagePostCreateWithoutCommentsInput, Prisma.PagePostUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.PagePostCreateOrConnectWithoutCommentsInput
+  upsert?: Prisma.PagePostUpsertWithoutCommentsInput
+  disconnect?: Prisma.PagePostWhereInput | boolean
+  delete?: Prisma.PagePostWhereInput | boolean
+  connect?: Prisma.PagePostWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PagePostUpdateToOneWithWhereWithoutCommentsInput, Prisma.PagePostUpdateWithoutCommentsInput>, Prisma.PagePostUncheckedUpdateWithoutCommentsInput>
 }
 
 export type PagePostCreateNestedOneWithoutMediaInput = {
@@ -367,6 +433,22 @@ export type PagePostUpdateOneWithoutMediaNestedInput = {
   delete?: Prisma.PagePostWhereInput | boolean
   connect?: Prisma.PagePostWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.PagePostUpdateToOneWithWhereWithoutMediaInput, Prisma.PagePostUpdateWithoutMediaInput>, Prisma.PagePostUncheckedUpdateWithoutMediaInput>
+}
+
+export type PagePostCreateNestedOneWithoutMentionsInput = {
+  create?: Prisma.XOR<Prisma.PagePostCreateWithoutMentionsInput, Prisma.PagePostUncheckedCreateWithoutMentionsInput>
+  connectOrCreate?: Prisma.PagePostCreateOrConnectWithoutMentionsInput
+  connect?: Prisma.PagePostWhereUniqueInput
+}
+
+export type PagePostUpdateOneWithoutMentionsNestedInput = {
+  create?: Prisma.XOR<Prisma.PagePostCreateWithoutMentionsInput, Prisma.PagePostUncheckedCreateWithoutMentionsInput>
+  connectOrCreate?: Prisma.PagePostCreateOrConnectWithoutMentionsInput
+  upsert?: Prisma.PagePostUpsertWithoutMentionsInput
+  disconnect?: Prisma.PagePostWhereInput | boolean
+  delete?: Prisma.PagePostWhereInput | boolean
+  connect?: Prisma.PagePostWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PagePostUpdateToOneWithWhereWithoutMentionsInput, Prisma.PagePostUpdateWithoutMentionsInput>, Prisma.PagePostUncheckedUpdateWithoutMentionsInput>
 }
 
 export type PagePostCreateNestedManyWithoutPageInput = {
@@ -411,6 +493,38 @@ export type PagePostUncheckedUpdateManyWithoutPageNestedInput = {
   deleteMany?: Prisma.PagePostScalarWhereInput | Prisma.PagePostScalarWhereInput[]
 }
 
+export type PagePostCreateNestedOneWithoutPostCategoriesInput = {
+  create?: Prisma.XOR<Prisma.PagePostCreateWithoutPostCategoriesInput, Prisma.PagePostUncheckedCreateWithoutPostCategoriesInput>
+  connectOrCreate?: Prisma.PagePostCreateOrConnectWithoutPostCategoriesInput
+  connect?: Prisma.PagePostWhereUniqueInput
+}
+
+export type PagePostUpdateOneWithoutPostCategoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.PagePostCreateWithoutPostCategoriesInput, Prisma.PagePostUncheckedCreateWithoutPostCategoriesInput>
+  connectOrCreate?: Prisma.PagePostCreateOrConnectWithoutPostCategoriesInput
+  upsert?: Prisma.PagePostUpsertWithoutPostCategoriesInput
+  disconnect?: Prisma.PagePostWhereInput | boolean
+  delete?: Prisma.PagePostWhereInput | boolean
+  connect?: Prisma.PagePostWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PagePostUpdateToOneWithWhereWithoutPostCategoriesInput, Prisma.PagePostUpdateWithoutPostCategoriesInput>, Prisma.PagePostUncheckedUpdateWithoutPostCategoriesInput>
+}
+
+export type PagePostCreateNestedOneWithoutPostHashtagsInput = {
+  create?: Prisma.XOR<Prisma.PagePostCreateWithoutPostHashtagsInput, Prisma.PagePostUncheckedCreateWithoutPostHashtagsInput>
+  connectOrCreate?: Prisma.PagePostCreateOrConnectWithoutPostHashtagsInput
+  connect?: Prisma.PagePostWhereUniqueInput
+}
+
+export type PagePostUpdateOneWithoutPostHashtagsNestedInput = {
+  create?: Prisma.XOR<Prisma.PagePostCreateWithoutPostHashtagsInput, Prisma.PagePostUncheckedCreateWithoutPostHashtagsInput>
+  connectOrCreate?: Prisma.PagePostCreateOrConnectWithoutPostHashtagsInput
+  upsert?: Prisma.PagePostUpsertWithoutPostHashtagsInput
+  disconnect?: Prisma.PagePostWhereInput | boolean
+  delete?: Prisma.PagePostWhereInput | boolean
+  connect?: Prisma.PagePostWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PagePostUpdateToOneWithWhereWithoutPostHashtagsInput, Prisma.PagePostUpdateWithoutPostHashtagsInput>, Prisma.PagePostUncheckedUpdateWithoutPostHashtagsInput>
+}
+
 export type PagePostCreateNestedManyWithoutPosterInput = {
   create?: Prisma.XOR<Prisma.PagePostCreateWithoutPosterInput, Prisma.PagePostUncheckedCreateWithoutPosterInput> | Prisma.PagePostCreateWithoutPosterInput[] | Prisma.PagePostUncheckedCreateWithoutPosterInput[]
   connectOrCreate?: Prisma.PagePostCreateOrConnectWithoutPosterInput | Prisma.PagePostCreateOrConnectWithoutPosterInput[]
@@ -453,22 +567,104 @@ export type PagePostUncheckedUpdateManyWithoutPosterNestedInput = {
   deleteMany?: Prisma.PagePostScalarWhereInput | Prisma.PagePostScalarWhereInput[]
 }
 
-export type PagePostCreateWithoutMediaInput = {
+export type PagePostCreateWithoutCommentsInput = {
   id?: string
   content?: string | null
+  isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   page: Prisma.PageCreateNestedOneWithoutPagePostsInput
   poster: Prisma.UserCreateNestedOneWithoutPagePostsInput
+  postCategories?: Prisma.PostCategoryCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagCreateNestedManyWithoutPagePostInput
+  media?: Prisma.MediaCreateNestedManyWithoutPagePostInput
+  mentions?: Prisma.MentionCreateNestedManyWithoutPagePostInput
+}
+
+export type PagePostUncheckedCreateWithoutCommentsInput = {
+  id?: string
+  pageId: string
+  postedBy: string
+  content?: string | null
+  isPublic?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  postCategories?: Prisma.PostCategoryUncheckedCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagUncheckedCreateNestedManyWithoutPagePostInput
+  media?: Prisma.MediaUncheckedCreateNestedManyWithoutPagePostInput
+  mentions?: Prisma.MentionUncheckedCreateNestedManyWithoutPagePostInput
+}
+
+export type PagePostCreateOrConnectWithoutCommentsInput = {
+  where: Prisma.PagePostWhereUniqueInput
+  create: Prisma.XOR<Prisma.PagePostCreateWithoutCommentsInput, Prisma.PagePostUncheckedCreateWithoutCommentsInput>
+}
+
+export type PagePostUpsertWithoutCommentsInput = {
+  update: Prisma.XOR<Prisma.PagePostUpdateWithoutCommentsInput, Prisma.PagePostUncheckedUpdateWithoutCommentsInput>
+  create: Prisma.XOR<Prisma.PagePostCreateWithoutCommentsInput, Prisma.PagePostUncheckedCreateWithoutCommentsInput>
+  where?: Prisma.PagePostWhereInput
+}
+
+export type PagePostUpdateToOneWithWhereWithoutCommentsInput = {
+  where?: Prisma.PagePostWhereInput
+  data: Prisma.XOR<Prisma.PagePostUpdateWithoutCommentsInput, Prisma.PagePostUncheckedUpdateWithoutCommentsInput>
+}
+
+export type PagePostUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  page?: Prisma.PageUpdateOneRequiredWithoutPagePostsNestedInput
+  poster?: Prisma.UserUpdateOneRequiredWithoutPagePostsNestedInput
+  postCategories?: Prisma.PostCategoryUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUpdateManyWithoutPagePostNestedInput
+  media?: Prisma.MediaUpdateManyWithoutPagePostNestedInput
+  mentions?: Prisma.MentionUpdateManyWithoutPagePostNestedInput
+}
+
+export type PagePostUncheckedUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  pageId?: Prisma.StringFieldUpdateOperationsInput | string
+  postedBy?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postCategories?: Prisma.PostCategoryUncheckedUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUncheckedUpdateManyWithoutPagePostNestedInput
+  media?: Prisma.MediaUncheckedUpdateManyWithoutPagePostNestedInput
+  mentions?: Prisma.MentionUncheckedUpdateManyWithoutPagePostNestedInput
+}
+
+export type PagePostCreateWithoutMediaInput = {
+  id?: string
+  content?: string | null
+  isPublic?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  page: Prisma.PageCreateNestedOneWithoutPagePostsInput
+  poster: Prisma.UserCreateNestedOneWithoutPagePostsInput
+  postCategories?: Prisma.PostCategoryCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionCreateNestedManyWithoutPagePostInput
 }
 
 export type PagePostUncheckedCreateWithoutMediaInput = {
   id?: string
-  content?: string | null
   pageId: string
   postedBy: string
+  content?: string | null
+  isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  postCategories?: Prisma.PostCategoryUncheckedCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagUncheckedCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionUncheckedCreateNestedManyWithoutPagePostInput
 }
 
 export type PagePostCreateOrConnectWithoutMediaInput = {
@@ -490,37 +686,129 @@ export type PagePostUpdateToOneWithWhereWithoutMediaInput = {
 export type PagePostUpdateWithoutMediaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   page?: Prisma.PageUpdateOneRequiredWithoutPagePostsNestedInput
   poster?: Prisma.UserUpdateOneRequiredWithoutPagePostsNestedInput
+  postCategories?: Prisma.PostCategoryUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUpdateManyWithoutPagePostNestedInput
 }
 
 export type PagePostUncheckedUpdateWithoutMediaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pageId?: Prisma.StringFieldUpdateOperationsInput | string
   postedBy?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postCategories?: Prisma.PostCategoryUncheckedUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUncheckedUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUncheckedUpdateManyWithoutPagePostNestedInput
+}
+
+export type PagePostCreateWithoutMentionsInput = {
+  id?: string
+  content?: string | null
+  isPublic?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  page: Prisma.PageCreateNestedOneWithoutPagePostsInput
+  poster: Prisma.UserCreateNestedOneWithoutPagePostsInput
+  postCategories?: Prisma.PostCategoryCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagCreateNestedManyWithoutPagePostInput
+  media?: Prisma.MediaCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPage_PostInput
+}
+
+export type PagePostUncheckedCreateWithoutMentionsInput = {
+  id?: string
+  pageId: string
+  postedBy: string
+  content?: string | null
+  isPublic?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  postCategories?: Prisma.PostCategoryUncheckedCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagUncheckedCreateNestedManyWithoutPagePostInput
+  media?: Prisma.MediaUncheckedCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPage_PostInput
+}
+
+export type PagePostCreateOrConnectWithoutMentionsInput = {
+  where: Prisma.PagePostWhereUniqueInput
+  create: Prisma.XOR<Prisma.PagePostCreateWithoutMentionsInput, Prisma.PagePostUncheckedCreateWithoutMentionsInput>
+}
+
+export type PagePostUpsertWithoutMentionsInput = {
+  update: Prisma.XOR<Prisma.PagePostUpdateWithoutMentionsInput, Prisma.PagePostUncheckedUpdateWithoutMentionsInput>
+  create: Prisma.XOR<Prisma.PagePostCreateWithoutMentionsInput, Prisma.PagePostUncheckedCreateWithoutMentionsInput>
+  where?: Prisma.PagePostWhereInput
+}
+
+export type PagePostUpdateToOneWithWhereWithoutMentionsInput = {
+  where?: Prisma.PagePostWhereInput
+  data: Prisma.XOR<Prisma.PagePostUpdateWithoutMentionsInput, Prisma.PagePostUncheckedUpdateWithoutMentionsInput>
+}
+
+export type PagePostUpdateWithoutMentionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  page?: Prisma.PageUpdateOneRequiredWithoutPagePostsNestedInput
+  poster?: Prisma.UserUpdateOneRequiredWithoutPagePostsNestedInput
+  postCategories?: Prisma.PostCategoryUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUpdateManyWithoutPagePostNestedInput
+  media?: Prisma.MediaUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPage_PostNestedInput
+}
+
+export type PagePostUncheckedUpdateWithoutMentionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  pageId?: Prisma.StringFieldUpdateOperationsInput | string
+  postedBy?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postCategories?: Prisma.PostCategoryUncheckedUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUncheckedUpdateManyWithoutPagePostNestedInput
+  media?: Prisma.MediaUncheckedUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPage_PostNestedInput
 }
 
 export type PagePostCreateWithoutPageInput = {
   id?: string
   content?: string | null
+  isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   poster: Prisma.UserCreateNestedOneWithoutPagePostsInput
+  postCategories?: Prisma.PostCategoryCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagCreateNestedManyWithoutPagePostInput
   media?: Prisma.MediaCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionCreateNestedManyWithoutPagePostInput
 }
 
 export type PagePostUncheckedCreateWithoutPageInput = {
   id?: string
-  content?: string | null
   postedBy: string
+  content?: string | null
+  isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  postCategories?: Prisma.PostCategoryUncheckedCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagUncheckedCreateNestedManyWithoutPagePostInput
   media?: Prisma.MediaUncheckedCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionUncheckedCreateNestedManyWithoutPagePostInput
 }
 
 export type PagePostCreateOrConnectWithoutPageInput = {
@@ -554,29 +842,184 @@ export type PagePostScalarWhereInput = {
   OR?: Prisma.PagePostScalarWhereInput[]
   NOT?: Prisma.PagePostScalarWhereInput | Prisma.PagePostScalarWhereInput[]
   id?: Prisma.StringFilter<"PagePost"> | string
-  content?: Prisma.StringNullableFilter<"PagePost"> | string | null
   pageId?: Prisma.StringFilter<"PagePost"> | string
   postedBy?: Prisma.StringFilter<"PagePost"> | string
+  content?: Prisma.StringNullableFilter<"PagePost"> | string | null
+  isPublic?: Prisma.BoolFilter<"PagePost"> | boolean
   createdAt?: Prisma.DateTimeFilter<"PagePost"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PagePost"> | Date | string
+}
+
+export type PagePostCreateWithoutPostCategoriesInput = {
+  id?: string
+  content?: string | null
+  isPublic?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  page: Prisma.PageCreateNestedOneWithoutPagePostsInput
+  poster: Prisma.UserCreateNestedOneWithoutPagePostsInput
+  postHashtags?: Prisma.PostHashtagCreateNestedManyWithoutPagePostInput
+  media?: Prisma.MediaCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionCreateNestedManyWithoutPagePostInput
+}
+
+export type PagePostUncheckedCreateWithoutPostCategoriesInput = {
+  id?: string
+  pageId: string
+  postedBy: string
+  content?: string | null
+  isPublic?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  postHashtags?: Prisma.PostHashtagUncheckedCreateNestedManyWithoutPagePostInput
+  media?: Prisma.MediaUncheckedCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionUncheckedCreateNestedManyWithoutPagePostInput
+}
+
+export type PagePostCreateOrConnectWithoutPostCategoriesInput = {
+  where: Prisma.PagePostWhereUniqueInput
+  create: Prisma.XOR<Prisma.PagePostCreateWithoutPostCategoriesInput, Prisma.PagePostUncheckedCreateWithoutPostCategoriesInput>
+}
+
+export type PagePostUpsertWithoutPostCategoriesInput = {
+  update: Prisma.XOR<Prisma.PagePostUpdateWithoutPostCategoriesInput, Prisma.PagePostUncheckedUpdateWithoutPostCategoriesInput>
+  create: Prisma.XOR<Prisma.PagePostCreateWithoutPostCategoriesInput, Prisma.PagePostUncheckedCreateWithoutPostCategoriesInput>
+  where?: Prisma.PagePostWhereInput
+}
+
+export type PagePostUpdateToOneWithWhereWithoutPostCategoriesInput = {
+  where?: Prisma.PagePostWhereInput
+  data: Prisma.XOR<Prisma.PagePostUpdateWithoutPostCategoriesInput, Prisma.PagePostUncheckedUpdateWithoutPostCategoriesInput>
+}
+
+export type PagePostUpdateWithoutPostCategoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  page?: Prisma.PageUpdateOneRequiredWithoutPagePostsNestedInput
+  poster?: Prisma.UserUpdateOneRequiredWithoutPagePostsNestedInput
+  postHashtags?: Prisma.PostHashtagUpdateManyWithoutPagePostNestedInput
+  media?: Prisma.MediaUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUpdateManyWithoutPagePostNestedInput
+}
+
+export type PagePostUncheckedUpdateWithoutPostCategoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  pageId?: Prisma.StringFieldUpdateOperationsInput | string
+  postedBy?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postHashtags?: Prisma.PostHashtagUncheckedUpdateManyWithoutPagePostNestedInput
+  media?: Prisma.MediaUncheckedUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUncheckedUpdateManyWithoutPagePostNestedInput
+}
+
+export type PagePostCreateWithoutPostHashtagsInput = {
+  id?: string
+  content?: string | null
+  isPublic?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  page: Prisma.PageCreateNestedOneWithoutPagePostsInput
+  poster: Prisma.UserCreateNestedOneWithoutPagePostsInput
+  postCategories?: Prisma.PostCategoryCreateNestedManyWithoutPagePostInput
+  media?: Prisma.MediaCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionCreateNestedManyWithoutPagePostInput
+}
+
+export type PagePostUncheckedCreateWithoutPostHashtagsInput = {
+  id?: string
+  pageId: string
+  postedBy: string
+  content?: string | null
+  isPublic?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  postCategories?: Prisma.PostCategoryUncheckedCreateNestedManyWithoutPagePostInput
+  media?: Prisma.MediaUncheckedCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionUncheckedCreateNestedManyWithoutPagePostInput
+}
+
+export type PagePostCreateOrConnectWithoutPostHashtagsInput = {
+  where: Prisma.PagePostWhereUniqueInput
+  create: Prisma.XOR<Prisma.PagePostCreateWithoutPostHashtagsInput, Prisma.PagePostUncheckedCreateWithoutPostHashtagsInput>
+}
+
+export type PagePostUpsertWithoutPostHashtagsInput = {
+  update: Prisma.XOR<Prisma.PagePostUpdateWithoutPostHashtagsInput, Prisma.PagePostUncheckedUpdateWithoutPostHashtagsInput>
+  create: Prisma.XOR<Prisma.PagePostCreateWithoutPostHashtagsInput, Prisma.PagePostUncheckedCreateWithoutPostHashtagsInput>
+  where?: Prisma.PagePostWhereInput
+}
+
+export type PagePostUpdateToOneWithWhereWithoutPostHashtagsInput = {
+  where?: Prisma.PagePostWhereInput
+  data: Prisma.XOR<Prisma.PagePostUpdateWithoutPostHashtagsInput, Prisma.PagePostUncheckedUpdateWithoutPostHashtagsInput>
+}
+
+export type PagePostUpdateWithoutPostHashtagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  page?: Prisma.PageUpdateOneRequiredWithoutPagePostsNestedInput
+  poster?: Prisma.UserUpdateOneRequiredWithoutPagePostsNestedInput
+  postCategories?: Prisma.PostCategoryUpdateManyWithoutPagePostNestedInput
+  media?: Prisma.MediaUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUpdateManyWithoutPagePostNestedInput
+}
+
+export type PagePostUncheckedUpdateWithoutPostHashtagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  pageId?: Prisma.StringFieldUpdateOperationsInput | string
+  postedBy?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postCategories?: Prisma.PostCategoryUncheckedUpdateManyWithoutPagePostNestedInput
+  media?: Prisma.MediaUncheckedUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUncheckedUpdateManyWithoutPagePostNestedInput
 }
 
 export type PagePostCreateWithoutPosterInput = {
   id?: string
   content?: string | null
+  isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   page: Prisma.PageCreateNestedOneWithoutPagePostsInput
+  postCategories?: Prisma.PostCategoryCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagCreateNestedManyWithoutPagePostInput
   media?: Prisma.MediaCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionCreateNestedManyWithoutPagePostInput
 }
 
 export type PagePostUncheckedCreateWithoutPosterInput = {
   id?: string
-  content?: string | null
   pageId: string
+  content?: string | null
+  isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  postCategories?: Prisma.PostCategoryUncheckedCreateNestedManyWithoutPagePostInput
+  postHashtags?: Prisma.PostHashtagUncheckedCreateNestedManyWithoutPagePostInput
   media?: Prisma.MediaUncheckedCreateNestedManyWithoutPagePostInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPage_PostInput
+  mentions?: Prisma.MentionUncheckedCreateNestedManyWithoutPagePostInput
 }
 
 export type PagePostCreateOrConnectWithoutPosterInput = {
@@ -607,8 +1050,9 @@ export type PagePostUpdateManyWithWhereWithoutPosterInput = {
 
 export type PagePostCreateManyPageInput = {
   id?: string
-  content?: string | null
   postedBy: string
+  content?: string | null
+  isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -616,33 +1060,45 @@ export type PagePostCreateManyPageInput = {
 export type PagePostUpdateWithoutPageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   poster?: Prisma.UserUpdateOneRequiredWithoutPagePostsNestedInput
+  postCategories?: Prisma.PostCategoryUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUpdateManyWithoutPagePostNestedInput
   media?: Prisma.MediaUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUpdateManyWithoutPagePostNestedInput
 }
 
 export type PagePostUncheckedUpdateWithoutPageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postedBy?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postCategories?: Prisma.PostCategoryUncheckedUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUncheckedUpdateManyWithoutPagePostNestedInput
   media?: Prisma.MediaUncheckedUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUncheckedUpdateManyWithoutPagePostNestedInput
 }
 
 export type PagePostUncheckedUpdateManyWithoutPageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postedBy?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PagePostCreateManyPosterInput = {
   id?: string
-  content?: string | null
   pageId: string
+  content?: string | null
+  isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -650,25 +1106,36 @@ export type PagePostCreateManyPosterInput = {
 export type PagePostUpdateWithoutPosterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   page?: Prisma.PageUpdateOneRequiredWithoutPagePostsNestedInput
+  postCategories?: Prisma.PostCategoryUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUpdateManyWithoutPagePostNestedInput
   media?: Prisma.MediaUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUpdateManyWithoutPagePostNestedInput
 }
 
 export type PagePostUncheckedUpdateWithoutPosterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pageId?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postCategories?: Prisma.PostCategoryUncheckedUpdateManyWithoutPagePostNestedInput
+  postHashtags?: Prisma.PostHashtagUncheckedUpdateManyWithoutPagePostNestedInput
   media?: Prisma.MediaUncheckedUpdateManyWithoutPagePostNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPage_PostNestedInput
+  mentions?: Prisma.MentionUncheckedUpdateManyWithoutPagePostNestedInput
 }
 
 export type PagePostUncheckedUpdateManyWithoutPosterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pageId?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -679,11 +1146,19 @@ export type PagePostUncheckedUpdateManyWithoutPosterInput = {
  */
 
 export type PagePostCountOutputType = {
+  postCategories: number
+  postHashtags: number
   media: number
+  comments: number
+  mentions: number
 }
 
 export type PagePostCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  postCategories?: boolean | PagePostCountOutputTypeCountPostCategoriesArgs
+  postHashtags?: boolean | PagePostCountOutputTypeCountPostHashtagsArgs
   media?: boolean | PagePostCountOutputTypeCountMediaArgs
+  comments?: boolean | PagePostCountOutputTypeCountCommentsArgs
+  mentions?: boolean | PagePostCountOutputTypeCountMentionsArgs
 }
 
 /**
@@ -699,29 +1174,63 @@ export type PagePostCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * PagePostCountOutputType without action
  */
+export type PagePostCountOutputTypeCountPostCategoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostCategoryWhereInput
+}
+
+/**
+ * PagePostCountOutputType without action
+ */
+export type PagePostCountOutputTypeCountPostHashtagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostHashtagWhereInput
+}
+
+/**
+ * PagePostCountOutputType without action
+ */
 export type PagePostCountOutputTypeCountMediaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.MediaWhereInput
+}
+
+/**
+ * PagePostCountOutputType without action
+ */
+export type PagePostCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CommentWhereInput
+}
+
+/**
+ * PagePostCountOutputType without action
+ */
+export type PagePostCountOutputTypeCountMentionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MentionWhereInput
 }
 
 
 export type PagePostSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  content?: boolean
   pageId?: boolean
   postedBy?: boolean
+  content?: boolean
+  isPublic?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   page?: boolean | Prisma.PageDefaultArgs<ExtArgs>
   poster?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  postCategories?: boolean | Prisma.PagePost$postCategoriesArgs<ExtArgs>
+  postHashtags?: boolean | Prisma.PagePost$postHashtagsArgs<ExtArgs>
   media?: boolean | Prisma.PagePost$mediaArgs<ExtArgs>
+  comments?: boolean | Prisma.PagePost$commentsArgs<ExtArgs>
+  mentions?: boolean | Prisma.PagePost$mentionsArgs<ExtArgs>
   _count?: boolean | Prisma.PagePostCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pagePost"]>
 
 export type PagePostSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  content?: boolean
   pageId?: boolean
   postedBy?: boolean
+  content?: boolean
+  isPublic?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   page?: boolean | Prisma.PageDefaultArgs<ExtArgs>
@@ -730,9 +1239,10 @@ export type PagePostSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type PagePostSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  content?: boolean
   pageId?: boolean
   postedBy?: boolean
+  content?: boolean
+  isPublic?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   page?: boolean | Prisma.PageDefaultArgs<ExtArgs>
@@ -741,18 +1251,23 @@ export type PagePostSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type PagePostSelectScalar = {
   id?: boolean
-  content?: boolean
   pageId?: boolean
   postedBy?: boolean
+  content?: boolean
+  isPublic?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PagePostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "content" | "pageId" | "postedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["pagePost"]>
+export type PagePostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pageId" | "postedBy" | "content" | "isPublic" | "createdAt" | "updatedAt", ExtArgs["result"]["pagePost"]>
 export type PagePostInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   page?: boolean | Prisma.PageDefaultArgs<ExtArgs>
   poster?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  postCategories?: boolean | Prisma.PagePost$postCategoriesArgs<ExtArgs>
+  postHashtags?: boolean | Prisma.PagePost$postHashtagsArgs<ExtArgs>
   media?: boolean | Prisma.PagePost$mediaArgs<ExtArgs>
+  comments?: boolean | Prisma.PagePost$commentsArgs<ExtArgs>
+  mentions?: boolean | Prisma.PagePost$mentionsArgs<ExtArgs>
   _count?: boolean | Prisma.PagePostCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PagePostIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -769,13 +1284,18 @@ export type $PagePostPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     page: Prisma.$PagePayload<ExtArgs>
     poster: Prisma.$UserPayload<ExtArgs>
+    postCategories: Prisma.$PostCategoryPayload<ExtArgs>[]
+    postHashtags: Prisma.$PostHashtagPayload<ExtArgs>[]
     media: Prisma.$MediaPayload<ExtArgs>[]
+    comments: Prisma.$CommentPayload<ExtArgs>[]
+    mentions: Prisma.$MentionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    content: string | null
     pageId: string
     postedBy: string
+    content: string | null
+    isPublic: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["pagePost"]>
@@ -1174,7 +1694,11 @@ export interface Prisma__PagePostClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   page<T extends Prisma.PageDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PageDefaultArgs<ExtArgs>>): Prisma.Prisma__PageClient<runtime.Types.Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   poster<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  postCategories<T extends Prisma.PagePost$postCategoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PagePost$postCategoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  postHashtags<T extends Prisma.PagePost$postHashtagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PagePost$postHashtagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   media<T extends Prisma.PagePost$mediaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PagePost$mediaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  comments<T extends Prisma.PagePost$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PagePost$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mentions<T extends Prisma.PagePost$mentionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PagePost$mentionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1205,9 +1729,10 @@ export interface Prisma__PagePostClient<T, Null = never, ExtArgs extends runtime
  */
 export interface PagePostFieldRefs {
   readonly id: Prisma.FieldRef<"PagePost", 'String'>
-  readonly content: Prisma.FieldRef<"PagePost", 'String'>
   readonly pageId: Prisma.FieldRef<"PagePost", 'String'>
   readonly postedBy: Prisma.FieldRef<"PagePost", 'String'>
+  readonly content: Prisma.FieldRef<"PagePost", 'String'>
+  readonly isPublic: Prisma.FieldRef<"PagePost", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"PagePost", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PagePost", 'DateTime'>
 }
@@ -1606,6 +2131,54 @@ export type PagePostDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
+ * PagePost.postCategories
+ */
+export type PagePost$postCategoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PostCategory
+   */
+  select?: Prisma.PostCategorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PostCategory
+   */
+  omit?: Prisma.PostCategoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostCategoryInclude<ExtArgs> | null
+  where?: Prisma.PostCategoryWhereInput
+  orderBy?: Prisma.PostCategoryOrderByWithRelationInput | Prisma.PostCategoryOrderByWithRelationInput[]
+  cursor?: Prisma.PostCategoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostCategoryScalarFieldEnum | Prisma.PostCategoryScalarFieldEnum[]
+}
+
+/**
+ * PagePost.postHashtags
+ */
+export type PagePost$postHashtagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PostHashtag
+   */
+  select?: Prisma.PostHashtagSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PostHashtag
+   */
+  omit?: Prisma.PostHashtagOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostHashtagInclude<ExtArgs> | null
+  where?: Prisma.PostHashtagWhereInput
+  orderBy?: Prisma.PostHashtagOrderByWithRelationInput | Prisma.PostHashtagOrderByWithRelationInput[]
+  cursor?: Prisma.PostHashtagWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostHashtagScalarFieldEnum | Prisma.PostHashtagScalarFieldEnum[]
+}
+
+/**
  * PagePost.media
  */
 export type PagePost$mediaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1627,6 +2200,54 @@ export type PagePost$mediaArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.MediaScalarFieldEnum | Prisma.MediaScalarFieldEnum[]
+}
+
+/**
+ * PagePost.comments
+ */
+export type PagePost$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Comment
+   */
+  select?: Prisma.CommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Comment
+   */
+  omit?: Prisma.CommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommentInclude<ExtArgs> | null
+  where?: Prisma.CommentWhereInput
+  orderBy?: Prisma.CommentOrderByWithRelationInput | Prisma.CommentOrderByWithRelationInput[]
+  cursor?: Prisma.CommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
+}
+
+/**
+ * PagePost.mentions
+ */
+export type PagePost$mentionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Mention
+   */
+  select?: Prisma.MentionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Mention
+   */
+  omit?: Prisma.MentionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MentionInclude<ExtArgs> | null
+  where?: Prisma.MentionWhereInput
+  orderBy?: Prisma.MentionOrderByWithRelationInput | Prisma.MentionOrderByWithRelationInput[]
+  cursor?: Prisma.MentionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MentionScalarFieldEnum | Prisma.MentionScalarFieldEnum[]
 }
 
 /**

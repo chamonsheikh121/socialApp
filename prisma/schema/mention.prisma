@@ -1,0 +1,22 @@
+// Mentions
+model Mention {
+  id              String       @id @default(uuid())
+  mentionedUserId String       // User being mentioned
+  mentionedBy     String       // User who created the mention
+  postId          String?      // Post where user was mentioned (nullable)
+  pagePostId      String?      // Page post where user was mentioned (nullable)
+  commentId       String?      // Comment where user was mentioned (nullable)
+  createdAt       DateTime     @default(now())
+
+  mentionedUser   User         @relation("MentionedUser", fields: [mentionedUserId], references: [id], onDelete: Cascade)
+  mentioner       User         @relation("Mentioner", fields: [mentionedBy], references: [id], onDelete: Cascade)
+  post            Post?        @relation("PostMentions", fields: [postId], references: [id], onDelete: Cascade)
+  pagePost        PagePost?    @relation(fields: [pagePostId], references: [id], onDelete: Cascade)
+  comment         Comment?     @relation("CommentMentions", fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@index([mentionedUserId])
+  @@index([mentionedBy])
+  @@index([postId])
+  @@index([pagePostId])
+  @@index([commentId])
+}

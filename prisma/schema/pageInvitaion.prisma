@@ -1,0 +1,17 @@
+
+model PageInvitation {
+  id          String   @id @default(uuid())
+  pageId      String
+  senderId    String
+  receiverId  String
+  isAccepted  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  page     Page @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  sender   User @relation("PageInviteSender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User @relation("PageInviteReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@unique([pageId, senderId, receiverId])
+  @@index([receiverId])
+}

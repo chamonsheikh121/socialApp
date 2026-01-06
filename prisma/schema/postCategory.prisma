@@ -1,13 +1,26 @@
 // Post ↔ Category (Many-to-Many)
 model PostCategory {
   id         String   @id @default(uuid())
-  postId     String
+  postType   PostType @default(USER_POST)
+  postId     String?
+  pagePostId String?
   categoryId String
   createdAt  DateTime @default(now())
 
-  post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  category   PCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  post     Post?     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  category PCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  pagePost PagePost? @relation(fields: [pagePostId], references: [id])
 
   @@unique([postId, categoryId])
   @@index([categoryId])
+}
+
+// Enums
+enum PostType {
+  USER_POST
+  PAGE_POST
+  USER_REEL
+  PAGE_REEL
+  USER_VIDEO
+  PAGE_VIDEO
 }

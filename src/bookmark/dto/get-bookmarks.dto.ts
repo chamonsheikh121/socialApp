@@ -1,7 +1,6 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsOptional, IsInt, Min, IsEnum } from 'class-validator';
+import { IsOptional, IsInt, Min } from 'class-validator';
 import { Type } from 'class-transformer';
-import { PostType } from './create-bookmark.dto';
 
 export class GetBookmarksDto {
   @ApiPropertyOptional({
@@ -25,13 +24,4 @@ export class GetBookmarksDto {
   @IsInt()
   @Min(1)
   limit?: number = 20;
-
-  @ApiPropertyOptional({
-    description: 'Filter by post type',
-    enum: PostType,
-    example: PostType.USER_POST,
-  })
-  @IsOptional()
-  @IsEnum(PostType)
-  PostType?: PostType;
 }

@@ -60,10 +60,13 @@ export const ModelName = {
   Interest: 'Interest',
   Like: 'Like',
   Media: 'Media',
+  Mention: 'Mention',
   Message: 'Message',
   Notification: 'Notification',
   Page: 'Page',
   PageAdmin: 'PageAdmin',
+  PageFollower: 'PageFollower',
+  PageInvitation: 'PageInvitation',
   PagePost: 'PagePost',
   Post: 'Post',
   PostCategory: 'PostCategory',
@@ -104,7 +107,6 @@ export type BlockUserScalarFieldEnum = (typeof BlockUserScalarFieldEnum)[keyof t
 export const BookmarkScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  PostType: 'PostType',
   contentId: 'contentId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -134,6 +136,7 @@ export const CommentScalarFieldEnum = {
   commentText: 'commentText',
   userId: 'userId',
   postId: 'postId',
+  pagePostId: 'pagePostId',
   parentCommentId: 'parentCommentId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -200,6 +203,19 @@ export const MediaScalarFieldEnum = {
 export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof MediaScalarFieldEnum]
 
 
+export const MentionScalarFieldEnum = {
+  id: 'id',
+  mentionedUserId: 'mentionedUserId',
+  mentionedBy: 'mentionedBy',
+  postId: 'postId',
+  pagePostId: 'pagePostId',
+  commentId: 'commentId',
+  createdAt: 'createdAt'
+} as const
+
+export type MentionScalarFieldEnum = (typeof MentionScalarFieldEnum)[keyof typeof MentionScalarFieldEnum]
+
+
 export const MessageScalarFieldEnum = {
   id: 'id',
   content: 'content',
@@ -252,11 +268,35 @@ export const PageAdminScalarFieldEnum = {
 export type PageAdminScalarFieldEnum = (typeof PageAdminScalarFieldEnum)[keyof typeof PageAdminScalarFieldEnum]
 
 
+export const PageFollowerScalarFieldEnum = {
+  id: 'id',
+  pageId: 'pageId',
+  userId: 'userId',
+  followedAt: 'followedAt'
+} as const
+
+export type PageFollowerScalarFieldEnum = (typeof PageFollowerScalarFieldEnum)[keyof typeof PageFollowerScalarFieldEnum]
+
+
+export const PageInvitationScalarFieldEnum = {
+  id: 'id',
+  pageId: 'pageId',
+  senderId: 'senderId',
+  receiverId: 'receiverId',
+  isAccepted: 'isAccepted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PageInvitationScalarFieldEnum = (typeof PageInvitationScalarFieldEnum)[keyof typeof PageInvitationScalarFieldEnum]
+
+
 export const PagePostScalarFieldEnum = {
   id: 'id',
-  content: 'content',
   pageId: 'pageId',
   postedBy: 'postedBy',
+  content: 'content',
+  isPublic: 'isPublic',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -268,7 +308,6 @@ export const PostScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   content: 'content',
-  postType: 'postType',
   isPublic: 'isPublic',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -279,7 +318,9 @@ export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof Post
 
 export const PostCategoryScalarFieldEnum = {
   id: 'id',
+  postType: 'postType',
   postId: 'postId',
+  pagePostId: 'pagePostId',
   categoryId: 'categoryId',
   createdAt: 'createdAt'
 } as const
@@ -290,6 +331,7 @@ export type PostCategoryScalarFieldEnum = (typeof PostCategoryScalarFieldEnum)[k
 export const PostHashtagScalarFieldEnum = {
   id: 'id',
   postId: 'postId',
+  pagePostId: 'pagePostId',
   hashtagId: 'hashtagId',
   createdAt: 'createdAt'
 } as const
