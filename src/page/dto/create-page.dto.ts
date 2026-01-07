@@ -17,7 +17,8 @@ export class CreatePageDto {
   @IsString()
   @IsNotEmpty()
   @Matches(/^[a-z0-9._]+$/, {
-    message: 'Username must be lowercase letters, numbers, dots, and underscores only',
+    message:
+      'Username must be lowercase letters, numbers, dots, and underscores only',
   })
   username: string;
 

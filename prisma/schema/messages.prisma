@@ -1,20 +1,69 @@
+// Conversations
+model Conversation {
+  id           String               @id @default(uuid())
+  type         ConversationType     @default(DIRECT)
+  name         String?              // Group name (optional for direct chats)
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+
+  participants ConversationParticipant[]
+  messages     Message[]
+
+  @@index([createdAt])
+}
+
+model ConversationParticipant {
+  id             String       @id @default(uuid())
+  conversationId String
+  userId         String
+  joinedAt       DateTime     @default(now())
+  leftAt         DateTime?
+  lastReadAt     DateTime?
+
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([conversationId, userId])
+  @@index([userId])
+  @@index([conversationId])
+}
 
 // Messages
 model Message {
-  id               String    @id @default(uuid())
+  id               String        @id @default(uuid())
   content          String?
   senderId         String
-  receiverId       String
+  conversationId   String
   replyToMessageId String?
-  isRead           Boolean   @default(false)
-  createdAt        DateTime  @default(now())
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
 
-  sender           User      @relation("SenderMessages", fields: [senderId], references: [id], onDelete: Cascade)
-  receiver         User      @relation("ReceiverMessages", fields: [receiverId], references: [id], onDelete: Cascade)
-  replyToMessage   Message?  @relation("ReplyMessages", fields: [replyToMessageId], references: [id])
-  replies          Message[] @relation("ReplyMessages")
+  sender           User          @relation("SenderMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  conversation     Conversation  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  replyToMessage   Message?      @relation("ReplyMessages", fields: [replyToMessageId], references: [id])
+  replies          Message[]     @relation("ReplyMessages")
   media            Media[]
+  readReceipts     MessageRead[]
 
-  @@index([senderId, receiverId, createdAt])
-  @@index([receiverId, createdAt])
+  @@index([conversationId, createdAt])
+  @@index([senderId, createdAt])
+}
+
+model MessageRead {
+  id        String   @id @default(uuid())
+  messageId String
+  userId    String
+  readAt    DateTime @default(now())
+
+  message   Message  @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([messageId, userId])
+  @@index([userId])
+  @@index([messageId])
+}
+
+enum ConversationType {
+  DIRECT
+  GROUP
 }

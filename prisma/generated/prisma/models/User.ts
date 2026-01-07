@@ -289,7 +289,8 @@ export type UserWhereInput = {
   blockedUsers?: Prisma.BlockUserListRelationFilter
   blockedByUsers?: Prisma.BlockUserListRelationFilter
   messagesSent?: Prisma.MessageListRelationFilter
-  messagesReceived?: Prisma.MessageListRelationFilter
+  conversations?: Prisma.ConversationParticipantListRelationFilter
+  messageReads?: Prisma.MessageReadListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   notificationsAsActor?: Prisma.NotificationListRelationFilter
   pagesOwned?: Prisma.PageListRelationFilter
@@ -333,7 +334,8 @@ export type UserOrderByWithRelationInput = {
   blockedUsers?: Prisma.BlockUserOrderByRelationAggregateInput
   blockedByUsers?: Prisma.BlockUserOrderByRelationAggregateInput
   messagesSent?: Prisma.MessageOrderByRelationAggregateInput
-  messagesReceived?: Prisma.MessageOrderByRelationAggregateInput
+  conversations?: Prisma.ConversationParticipantOrderByRelationAggregateInput
+  messageReads?: Prisma.MessageReadOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
   notificationsAsActor?: Prisma.NotificationOrderByRelationAggregateInput
   pagesOwned?: Prisma.PageOrderByRelationAggregateInput
@@ -380,7 +382,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   blockedUsers?: Prisma.BlockUserListRelationFilter
   blockedByUsers?: Prisma.BlockUserListRelationFilter
   messagesSent?: Prisma.MessageListRelationFilter
-  messagesReceived?: Prisma.MessageListRelationFilter
+  conversations?: Prisma.ConversationParticipantListRelationFilter
+  messageReads?: Prisma.MessageReadListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   notificationsAsActor?: Prisma.NotificationListRelationFilter
   pagesOwned?: Prisma.PageListRelationFilter
@@ -470,7 +473,8 @@ export type UserCreateInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -514,7 +518,8 @@ export type UserUncheckedCreateInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -558,7 +563,8 @@ export type UserUpdateInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -602,7 +608,8 @@ export type UserUncheckedUpdateInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -873,15 +880,23 @@ export type UserUpdateOneRequiredWithoutMentionsGivenNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMentionsGivenInput, Prisma.UserUpdateWithoutMentionsGivenInput>, Prisma.UserUncheckedUpdateWithoutMentionsGivenInput>
 }
 
-export type UserCreateNestedOneWithoutMessagesSentInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutMessagesSentInput, Prisma.UserUncheckedCreateWithoutMessagesSentInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMessagesSentInput
+export type UserCreateNestedOneWithoutConversationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutConversationsInput, Prisma.UserUncheckedCreateWithoutConversationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConversationsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserCreateNestedOneWithoutMessagesReceivedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutMessagesReceivedInput, Prisma.UserUncheckedCreateWithoutMessagesReceivedInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMessagesReceivedInput
+export type UserUpdateOneRequiredWithoutConversationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutConversationsInput, Prisma.UserUncheckedCreateWithoutConversationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConversationsInput
+  upsert?: Prisma.UserUpsertWithoutConversationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutConversationsInput, Prisma.UserUpdateWithoutConversationsInput>, Prisma.UserUncheckedUpdateWithoutConversationsInput>
+}
+
+export type UserCreateNestedOneWithoutMessagesSentInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMessagesSentInput, Prisma.UserUncheckedCreateWithoutMessagesSentInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMessagesSentInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
@@ -893,12 +908,18 @@ export type UserUpdateOneRequiredWithoutMessagesSentNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMessagesSentInput, Prisma.UserUpdateWithoutMessagesSentInput>, Prisma.UserUncheckedUpdateWithoutMessagesSentInput>
 }
 
-export type UserUpdateOneRequiredWithoutMessagesReceivedNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutMessagesReceivedInput, Prisma.UserUncheckedCreateWithoutMessagesReceivedInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMessagesReceivedInput
-  upsert?: Prisma.UserUpsertWithoutMessagesReceivedInput
+export type UserCreateNestedOneWithoutMessageReadsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMessageReadsInput, Prisma.UserUncheckedCreateWithoutMessageReadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMessageReadsInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMessagesReceivedInput, Prisma.UserUpdateWithoutMessagesReceivedInput>, Prisma.UserUncheckedUpdateWithoutMessagesReceivedInput>
+}
+
+export type UserUpdateOneRequiredWithoutMessageReadsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMessageReadsInput, Prisma.UserUncheckedCreateWithoutMessageReadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMessageReadsInput
+  upsert?: Prisma.UserUpsertWithoutMessageReadsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMessageReadsInput, Prisma.UserUpdateWithoutMessageReadsInput>, Prisma.UserUncheckedUpdateWithoutMessageReadsInput>
 }
 
 export type UserCreateNestedOneWithoutNotificationsInput = {
@@ -1121,7 +1142,8 @@ export type UserCreateWithoutBlockedUsersInput = {
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -1164,7 +1186,8 @@ export type UserUncheckedCreateWithoutBlockedUsersInput = {
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -1212,7 +1235,8 @@ export type UserCreateWithoutBlockedByUsersInput = {
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -1255,7 +1279,8 @@ export type UserUncheckedCreateWithoutBlockedByUsersInput = {
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -1314,7 +1339,8 @@ export type UserUpdateWithoutBlockedUsersInput = {
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -1357,7 +1383,8 @@ export type UserUncheckedUpdateWithoutBlockedUsersInput = {
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -1411,7 +1438,8 @@ export type UserUpdateWithoutBlockedByUsersInput = {
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -1454,7 +1482,8 @@ export type UserUncheckedUpdateWithoutBlockedByUsersInput = {
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -1497,7 +1526,8 @@ export type UserCreateWithoutBookmarksInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -1540,7 +1570,8 @@ export type UserUncheckedCreateWithoutBookmarksInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -1599,7 +1630,8 @@ export type UserUpdateWithoutBookmarksInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -1642,7 +1674,8 @@ export type UserUncheckedUpdateWithoutBookmarksInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -1685,7 +1718,8 @@ export type UserCreateWithoutCommentsInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -1728,7 +1762,8 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -1787,7 +1822,8 @@ export type UserUpdateWithoutCommentsInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -1830,7 +1866,8 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -1873,7 +1910,8 @@ export type UserCreateWithoutFollowingInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -1916,7 +1954,8 @@ export type UserUncheckedCreateWithoutFollowingInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -1964,7 +2003,8 @@ export type UserCreateWithoutFollowersInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -2007,7 +2047,8 @@ export type UserUncheckedCreateWithoutFollowersInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -2066,7 +2107,8 @@ export type UserUpdateWithoutFollowingInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -2109,7 +2151,8 @@ export type UserUncheckedUpdateWithoutFollowingInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -2163,7 +2206,8 @@ export type UserUpdateWithoutFollowersInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -2206,7 +2250,8 @@ export type UserUncheckedUpdateWithoutFollowersInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -2249,7 +2294,8 @@ export type UserCreateWithoutLikesInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -2292,7 +2338,8 @@ export type UserUncheckedCreateWithoutLikesInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -2351,7 +2398,8 @@ export type UserUpdateWithoutLikesInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -2394,7 +2442,8 @@ export type UserUncheckedUpdateWithoutLikesInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -2438,7 +2487,8 @@ export type UserCreateWithoutMentionsReceivedInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -2481,7 +2531,8 @@ export type UserUncheckedCreateWithoutMentionsReceivedInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -2529,7 +2580,8 @@ export type UserCreateWithoutMentionsGivenInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -2572,7 +2624,8 @@ export type UserUncheckedCreateWithoutMentionsGivenInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -2631,7 +2684,8 @@ export type UserUpdateWithoutMentionsReceivedInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -2674,7 +2728,8 @@ export type UserUncheckedUpdateWithoutMentionsReceivedInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -2728,7 +2783,8 @@ export type UserUpdateWithoutMentionsGivenInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -2771,7 +2827,8 @@ export type UserUncheckedUpdateWithoutMentionsGivenInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -2783,6 +2840,198 @@ export type UserUncheckedUpdateWithoutMentionsGivenInput = {
   userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
   mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+}
+
+export type UserCreateWithoutConversationsInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
+}
+
+export type UserUncheckedCreateWithoutConversationsInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
+}
+
+export type UserCreateOrConnectWithoutConversationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutConversationsInput, Prisma.UserUncheckedCreateWithoutConversationsInput>
+}
+
+export type UserUpsertWithoutConversationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutConversationsInput, Prisma.UserUncheckedUpdateWithoutConversationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutConversationsInput, Prisma.UserUncheckedCreateWithoutConversationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutConversationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutConversationsInput, Prisma.UserUncheckedUpdateWithoutConversationsInput>
+}
+
+export type UserUpdateWithoutConversationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUpdateManyWithoutReceiverNestedInput
+  pagePosts?: Prisma.PagePostUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutConversationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverPhotoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.LikeUncheckedUpdateManyWithoutUserNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  followers?: Prisma.FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
+  blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
+  messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
+  pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
+  pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
+  pageFollowers?: Prisma.PageFollowerUncheckedUpdateManyWithoutUserNestedInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedUpdateManyWithoutSenderNestedInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedUpdateManyWithoutReceiverNestedInput
+  pagePosts?: Prisma.PagePostUncheckedUpdateManyWithoutPosterNestedInput
+  userSettings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  interests?: Prisma.UserInterestUncheckedUpdateManyWithoutUserNestedInput
+  mentionsReceived?: Prisma.MentionUncheckedUpdateManyWithoutMentionedUserNestedInput
+  mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
 export type UserCreateWithoutMessagesSentInput = {
@@ -2813,7 +3062,8 @@ export type UserCreateWithoutMessagesSentInput = {
   following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -2856,7 +3106,8 @@ export type UserUncheckedCreateWithoutMessagesSentInput = {
   following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -2874,97 +3125,6 @@ export type UserUncheckedCreateWithoutMessagesSentInput = {
 export type UserCreateOrConnectWithoutMessagesSentInput = {
   where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutMessagesSentInput, Prisma.UserUncheckedCreateWithoutMessagesSentInput>
-}
-
-export type UserCreateWithoutMessagesReceivedInput = {
-  id?: string
-  username: string
-  email: string
-  phone?: string | null
-  passwordHash: string
-  fullName?: string | null
-  bio?: string | null
-  avatarUrl?: string | null
-  coverPhotoUrl?: string | null
-  location?: string | null
-  role?: $Enums.UserRoles
-  isVerified?: boolean
-  isDeleted?: boolean
-  isBlocked?: boolean
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
-  socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
-  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
-  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
-  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
-  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
-  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
-  messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
-  pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
-  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
-  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
-  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
-  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
-  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
-  userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
-  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
-  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
-  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
-}
-
-export type UserUncheckedCreateWithoutMessagesReceivedInput = {
-  id?: string
-  username: string
-  email: string
-  phone?: string | null
-  passwordHash: string
-  fullName?: string | null
-  bio?: string | null
-  avatarUrl?: string | null
-  coverPhotoUrl?: string | null
-  location?: string | null
-  role?: $Enums.UserRoles
-  isVerified?: boolean
-  isDeleted?: boolean
-  isBlocked?: boolean
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
-  socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
-  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
-  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
-  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
-  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
-  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
-  messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
-  pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
-  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
-  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
-  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
-  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
-  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
-  userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
-  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
-  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
-  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
-}
-
-export type UserCreateOrConnectWithoutMessagesReceivedInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutMessagesReceivedInput, Prisma.UserUncheckedCreateWithoutMessagesReceivedInput>
 }
 
 export type UserUpsertWithoutMessagesSentInput = {
@@ -3006,7 +3166,8 @@ export type UserUpdateWithoutMessagesSentInput = {
   following?: Prisma.FollowUpdateManyWithoutFollowerNestedInput
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -3049,7 +3210,8 @@ export type UserUncheckedUpdateWithoutMessagesSentInput = {
   following?: Prisma.FollowUncheckedUpdateManyWithoutFollowerNestedInput
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -3064,18 +3226,111 @@ export type UserUncheckedUpdateWithoutMessagesSentInput = {
   mentionsGiven?: Prisma.MentionUncheckedUpdateManyWithoutMentionerNestedInput
 }
 
-export type UserUpsertWithoutMessagesReceivedInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutMessagesReceivedInput, Prisma.UserUncheckedUpdateWithoutMessagesReceivedInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutMessagesReceivedInput, Prisma.UserUncheckedCreateWithoutMessagesReceivedInput>
+export type UserCreateWithoutMessageReadsInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionCreateNestedManyWithoutMentionerInput
+}
+
+export type UserUncheckedCreateWithoutMessageReadsInput = {
+  id?: string
+  username: string
+  email: string
+  phone?: string | null
+  passwordHash: string
+  fullName?: string | null
+  bio?: string | null
+  avatarUrl?: string | null
+  coverPhotoUrl?: string | null
+  location?: string | null
+  role?: $Enums.UserRoles
+  isVerified?: boolean
+  isDeleted?: boolean
+  isBlocked?: boolean
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  socialLinks?: Prisma.UserSocialLinkUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.LikeUncheckedCreateNestedManyWithoutUserInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  followers?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowingInput
+  following?: Prisma.FollowUncheckedCreateNestedManyWithoutFollowerInput
+  blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
+  blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
+  messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
+  pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
+  pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
+  pageFollowers?: Prisma.PageFollowerUncheckedCreateNestedManyWithoutUserInput
+  pageInvitationsSent?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutSenderInput
+  pageInvitationsReceived?: Prisma.PageInvitationUncheckedCreateNestedManyWithoutReceiverInput
+  pagePosts?: Prisma.PagePostUncheckedCreateNestedManyWithoutPosterInput
+  userSettings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  interests?: Prisma.UserInterestUncheckedCreateNestedManyWithoutUserInput
+  mentionsReceived?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionedUserInput
+  mentionsGiven?: Prisma.MentionUncheckedCreateNestedManyWithoutMentionerInput
+}
+
+export type UserCreateOrConnectWithoutMessageReadsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMessageReadsInput, Prisma.UserUncheckedCreateWithoutMessageReadsInput>
+}
+
+export type UserUpsertWithoutMessageReadsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMessageReadsInput, Prisma.UserUncheckedUpdateWithoutMessageReadsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMessageReadsInput, Prisma.UserUncheckedCreateWithoutMessageReadsInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutMessagesReceivedInput = {
+export type UserUpdateToOneWithWhereWithoutMessageReadsInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutMessagesReceivedInput, Prisma.UserUncheckedUpdateWithoutMessagesReceivedInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMessageReadsInput, Prisma.UserUncheckedUpdateWithoutMessageReadsInput>
 }
 
-export type UserUpdateWithoutMessagesReceivedInput = {
+export type UserUpdateWithoutMessageReadsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3104,6 +3359,7 @@ export type UserUpdateWithoutMessagesReceivedInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -3118,7 +3374,7 @@ export type UserUpdateWithoutMessagesReceivedInput = {
   mentionsGiven?: Prisma.MentionUpdateManyWithoutMentionerNestedInput
 }
 
-export type UserUncheckedUpdateWithoutMessagesReceivedInput = {
+export type UserUncheckedUpdateWithoutMessageReadsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3147,6 +3403,7 @@ export type UserUncheckedUpdateWithoutMessagesReceivedInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -3190,7 +3447,8 @@ export type UserCreateWithoutNotificationsInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
@@ -3233,7 +3491,8 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
@@ -3281,7 +3540,8 @@ export type UserCreateWithoutNotificationsAsActorInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
@@ -3324,7 +3584,8 @@ export type UserUncheckedCreateWithoutNotificationsAsActorInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
@@ -3383,7 +3644,8 @@ export type UserUpdateWithoutNotificationsInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
@@ -3426,7 +3688,8 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
@@ -3480,7 +3743,8 @@ export type UserUpdateWithoutNotificationsAsActorInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
@@ -3523,7 +3787,8 @@ export type UserUncheckedUpdateWithoutNotificationsAsActorInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
@@ -3566,7 +3831,8 @@ export type UserCreateWithoutPagesOwnedInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pageAdmins?: Prisma.PageAdminCreateNestedManyWithoutUserInput
@@ -3609,7 +3875,8 @@ export type UserUncheckedCreateWithoutPagesOwnedInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pageAdmins?: Prisma.PageAdminUncheckedCreateNestedManyWithoutUserInput
@@ -3668,7 +3935,8 @@ export type UserUpdateWithoutPagesOwnedInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pageAdmins?: Prisma.PageAdminUpdateManyWithoutUserNestedInput
@@ -3711,7 +3979,8 @@ export type UserUncheckedUpdateWithoutPagesOwnedInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pageAdmins?: Prisma.PageAdminUncheckedUpdateManyWithoutUserNestedInput
@@ -3754,7 +4023,8 @@ export type UserCreateWithoutPageAdminsInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -3797,7 +4067,8 @@ export type UserUncheckedCreateWithoutPageAdminsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -3856,7 +4127,8 @@ export type UserUpdateWithoutPageAdminsInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -3899,7 +4171,8 @@ export type UserUncheckedUpdateWithoutPageAdminsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -3942,7 +4215,8 @@ export type UserCreateWithoutPageFollowersInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -3985,7 +4259,8 @@ export type UserUncheckedCreateWithoutPageFollowersInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -4044,7 +4319,8 @@ export type UserUpdateWithoutPageFollowersInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -4087,7 +4363,8 @@ export type UserUncheckedUpdateWithoutPageFollowersInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -4130,7 +4407,8 @@ export type UserCreateWithoutPageInvitationsSentInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -4173,7 +4451,8 @@ export type UserUncheckedCreateWithoutPageInvitationsSentInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -4221,7 +4500,8 @@ export type UserCreateWithoutPageInvitationsReceivedInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -4264,7 +4544,8 @@ export type UserUncheckedCreateWithoutPageInvitationsReceivedInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -4323,7 +4604,8 @@ export type UserUpdateWithoutPageInvitationsSentInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -4366,7 +4648,8 @@ export type UserUncheckedUpdateWithoutPageInvitationsSentInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -4420,7 +4703,8 @@ export type UserUpdateWithoutPageInvitationsReceivedInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -4463,7 +4747,8 @@ export type UserUncheckedUpdateWithoutPageInvitationsReceivedInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -4506,7 +4791,8 @@ export type UserCreateWithoutPagePostsInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -4549,7 +4835,8 @@ export type UserUncheckedCreateWithoutPagePostsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -4608,7 +4895,8 @@ export type UserUpdateWithoutPagePostsInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -4651,7 +4939,8 @@ export type UserUncheckedUpdateWithoutPagePostsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -4693,7 +4982,8 @@ export type UserCreateWithoutPostsInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -4736,7 +5026,8 @@ export type UserUncheckedCreateWithoutPostsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -4795,7 +5086,8 @@ export type UserUpdateWithoutPostsInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -4838,7 +5130,8 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -4881,7 +5174,8 @@ export type UserCreateWithoutRefreshTokensInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -4924,7 +5218,8 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -4983,7 +5278,8 @@ export type UserUpdateWithoutRefreshTokensInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -5026,7 +5322,8 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -5069,7 +5366,8 @@ export type UserCreateWithoutSocialLinksInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -5112,7 +5410,8 @@ export type UserUncheckedCreateWithoutSocialLinksInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -5171,7 +5470,8 @@ export type UserUpdateWithoutSocialLinksInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -5214,7 +5514,8 @@ export type UserUncheckedUpdateWithoutSocialLinksInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -5258,7 +5559,8 @@ export type UserCreateWithoutInterestsInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -5301,7 +5603,8 @@ export type UserUncheckedCreateWithoutInterestsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -5360,7 +5663,8 @@ export type UserUpdateWithoutInterestsInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -5403,7 +5707,8 @@ export type UserUncheckedUpdateWithoutInterestsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -5446,7 +5751,8 @@ export type UserCreateWithoutUserSettingsInput = {
   blockedUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageCreateNestedManyWithoutOwnerInput
@@ -5489,7 +5795,8 @@ export type UserUncheckedCreateWithoutUserSettingsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockerInput
   blockedByUsers?: Prisma.BlockUserUncheckedCreateNestedManyWithoutBlockedInput
   messagesSent?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  messagesReceived?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  conversations?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  messageReads?: Prisma.MessageReadUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   notificationsAsActor?: Prisma.NotificationUncheckedCreateNestedManyWithoutActorInput
   pagesOwned?: Prisma.PageUncheckedCreateNestedManyWithoutOwnerInput
@@ -5548,7 +5855,8 @@ export type UserUpdateWithoutUserSettingsInput = {
   blockedUsers?: Prisma.BlockUserUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUpdateManyWithoutOwnerNestedInput
@@ -5591,7 +5899,8 @@ export type UserUncheckedUpdateWithoutUserSettingsInput = {
   blockedUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockerNestedInput
   blockedByUsers?: Prisma.BlockUserUncheckedUpdateManyWithoutBlockedNestedInput
   messagesSent?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  messagesReceived?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  conversations?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  messageReads?: Prisma.MessageReadUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationsAsActor?: Prisma.NotificationUncheckedUpdateManyWithoutActorNestedInput
   pagesOwned?: Prisma.PageUncheckedUpdateManyWithoutOwnerNestedInput
@@ -5622,7 +5931,8 @@ export type UserCountOutputType = {
   blockedUsers: number
   blockedByUsers: number
   messagesSent: number
-  messagesReceived: number
+  conversations: number
+  messageReads: number
   notifications: number
   notificationsAsActor: number
   pagesOwned: number
@@ -5648,7 +5958,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   blockedUsers?: boolean | UserCountOutputTypeCountBlockedUsersArgs
   blockedByUsers?: boolean | UserCountOutputTypeCountBlockedByUsersArgs
   messagesSent?: boolean | UserCountOutputTypeCountMessagesSentArgs
-  messagesReceived?: boolean | UserCountOutputTypeCountMessagesReceivedArgs
+  conversations?: boolean | UserCountOutputTypeCountConversationsArgs
+  messageReads?: boolean | UserCountOutputTypeCountMessageReadsArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   notificationsAsActor?: boolean | UserCountOutputTypeCountNotificationsAsActorArgs
   pagesOwned?: boolean | UserCountOutputTypeCountPagesOwnedArgs
@@ -5752,8 +6063,15 @@ export type UserCountOutputTypeCountMessagesSentArgs<ExtArgs extends runtime.Typ
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountMessagesReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MessageWhereInput
+export type UserCountOutputTypeCountConversationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ConversationParticipantWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMessageReadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MessageReadWhereInput
 }
 
 /**
@@ -5863,7 +6181,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   blockedUsers?: boolean | Prisma.User$blockedUsersArgs<ExtArgs>
   blockedByUsers?: boolean | Prisma.User$blockedByUsersArgs<ExtArgs>
   messagesSent?: boolean | Prisma.User$messagesSentArgs<ExtArgs>
-  messagesReceived?: boolean | Prisma.User$messagesReceivedArgs<ExtArgs>
+  conversations?: boolean | Prisma.User$conversationsArgs<ExtArgs>
+  messageReads?: boolean | Prisma.User$messageReadsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   notificationsAsActor?: boolean | Prisma.User$notificationsAsActorArgs<ExtArgs>
   pagesOwned?: boolean | Prisma.User$pagesOwnedArgs<ExtArgs>
@@ -5952,7 +6271,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   blockedUsers?: boolean | Prisma.User$blockedUsersArgs<ExtArgs>
   blockedByUsers?: boolean | Prisma.User$blockedByUsersArgs<ExtArgs>
   messagesSent?: boolean | Prisma.User$messagesSentArgs<ExtArgs>
-  messagesReceived?: boolean | Prisma.User$messagesReceivedArgs<ExtArgs>
+  conversations?: boolean | Prisma.User$conversationsArgs<ExtArgs>
+  messageReads?: boolean | Prisma.User$messageReadsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   notificationsAsActor?: boolean | Prisma.User$notificationsAsActorArgs<ExtArgs>
   pagesOwned?: boolean | Prisma.User$pagesOwnedArgs<ExtArgs>
@@ -5984,7 +6304,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     blockedUsers: Prisma.$BlockUserPayload<ExtArgs>[]
     blockedByUsers: Prisma.$BlockUserPayload<ExtArgs>[]
     messagesSent: Prisma.$MessagePayload<ExtArgs>[]
-    messagesReceived: Prisma.$MessagePayload<ExtArgs>[]
+    conversations: Prisma.$ConversationParticipantPayload<ExtArgs>[]
+    messageReads: Prisma.$MessageReadPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
     notificationsAsActor: Prisma.$NotificationPayload<ExtArgs>[]
     pagesOwned: Prisma.$PagePayload<ExtArgs>[]
@@ -6421,7 +6742,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   blockedUsers<T extends Prisma.User$blockedUsersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$blockedUsersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlockUserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   blockedByUsers<T extends Prisma.User$blockedByUsersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$blockedByUsersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlockUserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   messagesSent<T extends Prisma.User$messagesSentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesSentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  messagesReceived<T extends Prisma.User$messagesReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  conversations<T extends Prisma.User$conversationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$conversationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConversationParticipantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  messageReads<T extends Prisma.User$messageReadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messageReadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessageReadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notificationsAsActor<T extends Prisma.User$notificationsAsActorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsAsActorArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagesOwned<T extends Prisma.User$pagesOwnedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pagesOwnedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -7132,27 +7454,51 @@ export type User$messagesSentArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * User.messagesReceived
+ * User.conversations
  */
-export type User$messagesReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$conversationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Message
+   * Select specific fields to fetch from the ConversationParticipant
    */
-  select?: Prisma.MessageSelect<ExtArgs> | null
+  select?: Prisma.ConversationParticipantSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Message
+   * Omit specific fields from the ConversationParticipant
    */
-  omit?: Prisma.MessageOmit<ExtArgs> | null
+  omit?: Prisma.ConversationParticipantOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.MessageInclude<ExtArgs> | null
-  where?: Prisma.MessageWhereInput
-  orderBy?: Prisma.MessageOrderByWithRelationInput | Prisma.MessageOrderByWithRelationInput[]
-  cursor?: Prisma.MessageWhereUniqueInput
+  include?: Prisma.ConversationParticipantInclude<ExtArgs> | null
+  where?: Prisma.ConversationParticipantWhereInput
+  orderBy?: Prisma.ConversationParticipantOrderByWithRelationInput | Prisma.ConversationParticipantOrderByWithRelationInput[]
+  cursor?: Prisma.ConversationParticipantWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[]
+  distinct?: Prisma.ConversationParticipantScalarFieldEnum | Prisma.ConversationParticipantScalarFieldEnum[]
+}
+
+/**
+ * User.messageReads
+ */
+export type User$messageReadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MessageRead
+   */
+  select?: Prisma.MessageReadSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MessageRead
+   */
+  omit?: Prisma.MessageReadOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MessageReadInclude<ExtArgs> | null
+  where?: Prisma.MessageReadWhereInput
+  orderBy?: Prisma.MessageReadOrderByWithRelationInput | Prisma.MessageReadOrderByWithRelationInput[]
+  cursor?: Prisma.MessageReadWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MessageReadScalarFieldEnum | Prisma.MessageReadScalarFieldEnum[]
 }
 
 /**

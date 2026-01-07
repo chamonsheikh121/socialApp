@@ -31,7 +31,8 @@ model User {
   blockedUsers         BlockUser[]      @relation("BlockerRelation")
   blockedByUsers       BlockUser[]      @relation("BlockedRelation")
   messagesSent         Message[]        @relation("SenderMessages")
-  messagesReceived     Message[]        @relation("ReceiverMessages")
+  conversations        ConversationParticipant[]
+  messageReads         MessageRead[]
   notifications        Notification[]   @relation("UserNotifications")
   notificationsAsActor Notification[]
   pagesOwned           Page[]
